@@ -1,0 +1,231 @@
+<!--
+代码为自动生成 Created by www.magicalcoder.com
+ 软件作者：何栋宇 qq:709876443
+ 如果你改变了此类 read 请将此行删除
+ 欢迎加入官方QQ群:648595928
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:include="magicalcoder/v103/include/head :: commonHead('all_type编辑')"/>
+
+<body class="childrenBody layui-hide">
+<!--请不要删除magicaldrag注释标签，可以配合布局器进行联动布局-->
+<!--magicaldrag-->
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header">
+
+            </div>
+            <div class="layui-card-body">
+                <form class="layui-form">
+                    <div class="layui-form-item security_edit_form_param_longId">
+                        <label class="layui-form-label">主键</label>
+                        <div class="layui-input-block">
+                            <input type="text" disabled="true" class="layui-input" name="longId"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesBinary">
+                        <label class="layui-form-label">bytes_binary</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesBinary" placeholder="bytes_binary" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesBlob">
+                        <label class="layui-form-label">bytes_blob</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesBlob" placeholder="bytes_blob" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesMediumblob">
+                        <label class="layui-form-label">bytes_mediumblob</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesMediumblob" placeholder="bytes_mediumblob" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesVarbinary">
+                        <label class="layui-form-label">bytes_varbinary</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesVarbinary" placeholder="bytes_varbinary" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesTinyblob">
+                        <label class="layui-form-label">bytes_tinyblob</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesTinyblob" placeholder="bytes_tinyblob" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bytesLongblob">
+                        <label class="layui-form-label">bytes_longblob</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bytesLongblob" placeholder="bytes_longblob" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_booleanBit">
+                        <label class="layui-form-label">boolean_bit</label>
+                        <div class="layui-input-block">
+                        <input type="checkbox" name="booleanBit" lay-skin="switch" lay-text="" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_booleanBool">
+                        <label class="layui-form-label">boolean_bool</label>
+                        <div class="layui-input-block">
+                        <input type="checkbox" name="booleanBool" lay-skin="switch" lay-text="" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_booleanBoolean">
+                        <label class="layui-form-label">boolean_boolean</label>
+                        <div class="layui-input-block">
+                        <input type="checkbox" name="booleanBoolean" lay-skin="switch" lay-text="" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringEnum">
+                        <label class="layui-form-label">string_enum</label>
+                        <div class="layui-input-block">
+                        <select name="stringEnum" class="layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="string_enum">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringChar">
+                        <label class="layui-form-label">string_char</label>
+                        <div class="layui-input-block">
+                        <select name="stringChar" class="layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="string_char">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringLongtext">
+                        <label class="layui-form-label">string_longtext</label>
+                        <div class="layui-input-block">
+                        <textarea name="stringLongtext" placeholder="string_longtext" class="layui-textarea" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" ></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringMediumtext">
+                        <label class="layui-form-label">string_mediumtext</label>
+                        <div class="layui-input-block">
+                        <textarea name="stringMediumtext" placeholder="string_mediumtext" class="layui-textarea" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" ></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringVarchar">
+                        <label class="layui-form-label">string_varchar</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="stringVarchar" placeholder="string_varchar" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringSet">
+                        <label class="layui-form-label">string_set</label>
+                        <div class="layui-input-block">
+                        <select name="stringSet" class="layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="string_set">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringTinytext">
+                        <label class="layui-form-label">string_tinytext</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="stringTinytext" placeholder="string_tinytext" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_stringText">
+                        <label class="layui-form-label">string_text</label>
+                        <div class="layui-input-block">
+                        <textarea name="stringText" placeholder="string_text" class="layui-textarea" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" ></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_byteTinyint">
+                        <label class="layui-form-label">byte_tinyint</label>
+                        <div class="layui-input-block">
+                        <select name="byteTinyint" class="layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="byte_tinyint">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_shortSmallint">
+                        <label class="layui-form-label">short_smallint</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="shortSmallint" placeholder="short_smallint" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_integerInt">
+                        <label class="layui-form-label">integer_int</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="integerInt" placeholder="integer_int" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_integerMediumint">
+                        <label class="layui-form-label">integer_mediumint</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="integerMediumint" placeholder="integer_mediumint" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_floatFloat">
+                        <label class="layui-form-label">float_float</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="floatFloat" placeholder="float_float" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_doubleDouble">
+                        <label class="layui-form-label">double_double</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="doubleDouble" placeholder="double_double" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_doubleReal">
+                        <label class="layui-form-label">double_real</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="doubleReal" placeholder="double_real" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bigdecimalDecimal">
+                        <label class="layui-form-label">bigdecimal_decimal</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bigdecimalDecimal" placeholder="bigdecimal_decimal" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_bigdecimalNumeric">
+                        <label class="layui-form-label">bigdecimal_numeric</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="bigdecimalNumeric" placeholder="bigdecimal_numeric" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_dateDate">
+                        <label class="layui-form-label">date_date</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="dateDate" placeholder="date_date" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_dateYear">
+                        <label class="layui-form-label">date_year</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="dateYear" placeholder="date_year" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_timeTime">
+                        <label class="layui-form-label">time_time</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="timeTime" placeholder="time_time" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_timestempDatetime">
+                        <label class="layui-form-label">timestemp_datetime</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="timestempDatetime" placeholder="timestemp_datetime" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_timestempTimestemp">
+                        <label class="layui-form-label">timestemp_timestemp</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="timestempTimestemp" placeholder="timestemp_timestemp" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="CURRENT_TIMESTAMP" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item ">
+                        <div class="layui-input-block">
+                            <a class="layui-btn security_edit_form_operate_save" lay-submit="" lay-filter="save">立即提交</a>
+                            <button type="reset" class="layui-hide layui-btn layui-btn-primary" >重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--/magicaldrag-->
+    <div th:replace="magicalcoder/v103/include/main-js :: commonMain" />
+    <script type="text/javascript"  th:src="@{/assets/admin/all_type/edit.js}"></script>
+</body>
+</html>
