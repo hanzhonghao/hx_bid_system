@@ -32,6 +32,7 @@
 | 6 | standard              | Integer          | 投标文件规范性 |
 | 7 | techRequire              | Integer          | 商务技术要求响应情况 |
 | 8 | signature              | String          | 专家签名 |
+| 9 | categoryId              | Integer          | 打分表分类 |
 
 ## 1.2 保存score详情
 
@@ -53,6 +54,7 @@
 | 6| standard  | Integer  | 投标文件规范性 |
 | 7| techRequire  | Integer  | 商务技术要求响应情况 |
 | 8| signature  | String  | 专家签名 |
+| 9| categoryId  | Integer  | 打分表分类 |
 
 > **输出**
 
@@ -82,6 +84,7 @@
 | 6| standard  | Integer  | 投标文件规范性 |
 | 7| techRequire  | Integer  | 商务技术要求响应情况 |
 | 8| signature  | String  | 专家签名 |
+| 9| categoryId  | Integer  | 打分表分类 |
 
 > **输出**
 
@@ -157,6 +160,7 @@
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
                 |4|idFirst|   Long   |编号|
                 |5|companyNameFirst|   String   |参选公司|
+                |6|categoryIdFirst|   Integer   |打分表分类|
 
 > **输出**
 
@@ -176,3 +180,4 @@
 | 6 | standard              | Integer          | 投标文件规范性 |
 | 7 | techRequire              | Integer          | 商务技术要求响应情况 |
 | 8 | signature              | String          | 专家签名 |
+| 9 | categoryId              | Integer          | 打分表分类 |

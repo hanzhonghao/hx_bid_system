@@ -6,14 +6,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.math.*;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
+
 import com.magicalcoder.youyaboot.core.common.constant.PageConstant;
 import com.magicalcoder.youyaboot.core.common.exception.BusinessException;
 import com.magicalcoder.youyaboot.core.serialize.ResponseMsg;
@@ -44,13 +41,13 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="idFirst")                            Long idFirst ,
-        @RequestParam(required = false,value ="bargainFirst")                            String bargainFirst ,
+        @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
         query.put("idFirst",idFirst);
-        query.put("bargainFirst",coverBlankToNull(bargainFirst));
+        query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
         Integer count = projectService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
             query.put("notSafeOrderBy","id desc");
@@ -74,5 +71,18 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     public void afterPropertiesSet() throws Exception {
         super.commonService = projectService;
         super.primaryKey = "id";//硬编码此实体的主键名称
+    }
+
+    /**
+     * 获取随机抽取供应商的的页面
+     */
+    @RequestMapping(path = "/random", method={RequestMethod.GET})
+    public ResponseMsg random() {
+        Map<String,Object> query = new HashMap();
+        query.put("start",0);query.put("limit",20);
+        List<Project> allprojects = projectService.getModelList(query);
+        Collections.shuffle(allprojects);
+        Integer count = projectService.getModelListCount(query);
+        return new ResponseMsg(count,projectService.getModelList(query));
     }
 }

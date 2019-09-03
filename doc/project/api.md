@@ -171,7 +171,7 @@
 | 2    |limit      |int       |每页多少条 [0,100)   |
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
                 |4|idFirst|   Long   |编号|
-                |5|bargainFirst|   String   |内容|
+                |5|projectNameFirst|   String   |参选公司|
 
 > **输出**
 

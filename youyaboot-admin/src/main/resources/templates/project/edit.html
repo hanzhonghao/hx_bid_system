@@ -24,10 +24,34 @@
                             <input type="text" disabled="true" class="layui-input" name="id"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
                         </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_bargain">
-                        <label class="layui-form-label">内容</label>
+                    <div class="layui-form-item security_edit_form_param_projectName">
+                        <label class="layui-form-label">参选公司</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="bargain" placeholder="内容" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="projectName" placeholder="参选公司" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_origin">
+                        <label class="layui-form-label">产地及品牌</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="origin" placeholder="产地及品牌" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_type">
+                        <label class="layui-form-label">型号</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="type" placeholder="型号" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_price">
+                        <label class="layui-form-label">报价</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="price" placeholder="报价" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_fprice">
+                        <label class="layui-form-label">最终报价</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="fprice" placeholder="最终报价" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_comment">
@@ -42,34 +66,10 @@
                         <input type="text"  name="date" placeholder="时间"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value=""  mc-attr-calendar="false" mc-attr-format="yyyy-MM-dd HH:mm:ss" mc-attr-show="false" mc-attr-range="false" mc-attr-trigger="click" mc-attr-type="datetime" mc-attr-is-init-value="true" mc-attr-show-bottom="true" mc-attr-theme="default" mc-attr-position="absolute" mc-attr-lang="cn" mc-attr-z-index="66666666" />
                         </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_fprice">
-                        <label class="layui-form-label">最终报价</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="fprice" placeholder="最终报价" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
-                        </div>
-                    </div>
                     <div class="layui-form-item security_edit_form_param_location">
                         <label class="layui-form-label">地点</label>
                         <div class="layui-input-block">
                         <input type="text" class="layui-input" name="location" placeholder="地点" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
-                        </div>
-                    </div>
-                    <div class="layui-form-item security_edit_form_param_origin">
-                        <label class="layui-form-label">产地及品牌</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="origin" placeholder="产地及品牌" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
-                        </div>
-                    </div>
-                    <div class="layui-form-item security_edit_form_param_price">
-                        <label class="layui-form-label">报价</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="price" placeholder="报价" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
-                        </div>
-                    </div>
-                    <div class="layui-form-item security_edit_form_param_projectName">
-                        <label class="layui-form-label">参选公司</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="projectName" placeholder="参选公司" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_recoder">
@@ -87,13 +87,13 @@
                     <div class="layui-form-item security_edit_form_param_reviewer">
                         <label class="layui-form-label">复核人</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="reviewer" placeholder="复核人" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="reviewer" placeholder="复核人" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" value="" />
                         </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_type">
-                        <label class="layui-form-label">型号</label>
+                    <div class="layui-form-item security_edit_form_param_bargain">
+                        <label class="layui-form-label">内容</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="type" placeholder="型号" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="bargain" placeholder="内容" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item ">

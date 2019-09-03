@@ -47,8 +47,32 @@
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
 
-            {field: 'bargain', title: '内容', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
+            {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'origin', title: '产地及品牌', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.origin) +'" class="magicalcoder-table-text layui-input security_list_table_form_origin" name="origin" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="产地及品牌"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'type', title: '型号', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.type) +'" class="magicalcoder-table-text layui-input security_list_table_form_type" name="type" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="型号"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'price', title: '报价', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.price) +'" class="magicalcoder-table-text layui-input security_list_table_form_price" name="price" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="报价"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'fprice', title: '最终报价', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.fprice) +'" class="magicalcoder-table-text layui-input security_list_table_form_fprice" name="fprice" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终报价"/>'
                 }
                 , sort:true
             },
@@ -60,32 +84,8 @@
             },
             {field: 'date', title: '时间', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
 
-            {field: 'fprice', title: '最终报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.fprice) +'" class="magicalcoder-table-text layui-input security_list_table_form_fprice" name="fprice" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终报价"/>'
-                }
-                , sort:true
-            },
-
             {field: 'location', title: '地点', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.location) +'" class="magicalcoder-table-text layui-input security_list_table_form_location" name="location" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="地点"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'origin', title: '产地及品牌', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.origin) +'" class="magicalcoder-table-text layui-input security_list_table_form_origin" name="origin" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="产地及品牌"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'price', title: '报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.price) +'" class="magicalcoder-table-text layui-input security_list_table_form_price" name="price" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="报价"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
                 }
                 , sort:true
             },
@@ -96,20 +96,20 @@
                 , sort:true
             },
 
+            {field: 'reviewer', title: '复核人', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.reviewer) +'" class="magicalcoder-table-text layui-input security_list_table_form_reviewer" name="reviewer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="复核人"/>'
+                }
+                , sort:true
+            },
+
             {field: 'responer', title: '经办人', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.responer) +'" class="magicalcoder-table-text layui-input security_list_table_form_responer" name="responer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="经办人"/>'
                 }
                 , sort:true
             },
 
-            {field: 'reviewer', title: '复核人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.reviewer) +'" class="magicalcoder-table-text layui-input security_list_table_form_reviewer" name="reviewer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="复核人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'type', title: '型号', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.type) +'" class="magicalcoder-table-text layui-input security_list_table_form_type" name="type" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="型号"/>'
+            {field: 'bargain', title: '内容', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
                 }
                 , sort:true
             },
@@ -193,6 +193,30 @@
                         maxmin: true,
                         area: ['80%', '80%'],
                         content : "admin/page_v2/"+tableName+"/edit?identify="+identify+mc_children.buildForeignParam(),
+                        success : function(layero, index){
+                            setTimeout(function(){
+                                layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                    tips: 3
+                                });
+                            },500)
+                        }
+                    })
+                    //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+                    //$(window).on("resize",function(){
+                    //    layui.layer.full(index);
+                    //})
+                },
+                //编辑或者添加
+                random : function (identify) {//identify 代表主键值
+                    var title = identify ? '随机抽取':'随机抽取'
+                    if(!identify){identify = ''}
+                    var index = layui.layer.open({
+                        skin:'magicalcoder-layer-admin',
+                        title : title,
+                        type : 2,//打开iframe页面 很多人不知道原理：从列表页进入详情页是直接打开新iframe,详情页根据iframe的入参主键，获取详情页数据，然后重绘详情页，整个过程都是js处理
+                        maxmin: true,
+                        area: ['80%', '80%'],
+                        content : "admin/"+tableNameRest+"/random?identify="+identify+mc_children.buildForeignParam(),
                         success : function(layero, index){
                             setTimeout(function(){
                                 layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -328,6 +352,10 @@
             //添加
             $(".addNews_btn").click(function(){
                 _t.layTable().editOrAdd();
+            })
+            //随机
+            $(".random_btn").click(function(){
+                _t.layTable().random();
             })
             //批量删除
             $(".delAll_btn").click(function(){

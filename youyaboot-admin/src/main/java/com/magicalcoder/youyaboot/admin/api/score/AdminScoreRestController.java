@@ -42,12 +42,14 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
     public ResponseMsg page(
         @RequestParam(required = false,value ="idFirst")                            Long idFirst ,
         @RequestParam(required = false,value ="companyNameFirst")                            String companyNameFirst ,
+        @RequestParam(required = false,value ="categoryIdFirst")                            Integer categoryIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
         query.put("idFirst",idFirst);
         query.put("companyNameFirst",coverBlankToNull(companyNameFirst));
+        query.put("categoryIdFirst",categoryIdFirst);
         Integer count = scoreService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
             query.put("notSafeOrderBy","id desc");
@@ -61,8 +63,8 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,scoreService.getModelList(query),"score",
-            new String[]{"编号","售后服务方案情况","投标文件供应商业绩","参选公司","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名"},
-            new String[]{"","","","","","","",""});
+            new String[]{"编号","售后服务方案情况","投标文件供应商业绩","参选公司","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名","打分表分类"},
+            new String[]{"","","","","","","","",""});
         }
         return null;
     }

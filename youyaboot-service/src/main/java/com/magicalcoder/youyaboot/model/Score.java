@@ -22,6 +22,7 @@ public class Score implements Serializable{
     private Integer standard;//standard
     private Integer techRequire;//tech_require
     private String signature;//signature
+    private Integer categoryId;//category_id
 
     
     public Long getId(){
@@ -78,5 +79,12 @@ public class Score implements Serializable{
     }
     public void setSignature(String signature){
         this.signature = signature;
+    }
+
+    public Integer getCategoryId(){
+        return categoryId;
+    }
+    public void setCategoryId(Integer categoryId){
+        this.categoryId = categoryId;
     }
 }

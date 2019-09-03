@@ -20,9 +20,6 @@
         tableName:"score",
         moduleName:"score",//sys_module的moduleName
         form:{
-                afterSale:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
-                }
         },
         event:{
             select2Change:function (elem,name,value) {//外键下拉更新事件

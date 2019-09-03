@@ -374,8 +374,8 @@
                 <if test="idFirst!=null "> and `id` <![CDATA[=]]>
                             #{idFirst}
                 </if>
-                <if test="bargainFirst!=null "> and `bargain` <![CDATA[=]]>
-                            #{bargainFirst}
+                <if test="projectNameFirst!=null "> and `project_name` <![CDATA[=]]>
+                            #{projectNameFirst}
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>

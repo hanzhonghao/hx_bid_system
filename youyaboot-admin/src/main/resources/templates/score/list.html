@@ -24,6 +24,9 @@
                                 <div class="layui-inline security_list_query_param_companyName">
                                     <input type="text" class="layui-input" data-name="companyName" name="companyNameFirst" placeholder="参选公司" />
                                 </div>
+                                <div class="layui-inline security_list_query_param_categoryId">
+                                    <select  data-name="categoryId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="categoryIdFirst" style="height:30px;width: 200px" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" placeholder="打分表分类" data-limit="20"><option value=""></option></select>
+                                </div>
                                 <div class="layui-inline security_list_query_operate_search">
                                     <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
                                     <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>

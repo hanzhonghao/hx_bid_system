@@ -18,6 +18,7 @@
         <result column="standard" property="standard" />
         <result column="tech_require" property="techRequire" />
         <result column="signature" property="signature" />
+        <result column="category_id" property="categoryId" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -131,7 +132,8 @@
             <if test="geneSituIgnore_ == null or !geneSituIgnore_">`gene_situ`,</if>
             <if test="standardIgnore_ == null or !standardIgnore_">`standard`,</if>
             <if test="techRequireIgnore_ == null or !techRequireIgnore_">`tech_require`,</if>
-            <if test="signatureIgnore_ == null or !signatureIgnore_">`signature`</if>
+            <if test="signatureIgnore_ == null or !signatureIgnore_">`signature`,</if>
+            <if test="categoryIdIgnore_ == null or !categoryIdIgnore_">`category_id`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
@@ -143,12 +145,13 @@
          <if test="geneSituNotIgnore_ != null and geneSituNotIgnore_">`gene_situ`,</if>
          <if test="standardNotIgnore_ != null and standardNotIgnore_">`standard`,</if>
          <if test="techRequireNotIgnore_ != null and techRequireNotIgnore_">`tech_require`,</if>
-         <if test="signatureNotIgnore_ != null and signatureNotIgnore_">`signature`</if>
+         <if test="signatureNotIgnore_ != null and signatureNotIgnore_">`signature`,</if>
+         <if test="categoryIdNotIgnore_ != null and categoryIdNotIgnore_">`category_id`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="id!=null">`id`,</if> `after_sale`,`apply`,`company_name`,`gene_situ`,`standard`,`tech_require`,`signature`,
+            <if test="id!=null">`id`,</if> `after_sale`,`apply`,`company_name`,`gene_situ`,`standard`,`tech_require`,`signature`,`category_id`,
         </trim>
     </sql>
     <sql id="douValueSql">
@@ -161,6 +164,7 @@
                 <choose><when test="standard!=null">#{standard},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="techRequire!=null">#{techRequire},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="signature!=null">#{signature},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="categoryId!=null">#{categoryId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
@@ -174,6 +178,7 @@
                 <if test="standard!=null">`standard`,</if>
                 <if test="techRequire!=null">`tech_require`,</if>
                 <if test="signature!=null">`signature`,</if>
+                <if test="categoryId!=null">`category_id`,</if>
 
         </trim>
     </sql>
@@ -187,11 +192,12 @@
                 <choose><when test="standard!=null">#{standard},</when></choose>
                 <choose><when test="techRequire!=null">#{techRequire},</when></choose>
                 <choose><when test="signature!=null">#{signature},</when></choose>
+                <choose><when test="categoryId!=null">#{categoryId},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.id!=null">`id`,</if> `after_sale`,`apply`,`company_name`,`gene_situ`,`standard`,`tech_require`,`signature`,
+                <if test="item.id!=null">`id`,</if> `after_sale`,`apply`,`company_name`,`gene_situ`,`standard`,`tech_require`,`signature`,`category_id`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
@@ -204,6 +210,7 @@
                 <choose><when test="item.standard!=null">#{item.standard},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.techRequire!=null">#{item.techRequire},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.signature!=null">#{item.signature},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.categoryId!=null">#{item.categoryId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
@@ -216,6 +223,7 @@
                 <if test="item.standard!=null">`standard`,</if>
                 <if test="item.techRequire!=null">`tech_require`,</if>
                 <if test="item.signature!=null">`signature`,</if>
+                <if test="item.categoryId!=null">`category_id`,</if>
 
         </trim>
     </sql>
@@ -229,6 +237,7 @@
                 <choose><when test="item.standard!=null">#{item.standard},</when></choose>
                 <choose><when test="item.techRequire!=null">#{item.techRequire},</when></choose>
                 <choose><when test="item.signature!=null">#{item.signature},</when></choose>
+                <choose><when test="item.categoryId!=null">#{item.categoryId},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
@@ -240,6 +249,7 @@
                     <choose> <when test="standard!=null">`standard`=#{standard}</when> <otherwise> `standard`=NULL</otherwise> </choose>,
                     <choose> <when test="techRequire!=null">`tech_require`=#{techRequire}</when> <otherwise> `tech_require`=NULL</otherwise> </choose>,
                     <choose> <when test="signature!=null">`signature`=#{signature}</when> <otherwise> `signature`=NULL</otherwise> </choose>,
+                    <choose> <when test="categoryId!=null">`category_id`=#{categoryId}</when> <otherwise> `category_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
@@ -251,6 +261,7 @@
                     <choose><when test="standard!=null">`standard`=#{standard},</when></choose>
                     <choose><when test="techRequire!=null">`tech_require`=#{techRequire},</when></choose>
                     <choose><when test="signature!=null">`signature`=#{signature},</when></choose>
+                    <choose><when test="categoryId!=null">`category_id`=#{categoryId},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -270,6 +281,7 @@
                     <choose> <when test="item.standard!=null">`standard`=#{item.standard}</when> <otherwise> `standard`=NULL</otherwise> </choose>,
                     <choose> <when test="item.techRequire!=null">`tech_require`=#{item.techRequire}</when> <otherwise> `tech_require`=NULL</otherwise> </choose>,
                     <choose> <when test="item.signature!=null">`signature`=#{item.signature}</when> <otherwise> `signature`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.categoryId!=null">`category_id`=#{item.categoryId}</when> <otherwise> `category_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
@@ -281,6 +293,7 @@
                     <choose> <when test="item.standard!=null">`standard`=#{item.standard},</when></choose>
                     <choose> <when test="item.techRequire!=null">`tech_require`=#{item.techRequire},</when></choose>
                     <choose> <when test="item.signature!=null">`signature`=#{item.signature},</when></choose>
+                    <choose> <when test="item.categoryId!=null">`category_id`=#{item.categoryId},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -301,11 +314,15 @@
         <if test="standard!=null "> and `standard` = #{standard}</if>
         <if test="techRequire!=null "> and `tech_require` = #{techRequire}</if>
         <if test="signature!=null "> and `signature` = #{signature}</if>
+        <if test="categoryId!=null "> and `category_id` = #{categoryId}</if>
                 <if test="idFirst!=null "> and `id` <![CDATA[=]]>
                             #{idFirst}
                 </if>
                 <if test="companyNameFirst!=null "> and `company_name` <![CDATA[=]]>
                             #{companyNameFirst}
+                </if>
+                <if test="categoryIdFirst!=null "> and `category_id` <![CDATA[=]]>
+                            #{categoryIdFirst}
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>
@@ -322,6 +339,7 @@
                 <when test="safeGroupBy != null and safeGroupBy == 'standard'">  `standard` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'tech_require'">  `tech_require` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'signature'">  `signature` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'category_id'">  `category_id` </when>
             </choose>
         </if>
     </sql>
@@ -344,6 +362,8 @@
                 <when test="safeOrderBy != null and safeOrderBy == 'tech_require asc'"> order by `tech_require` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'signature desc'"> order by  `signature` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'signature asc'"> order by `signature` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'category_id desc'"> order by  `category_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'category_id asc'"> order by `category_id` asc </when>
             </choose>
         </if>
     </sql>
