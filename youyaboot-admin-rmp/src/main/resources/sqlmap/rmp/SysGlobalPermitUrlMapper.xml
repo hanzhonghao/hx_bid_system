@@ -236,7 +236,7 @@
     </sql>
     <!-- 这里可以加上数据库名称 方便的切换数据库-->
     <sql id="tableSql">
-        youyaboot.sys_global_permit_url
+       hx.sys_global_permit_url
     </sql>
 
    <sql id="whereSqlModel">

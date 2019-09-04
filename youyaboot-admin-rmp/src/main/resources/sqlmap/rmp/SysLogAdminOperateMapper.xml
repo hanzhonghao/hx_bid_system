@@ -301,7 +301,7 @@
     </sql>
     <!-- 这里可以加上数据库名称 方便的切换数据库-->
     <sql id="tableSql">
-        youyaboot.sys_log_admin_operate
+        hx.sys_log_admin_operate
     </sql>
 
    <sql id="whereSqlModel">

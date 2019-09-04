@@ -4,7 +4,6 @@ import com.magicalcoder.youyaboot.admin.adminservice.demo.mapper.AdminServiceDem
 import com.magicalcoder.youyaboot.admin.adminservice.demo.service.AdminServiceDemoService;
 import com.magicalcoder.youyaboot.admin.model.MyDemo;
 import com.magicalcoder.youyaboot.core.utils.MapUtil;
-import com.magicalcoder.youyaboot.model.Goods;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
