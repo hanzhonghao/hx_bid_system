@@ -206,8 +206,7 @@
                     //    layui.layer.full(index);
                     //})
                 },
-                //编辑或者添加
-                random : function (identify) {//identify 代表主键值
+                randomList : function (identify) {//identify 代表主键值
                     var title = identify ? '随机抽取':'随机抽取'
                     if(!identify){identify = ''}
                     var index = layui.layer.open({
@@ -216,7 +215,7 @@
                         type : 2,//打开iframe页面 很多人不知道原理：从列表页进入详情页是直接打开新iframe,详情页根据iframe的入参主键，获取详情页数据，然后重绘详情页，整个过程都是js处理
                         maxmin: true,
                         area: ['80%', '80%'],
-                        content : "admin/"+tableNameRest+"/random?identify="+identify+mc_children.buildForeignParam(),
+                        content : "admin/page_v2/"+tableName+"/random?identify="+identify+mc_children.buildForeignParam(),
                         success : function(layero, index){
                             setTimeout(function(){
                                 layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -225,10 +224,6 @@
                             },500)
                         }
                     })
-                    //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-                    //$(window).on("resize",function(){
-                    //    layui.layer.full(index);
-                    //})
                 },
                 _deleteOneTr : function (identify) {//删除一行
                     var _this = this;
@@ -355,7 +350,7 @@
             })
             //随机
             $(".random_btn").click(function(){
-                _t.layTable().random();
+                _t.layTable().randomList();
             })
             //批量删除
             $(".delAll_btn").click(function(){

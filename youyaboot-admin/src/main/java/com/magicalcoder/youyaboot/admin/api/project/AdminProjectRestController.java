@@ -73,16 +73,35 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         super.primaryKey = "id";//硬编码此实体的主键名称
     }
 
-    /**
-     * 获取随机抽取供应商的的页面
-     */
-    @RequestMapping(path = "/random", method={RequestMethod.GET})
-    public ResponseMsg random() {
+    //分页随机查询
+    @RequestMapping(value={"random/page"},method={RequestMethod.GET})
+    public ResponseMsg random(
+        @RequestParam(required = false,value ="idFirst")                            Long idFirst ,
+        @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
+        @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
+        ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
+    ){
         Map<String,Object> query = new HashMap();
-        query.put("start",0);query.put("limit",20);
-        List<Project> allprojects = projectService.getModelList(query);
-        Collections.shuffle(allprojects);
+        query.put("idFirst",idFirst);
+        query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
         Integer count = projectService.getModelListCount(query);
-        return new ResponseMsg(count,projectService.getModelList(query));
+        if(StringUtil.isBlank(safeOrderBy)){
+            query.put("notSafeOrderBy","id desc");
+        }else{
+            query.put("safeOrderBy",safeOrderBy);
+        }
+        if(queryType==null || queryType == QUERY_TYPE_SEARCH){//普通查询
+            limit = Math.min(limit, PageConstant.MAX_LIMIT);
+            query.put("start",(page - 1) * limit);query.put("limit",limit);
+            List<Project> modelList = projectService.getModelList(query);
+            Collections.shuffle(modelList);
+            return new ResponseMsg(count,modelList);
+        }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
+            query.put("start",(page - 1) * limit);query.put("limit",limit);
+            exportExcel(response,projectService.getModelList(query),"project",
+                new String[]{"编号","内容","备注","时间","最终报价","地点","产地及品牌","报价","参选公司","记录人","经办人","复核人","型号"},
+                new String[]{"","","","","","","","","","","","",""});
+        }
+        return null;
     }
 }
