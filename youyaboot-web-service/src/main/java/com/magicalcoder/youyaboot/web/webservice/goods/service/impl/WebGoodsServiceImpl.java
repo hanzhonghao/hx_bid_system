@@ -1,7 +1,6 @@
 
 package com.magicalcoder.youyaboot.web.webservice.goods.service.impl;
 
-import com.magicalcoder.youyaboot.service.goods.service.GoodsService;
 import com.magicalcoder.youyaboot.web.model.WebGoods;
 import com.magicalcoder.youyaboot.web.webservice.goods.mapper.WebGoodsMapper;
 import com.magicalcoder.youyaboot.web.webservice.goods.service.WebGoodsService;
@@ -23,7 +22,7 @@ public class WebGoodsServiceImpl implements WebGoodsService {
     private WebGoodsMapper webGoodsMapper;
     //这个是工具生成的 我可以复用
     @Resource
-    private GoodsService goodsService;
+//    private GoodsService goodsService;
 
 
     @Override

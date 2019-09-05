@@ -46,12 +46,12 @@
     }
     function tipsShow(){
         window.sessionStorage.setItem("showNotice","true");
-        if($(window).width() > 432){  //如果页面宽度不足以显示顶部“系统公告”按钮，则不提示
-            layer.tips('系统公告躲在了这里', '#userInfo', {
-                tips: 3,
-                time : 1000
-            });
-        }
+        // if($(window).width() > 432){  //如果页面宽度不足以显示顶部“系统公告”按钮，则不提示
+        //     layer.tips('系统公告躲在了这里', '#userInfo', {
+        //         tips: 3,
+        //         time : 1000
+        //     });
+        // }
     }
 
     //锁屏
