@@ -9,7 +9,7 @@
         </a>
 		<ul class="layui-nav mobileTopLevelMenus" mobile="mobile">
 			<li class="layui-nav-item" data-menu="contentManagement">
-				<a href="javascript:;"><i class="seraph icon-caidan"></i><cite>YouyaBoot</cite></a>
+				<a href="javascript:;"><i class="seraph icon-caidan"></i><cite>左侧菜单</cite></a>
 				<dl  class="layui-nav-child" >
 					<dd th:each="item,itemStat : ${categoryList}" th:class="${itemStat.index==0}? 'layui-this' : ''" th:attr="data-menu=${item.id}"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite th:text="${item.moduleCategoryName}"/></a></dd>
 				</dl>

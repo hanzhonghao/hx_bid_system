@@ -14,28 +14,303 @@
         <div class="layui-row layui-col-space10">
             <div class="layui-col-md12">
                 <div class="layui-card">
-                    <div class="layui-card-header">查询条件</div>
-                    <div class="layui-card-body">
-                        <form class="layui-form queryForm security_list_query_form">
-                            <div class="layui-form-item">
-                                <div class="layui-inline security_list_query_param_id">
-                                    <input type="text" class="layui-input" data-name="id" name="idFirst" placeholder="编号" />
-                                </div>
-                                <div class="layui-inline security_list_query_param_companyName">
-                                    <input type="text" class="layui-input" data-name="companyName" name="companyNameFirst" placeholder="参选公司" />
-                                </div>
-                                <div class="layui-inline security_list_query_param_categoryId">
-                                    <select  data-name="categoryId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="categoryIdFirst" style="height:30px;width: 200px" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" placeholder="打分表分类" data-limit="20"><option value=""></option></select>
-                                </div>
-                                <div class="layui-inline security_list_query_operate_search">
-                                    <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
-                                    <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>
-                                </div>
+                    <div class="layui-tab layui-tab-card" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">设备仪器</li>
+                            <li>试剂打分</li>
+                            <li>耗材打分</li>
+                            <li>服务打分</li>
+                            <li>软件打分</li>
+                            <li>仪器设备+配套耗材试剂</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <!--设备仪器打分-->
+                            <div class="layui-tab-item layui-show">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>售后服务方案情况(满分10分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>制造厂商综合情况（满分8分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据对售后服务响应情况、售后服务计划安排是否合理，技术培训计划，保修期限，维修响应时间，维修维保收费是否合理等进行综合分析比较评分。排名第一的得10分，排名第二得5分，排名第三得1分，其他不得分
+                                        </td>
+                                        <td class="xl67" >投标供应商三年之内有同类业绩的，1个得1分，满分5分。<br/></td>
+                                        <td class="xl67" >
+                                            具备完整的生产检测设备，从设备配置的完整性、科学性进行综合对比，第一名得8分，第二名得3分，第三名得1分，其他不得分。
+                                        </td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">采购需求应明确国产或者进口，原则上二者不同时竞标。
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                        </form>
+                            <!--试剂打分-->
+                            <div class="layui-tab-item">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>售后服务方案情况(满分10分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>制造厂商综合情况（满分8分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据对售后服务响应情况、售后服务计划安排是否合理，技术培训计划，保修期限，维修响应时间，维修维保收费是否合理等进行综合分析比较评分。排名第一的得10分，排名第二得5分，排名第三得1分，其他不得分
+                                        </td>
+                                        <td class="xl67" >投标供应商三年之内有同类业绩的，1个得1分，满分5分。<br/></td>
+                                        <td class="xl67" >
+                                            具备完整的生产检测设备，从设备配置的完整性、科学性进行综合对比，第一名得8分，第二名得3分，第三名得1分，其他不得分。
+                                        </td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">
+                                            1. 采购需求应明确国产或者进口，原则上二者不同时竞标<br/>
+                                            2. 若采购项目型号较少用量差异性不大，或者新进产品无法统计用量的，采用单价之和为投标计算价格；<br/>
+                                            3. 若采购项目型号较少用量差异性大，据分布占比用单价乘以占比后所得的单价和作为投标计算计算价格；<br/>
+                                            若型号较多，用量差异性大，统计既往使用量，选择使用量总和大于80%的所有型号，根据分布占比用单价乘以占比后所得的单价和作为投标计算价格。
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--耗材打分-->
+                            <div class="layui-tab-item">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>售后服务方案情况(满分10分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>制造厂商综合情况（满分8分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据对售后服务响应情况、售后服务计划安排是否合理，技术培训计划，保修期限，维修响应时间，维修维保收费是否合理等进行综合分析比较评分。排名第一的得10分，排名第二得5分，排名第三得1分，其他不得分
+                                        </td>
+                                        <td class="xl67" >投标供应商三年之内有同类业绩的，1个得1分，满分5分。<br/></td>
+                                        <td class="xl67" >
+                                            具备完整的生产检测设备，从设备配置的完整性、科学性进行综合对比，第一名得8分，第二名得3分，第三名得1分，其他不得分。
+                                        </td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">
+                                            1. 采购需求应明确国产或者进口，原则上二者不同时竞标<br/>
+                                            2. 若采购项目型号较少用量差异性不大，或者新进产品无法统计用量的，采用单价之和为投标计算价格；<br/>
+                                            3. 若采购项目型号较少用量差异性大，据分布占比用单价乘以占比后所得的单价和作为投标计算计算价格；<br/>
+                                            若型号较多，用量差异性大，统计既往使用量，选择使用量总和大于80%的所有型号，根据分布占比用单价乘以占比后所得的单价和作为投标计算价格。
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--服务打分-->
+                            <div class="layui-tab-item">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>服务方案(满分20分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据商务技术要求提出合理的服务设计方案进行排序，排名第一的得20分，排名第二得10分，排名第三得5分，其他不得分。方案根据项目特点可包括但不限于：是否按照国家相关标准制定服务方案；是否对我院提出的各项服务要求有详细的针对方案；人员配备是否合理；使用的服务设备或者材料是否合格；管理情况如何（比如对服务对象的保护、人员安全防范、内部制度等）。
+                                        </td>
+                                        <td class="xl67" >投标供应商/品牌三年之内有同类业绩的，1个得1分，有三甲医院业绩的一个得2分，满分8分。<br/></td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止。</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">无内容</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--软件打分-->
+                            <div class="layui-tab-item">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>设计方案(满分20分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>制造厂商综合情况（满分8分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据商务技术要求提出合理的服务设计方案。排名第一的得20分，排名第二得10分，排名第三得5分，其他不得分。方案内容包括但不限于：有详细的针对性解决方案；是否体现定制化服务、升级服务等；体现如何于医院信息化系统的对接（服务器、接口等）；界面操作是否符合逻辑和人性化设计；软件特色展现；安装、培训方案是否合理</td>
+                                        <td class="xl67" >投标供应商/品牌三年之内有同类业绩的，1个得1分，满分5分。</td>
+                                        <td class="xl67" >
+                                            根据对售后服务响应情况、售后服务计划安排是否合理，技术培训计划，质保期限，维修维保收费是否合理等进行综合分析比较评分。排名第一的得8分，排名第二得3分，排名第三得1分，其他不得分。</td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">资格条件应写入商务要求</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--仪器设备+配套耗材试剂-->
+                            <div class="layui-tab-item">
+                                <table class="layui-table" lay-skin="line" >
+                                    <colgroup>
+                                        <col width="100">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col width="200">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>性能指标</th>
+                                        <th>商务技术要求响应情况(满分30分)</th>
+                                        <th>售后服务方案情况(满分10分)</th>
+                                        <th>投标供应商业绩（满分5分）</th>
+                                        <th>制造厂商综合情况（满分8分）</th>
+                                        <th>投标文件规范性（满分2分）</th>
+                                    </tr>
+                                    </thead>
+                                    </tr>
+                                    <tr>
+                                        <td class="xl65" >评分标准</td>
+                                        <td class="xl67" >投标产品技术指标参数应等于或高于招标文件要求。一个参数不满足扣5分，三个参数不满足不得分。</td>
+                                        <td class="xl68" >
+                                            根据对售后服务响应情况、售后服务计划安排是否合理，技术培训计划，保修期限，维修响应时间，维修维保收费是否合理等进行综合分析比较评分。排名第一的得10分，排名第二得5分，排名第三得1分，其他不得分
+                                        </td>
+                                        <td class="xl67" >投标供应商三年之内有同类业绩的，1个得1分，满分5分。<br/></td>
+                                        <td class="xl67" >
+                                            具备完整的生产检测设备，从设备配置的完整性、科学性进行综合对比，第一名得8分，第二名得3分，第三名得1分，其他不得分。
+                                        </td>
+                                        <td class="xl67" >投标文件制作规范得2分；对照投标文件漏项或有偏差，有一项扣分0.5分，扣完为止</td>
+                                    </tr>
+                                    <tr >
+                                        <td class="xl65">备注</td>
+                                        <td class="xl69" colspan="5">
+                                            1. 配套试剂/耗材投标价格计算方法：<br/>
+                                            ①若型号较少，新进产品无法统计用量或者用量差异性不大，采用单价之和为投标计算价格；<br/>
+                                            ②若型号较少，用量差异性大，统计既往使用量，根据分布占比用单价乘以占比后所得的单价和作为投标计算价格；<br/>
+                                            ③若型号较多，用量差异性大，统计既往使用量，选择使用量总和大于80%的所有型号，根据分布占比用单价乘以占比后所得的单价和作为投标计算价格；<br/>
+                                            ④若使用量总和大于80%的所有型号超过20个，选择使用量排名前十的试剂/耗材单价和作为投标计算价格。<br/>
+                                            2. 设备与试剂耗材价格占比计算方法：预估试剂耗材年使用金额÷预估设备年折旧金额：比值≤1.2，分值占比为1:1；1.2＜比值≤2，分值占比为1:2；2＜比值≤3，分值占比为1:3.5；3＜比值，分值占比为1:8。<br/>
+                                            3.  采购需求应明确国产或者进口，原则上二者不同时竞标。<br/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+<!--            <div class="layui-col-md12">-->
+<!--                <div class="layui-card">-->
+<!--                    <div class="layui-card-header">查询条件</div>-->
+<!--                    <div class="layui-card-body">-->
+<!--                        <form class="layui-form queryForm security_list_query_form">-->
+<!--                            <div class="layui-form-item">-->
+<!--                                <div class="layui-inline security_list_query_param_id">-->
+<!--                                    <input type="text" class="layui-input" data-name="id" name="idFirst" placeholder="编号" />-->
+<!--                                </div>-->
+<!--                                <div class="layui-inline security_list_query_param_companyName">-->
+<!--                                    <input type="text" class="layui-input" data-name="companyName" name="companyNameFirst" placeholder="参选公司" />-->
+<!--                                </div>-->
+<!--                                <div class="layui-inline security_list_query_param_categoryId">-->
+<!--                                    <select  data-name="categoryId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="categoryIdFirst" style="height:30px;width: 200px" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" placeholder="打分表分类" data-limit="20"><option value=""></option></select>-->
+<!--                                </div>-->
+<!--                                <div class="layui-inline security_list_query_operate_search">-->
+<!--                                    <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>-->
+<!--                                     <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-header"  style="height: auto;">
