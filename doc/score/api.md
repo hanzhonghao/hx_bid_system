@@ -33,6 +33,7 @@
 | 7 | techRequire              | Integer          | 商务技术要求响应情况 |
 | 8 | signature              | String          | 专家签名 |
 | 9 | categoryId              | Integer          | 打分表分类 |
+| 10 | date              | Date          | 日期 |
 
 ## 1.2 保存score详情
 
@@ -55,6 +56,7 @@
 | 7| techRequire  | Integer  | 商务技术要求响应情况 |
 | 8| signature  | String  | 专家签名 |
 | 9| categoryId  | Integer  | 打分表分类 |
+| 10| date  | Date  | 日期 |
 
 > **输出**
 
@@ -85,6 +87,7 @@
 | 7| techRequire  | Integer  | 商务技术要求响应情况 |
 | 8| signature  | String  | 专家签名 |
 | 9| categoryId  | Integer  | 打分表分类 |
+| 10| date  | Date  | 日期 |
 
 > **输出**
 
@@ -158,9 +161,9 @@
 | 1    |page      |int       |第几页 [1,n)   |
 | 2    |limit      |int       |每页多少条 [0,100)   |
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
-                |4|idFirst|   Long   |编号|
-                |5|companyNameFirst|   String   |参选公司|
-                |6|categoryIdFirst|   Integer   |打分表分类|
+                |4|companyNameFirst|   String   |参选公司|
+                |5|categoryIdFirst|   Integer   |打分表分类|
+                |6|dateFirst|   Date   |日期|
 
 > **输出**
 
@@ -181,3 +184,4 @@
 | 7 | techRequire              | Integer          | 商务技术要求响应情况 |
 | 8 | signature              | String          | 专家签名 |
 | 9 | categoryId              | Integer          | 打分表分类 |
+| 10 | date              | Date          | 日期 |

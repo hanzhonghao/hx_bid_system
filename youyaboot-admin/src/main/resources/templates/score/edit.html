@@ -33,31 +33,31 @@
                     <div class="layui-form-item security_edit_form_param_techRequire">
                         <label class="layui-form-label">商务技术要求响应情况</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="techRequire" placeholder="满分25分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="" value="" />
+                        <input type="text" class="layui-input" name="techRequire" placeholder="满分25分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_afterSale">
                         <label class="layui-form-label">售后服务方案情况</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="afterSale" placeholder="满分10分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="" value="" />
+                        <input type="text" class="layui-input" name="afterSale" placeholder="满分10分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=10" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_apply">
                         <label class="layui-form-label">投标文件供应商业绩</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="apply" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="apply" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_geneSitu">
                         <label class="layui-form-label">制造厂商综合情况</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="geneSitu" placeholder="满分8分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="geneSitu" placeholder="满分8分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=8" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_standard">
                         <label class="layui-form-label">投标文件规范性</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="standard" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|minLength=0" value="" />
+                        <input type="text" class="layui-input" name="standard" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2" value="" />
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_categoryId">
@@ -70,6 +70,12 @@
                         <label class="layui-form-label">专家签名</label>
                         <div class="layui-input-block">
                         <input type="text" class="layui-input" name="signature" placeholder="专家签名" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
+                    <div class="layui-form-item security_edit_form_param_date">
+                        <label class="layui-form-label">日期</label>
+                        <div class="layui-input-block">
+                        <input type="text"  name="date" placeholder="日期"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="new Date()"  mc-attr-calendar="false" mc-attr-format="yyyy-MM-dd" mc-attr-show="false" mc-attr-range="false" mc-attr-trigger="click" mc-attr-type="date" mc-attr-is-init-value="true" mc-attr-show-bottom="false" mc-attr-theme="default" mc-attr-position="absolute" mc-attr-lang="cn" mc-attr-z-index="66666666" />
                         </div>
                     </div>
                     <div class="layui-form-item ">

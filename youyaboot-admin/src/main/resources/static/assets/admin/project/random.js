@@ -1,15 +1,15 @@
 /**
-* 代码为自动生成 Created by www.magicalcoder.com
-* 软件作者：何栋宇 qq:709876443
-* 如果你改变了此类 read 请将此行删除
-* 欢迎加入官方QQ群:648595928
-*/
+ * 代码为自动生成 Created by www.magicalcoder.com
+ * 软件作者：何栋宇 qq:709876443
+ * 如果你改变了此类 read 请将此行删除
+ * 欢迎加入官方QQ群:648595928
+ */
 //不要被如此多的代码唬住，读懂一个 其他的模块都明白了，之所以写这么多开放出来，主要是为了定制和维护性，您可以随意修改逻辑 适应你的业务场景
 ;!function(){
-        var $ = layui.jquery
+    var $ = layui.jquery
         ,layer = parent.layer === undefined ? layui.layer : top.layer
         ,table = layui.table;
-        var mc_children = youyaboot_all.mc_children
+    var mc_children = youyaboot_all.mc_children
         ,mc_constant = youyaboot_all.mc_constant
         ,mc_util = youyaboot_all.mc_util
         ,mc_rmp = youyaboot_all.mc_rmp
@@ -18,32 +18,25 @@
 
 // 子表 排序相关
     var CONFIG = {
-        tableNameRest:"score_category_rest",
-        tableName:"score_category",
-        moduleName:"score_category",//sys_module的moduleName
+        tableNameRest:"project_rest",
+        tableName:"project",
+        moduleName:"project",//sys_module的moduleName
         form:{
+            date:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd HH:mm:ss","show":false,"range":false,"trigger":"click","type":"datetime","isInitValue":true,"showBottom":true,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
+            }
         },
         event:{
             select2Change:function (elem,name,value) {//外键下拉更新事件
             }
         },
-        childrenPage:[//子页面的一些基础信息 更多信息
-            {
-                tabTitle:"score",
-                url:"admin/page_v2/score/list",
-                mcForeignName:"categoryId"
-            },            {
-                tabTitle:"score_detail",
-                url:"admin/page_v2/score_detail/list",
-                mcForeignName:"categoryId"
-            }        ],
         layTable : {//表格内容 到list.html查找即可明白
             elem : '#newsList',
             id : "newsListTable"
-         },
+        },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',childCategore:'child_categore'
+            id:'id',bargain:'bargain',comment:'comment',date:'date',fprice:'fprice',location:'location',origin:'origin',price:'price',projectName:'project_name',recoder:'recoder',responer:'responer',reviewer:'reviewer',type:'type'
         }
     };
     //后端请求时候的表模块规则url
@@ -51,15 +44,13 @@
     var tableName = CONFIG.tableName;
     //表格每一列配置
     var COLS = [[
-        {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+        {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
 
-            {field: 'childCategore', title: '打分表分类', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.childCategore) +'" class="magicalcoder-table-text layui-input security_list_table_form_childCategore" name="childCategore" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"/>'
-                }
-                , sort:true
-            },
-        {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
+        {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
+                return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
+            }
+            , sort:true
+        }
     ]];
     var obj = {
         layTable:function () {//表格
@@ -73,7 +64,8 @@
                     var _this = this;
                     table.render({//这里是layui的table分页写法 具体可参考layui官方文档
                         elem: CONFIG.layTable.elem,
-                        url : 'admin/'+tableNameRest+'/page',
+                        url : 'admin/'+tableNameRest+'/random'+'/page',
+                        type: 'get',
                         cellMinWidth : 95,
                         page : true,//是否分页
                         //height : "full-10",//高度样式
@@ -89,9 +81,9 @@
                                 mc_rmp.paintBody(CONFIG.moduleName,function () {//权限判断
                                     //禁用一些外键字段 当更多信息场景时才会触发
                                     mc_children.disabledTableParentArea();
-        //laytable中有很多控件需要初始化 比如日期等
+                                    //laytable中有很多控件需要初始化 比如日期等
                                     mc_layui_component.bindMagicalCoderLayUiComponentFromTable(CONFIG,function(){_this.refreshTableFromCurrentPage()})
-        //每一行的操作条目事件
+                                    //每一行的操作条目事件
                                     _this.tableOperateEvent()
                                 })
                             }else {

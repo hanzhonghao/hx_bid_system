@@ -2,6 +2,9 @@ package com.magicalcoder.youyaboot.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.math.*;
 import java.io.Serializable;
 import lombok.Data;
@@ -23,6 +26,9 @@ public class Score implements Serializable{
     private Integer techRequire;//tech_require
     private String signature;//signature
     private Integer categoryId;//category_id
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    private Date date;//date
 
     
     public Long getId(){
@@ -86,5 +92,12 @@ public class Score implements Serializable{
     }
     public void setCategoryId(Integer categoryId){
         this.categoryId = categoryId;
+    }
+
+    public Date getDate(){
+        return date;
+    }
+    public void setDate(Date date){
+        this.date = date;
     }
 }

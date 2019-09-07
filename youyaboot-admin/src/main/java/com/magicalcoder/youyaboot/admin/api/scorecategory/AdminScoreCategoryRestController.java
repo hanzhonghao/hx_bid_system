@@ -49,7 +49,7 @@ public class AdminScoreCategoryRestController extends CommonRestController<Score
         List<ScoreCategory> list = null;
         Map<String,Object> query = new HashMap();
         query.put("limit",limit);
-        query.put("notSafeOrderBy","id desc");
+        query.put("notSafeOrderBy","id asc");
         if(uniqueValue!=null){//说明是来初始化的
             list = scoreCategoryService.getModelInList(uniqueValue);
         }else {//正常搜索
@@ -72,7 +72,7 @@ public class AdminScoreCategoryRestController extends CommonRestController<Score
         query.put("childCategoreFirst",coverBlankToNull(childCategoreFirst));
         Integer count = scoreCategoryService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","id desc");
+            query.put("notSafeOrderBy","id asc");
         }else{
             query.put("safeOrderBy",safeOrderBy);
         }

@@ -40,17 +40,15 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="idFirst")                            Long idFirst ,
         @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
-        query.put("idFirst",idFirst);
         query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
         Integer count = projectService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","id desc");
+            query.put("notSafeOrderBy","id asc,price asc");
         }else{
             query.put("safeOrderBy",safeOrderBy);
         }
@@ -86,7 +84,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
         Integer count = projectService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","id desc");
+            query.put("notSafeOrderBy","id asc");
         }else{
             query.put("safeOrderBy",safeOrderBy);
         }

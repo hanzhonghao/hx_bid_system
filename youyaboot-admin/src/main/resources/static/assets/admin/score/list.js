@@ -22,6 +22,9 @@
         tableName:"score",
         moduleName:"score",//sys_module的moduleName
         form:{
+                date:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd","show":false,"range":false,"trigger":"click","type":"date","isInitValue":true,"showBottom":false,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
+                }
         },
         event:{
             select2Change:function (elem,name,value) {//外键下拉更新事件
@@ -33,7 +36,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',afterSale:'after_sale',apply:'apply',companyName:'company_name',geneSitu:'gene_situ',standard:'standard',techRequire:'tech_require',signature:'signature',categoryId:'category_id'
+            id:'id',afterSale:'after_sale',apply:'apply',companyName:'company_name',geneSitu:'gene_situ',standard:'standard',techRequire:'tech_require',signature:'signature',categoryId:'category_id',date:'date'
         }
     };
     //后端请求时候的表模块规则url
@@ -43,6 +46,7 @@
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+            {field: 'date', title: '日期', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
                 {field: 'categoryId', title: '打分表分类', align:'center', minWidth:250, templet:function (d) {
                     var value = (!d.categoryId || d.categoryId==null) ? '' : d.categoryId
                     //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
@@ -57,31 +61,31 @@
             },
 
             {field: 'techRequire', title: '商务技术要求响应情况', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify=""  placeholder="满分25分"/>'
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25"  placeholder="满分25分"/>'
                 }
                 , sort:true
             },
 
             {field: 'afterSale', title: '售后服务方案情况', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.afterSale) +'" class="magicalcoder-table-text layui-input security_list_table_form_afterSale" name="afterSale" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify=""  placeholder="满分10分"/>'
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.afterSale) +'" class="magicalcoder-table-text layui-input security_list_table_form_afterSale" name="afterSale" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=10"  placeholder="满分10分"/>'
                 }
                 , sort:true
             },
 
             {field: 'apply', title: '投标文件供应商业绩', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.apply) +'" class="magicalcoder-table-text layui-input security_list_table_form_apply" name="apply" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="满分2分"/>'
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.apply) +'" class="magicalcoder-table-text layui-input security_list_table_form_apply" name="apply" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2"  placeholder="满分2分"/>'
                 }
                 , sort:true
             },
 
             {field: 'geneSitu', title: '制造厂商综合情况', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.geneSitu) +'" class="magicalcoder-table-text layui-input security_list_table_form_geneSitu" name="geneSitu" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|minLength=0"  placeholder="满分8分"/>'
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.geneSitu) +'" class="magicalcoder-table-text layui-input security_list_table_form_geneSitu" name="geneSitu" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=8"  placeholder="满分8分"/>'
                 }
                 , sort:true
             },
 
             {field: 'standard', title: '投标文件规范性', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.standard) +'" class="magicalcoder-table-text layui-input security_list_table_form_standard" name="standard" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|minLength=0"  placeholder="满分2分"/>'
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.standard) +'" class="magicalcoder-table-text layui-input security_list_table_form_standard" name="standard" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2"  placeholder="满分2分"/>'
                 }
                 , sort:true
             },

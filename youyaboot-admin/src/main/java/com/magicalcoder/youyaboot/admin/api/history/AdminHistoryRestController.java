@@ -59,7 +59,7 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
         query.put("purchaserNameFirst",coverBlankToNull(purchaserNameFirst));
         Integer count = historyService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","id desc");
+            query.put("notSafeOrderBy","id asc");
         }else{
             query.put("safeOrderBy",safeOrderBy);
         }
