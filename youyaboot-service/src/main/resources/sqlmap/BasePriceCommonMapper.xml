@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+* 代码为自动生成 Created by www.magicalcoder.com
+* 软件作者：何栋宇 qq:709876443
+* 如果你改变了此类 read 请将此行删除
+*  欢迎加入官方QQ群:648595928
+-->
+<mapper namespace="com.magicalcoder.youyaboot.service.basepricecommon.mapper.BasePriceCommonMapper">
+    <!-- BasePriceCommon -->
+    <resultMap id="resultMap" type="BasePriceCommon">
+        <id column="id" property="id"/>
+        <result column="base_point" property="basePoint" />
+        <result column="company_name" property="companyName" />
+        <result column="final_point" property="finalPoint" />
+        <result column="input_time" property="inputTime" />
+    </resultMap>
+    <!-- 查询单个实体 -->
+    <select id="getModel" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!--根据主键 查询单个实体 -->
+    <select id="getModelByPk" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  <include refid="magicalcoderPkWhereSql"/>
+    </select>
+    <!-- 查询一组实体 -->
+    <select id="getModelList" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 查询一组实体 in 语句-->
+    <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where  `id` in
+        <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
+        <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 查询一组实体的数量 -->
+    <select id="getModelListCount" parameterType="hashmap" resultType="int">
+        select count(1)  from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 插入单个实体 遇到入参null转换成数据库NULL-->
+    <insert id="insertModel" parameterType="BasePriceCommon"  useGeneratedKeys="true" keyProperty="id" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库NULL-->
+    <insert id="replaceModel" parameterType="BasePriceCommon"  useGeneratedKeys="true" keyProperty="id" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 插入单个实体 遇到入参null转换成数据库默认值-->
+    <insert id="insertModelWithoutNull" parameterType="BasePriceCommon"  useGeneratedKeys="true" keyProperty="id" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库默认值-->
+    <insert id="replaceModelWithoutNull" parameterType="BasePriceCommon"  useGeneratedKeys="true" keyProperty="id" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 批量插入一组实体 -->
+    <insert id="batchInsertModel" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <!-- 批量替换一组实体 -->
+    <insert id="batchReplaceModel" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchInsertModelWithoutNull" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchReplaceModelWithoutNull" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+
+        <!-- 清空表 操作危险 慎用，暂时注销掉-->
+    <delete id="truncateModel">
+        -- truncate table <include refid="tableSql"/>
+    </delete>
+
+    <!-- 根据主键删除一个实体 magicalCoderPrimaryKeyName 框架封装-->
+    <delete id="deleteModelByPk" parameterType="hashmap">
+        delete from <include refid="tableSql"/> <include refid="magicalcoderPkWhereSql"/>
+    </delete>
+
+    <delete id="deleteModelList" parameterType="hashmap">
+        delete from <include refid="tableSql"/> where 1=1 <include refid="whereSqlModel"/>
+    </delete>
+
+    <!-- 批量删除实体 in 根据主键-->
+    <delete id="deleteModelByIds" parameterType="java.util.Set">
+        delete from <include refid="tableSql"/> where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    <!-- 更新一个实体 -->
+    <update id="updateModel" parameterType="BasePriceCommon">
+        update <include refid="tableSql"/> <include refid="updateSetSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+    <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->
+    <update id="updateModelWithoutNull" parameterType="BasePriceCommon">
+        update <include refid="tableSql"/> <include refid="updateSetWithoutNullSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+     <!-- 批量更新实体 传入一组实体，分别根据主键作为查询条件-->
+    <update id="batchUpdateModel" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <update id="batchUpdateModelWithoutNull" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateWithoutNullSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <!-- sql 片段 -->
+   <sql id="selectSqlIgnoreModel">
+        <trim suffixOverrides=",">
+            <if test="idIgnore_ == null or !idIgnore_">`id`,</if>
+            <if test="basePointIgnore_ == null or !basePointIgnore_">`base_point`,</if>
+            <if test="companyNameIgnore_ == null or !companyNameIgnore_">`company_name`,</if>
+            <if test="finalPointIgnore_ == null or !finalPointIgnore_">`final_point`,</if>
+            <if test="inputTimeIgnore_ == null or !inputTimeIgnore_">`input_time`</if>
+        </trim>
+    </sql>
+    <sql id="selectSqlNotIgnoreModel">
+        <trim suffixOverrides=",">
+         <if test="idNotIgnore_ != null and idNotIgnore_">`id`,</if>
+         <if test="basePointNotIgnore_ != null and basePointNotIgnore_">`base_point`,</if>
+         <if test="companyNameNotIgnore_ != null and companyNameNotIgnore_">`company_name`,</if>
+         <if test="finalPointNotIgnore_ != null and finalPointNotIgnore_">`final_point`,</if>
+         <if test="inputTimeNotIgnore_ != null and inputTimeNotIgnore_">`input_time`</if>
+        </trim>
+    </sql>
+    <sql id="douFieldSql">
+        <trim suffixOverrides=",">
+            <if test="id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,
+        </trim>
+    </sql>
+    <sql id="douValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="basePoint!=null">#{basePoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="companyName!=null">#{companyName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="finalPoint!=null">#{finalPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+
+    <sql id="douFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="id!=null">`id`,</if>
+                <if test="basePoint!=null">`base_point`,</if>
+                <if test="companyName!=null">`company_name`,</if>
+                <if test="finalPoint!=null">`final_point`,</if>
+                <if test="inputTime!=null">`input_time`,</if>
+
+        </trim>
+    </sql>
+    <sql id="douValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="basePoint!=null">#{basePoint},</when></choose>
+                <choose><when test="companyName!=null">#{companyName},</when></choose>
+                <choose><when test="finalPoint!=null">#{finalPoint},</when></choose>
+                <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldSql">
+        <trim suffixOverrides=",">
+                <if test="item.id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,
+        </trim>
+    </sql>
+    <sql id="batchDouValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.basePoint!=null">#{item.basePoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.companyName!=null">#{item.companyName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="item.id!=null">`id`,</if>
+                <if test="item.basePoint!=null">`base_point`,</if>
+                <if test="item.companyName!=null">`company_name`,</if>
+                <if test="item.finalPoint!=null">`final_point`,</if>
+                <if test="item.inputTime!=null">`input_time`,</if>
+
+        </trim>
+    </sql>
+    <sql id="batchDouValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.basePoint!=null">#{item.basePoint},</when></choose>
+                <choose><when test="item.companyName!=null">#{item.companyName},</when></choose>
+                <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when></choose>
+                <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+        </trim>
+    </sql>
+    <sql id="updateSetSql">
+        <set>
+                    <choose> <when test="basePoint!=null">`base_point`=#{basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="companyName!=null">`company_name`=#{companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="finalPoint!=null">`final_point`=#{finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="updateSetWithoutNullSql">
+        <set>
+                    <choose><when test="basePoint!=null">`base_point`=#{basePoint},</when></choose>
+                    <choose><when test="companyName!=null">`company_name`=#{companyName},</when></choose>
+                    <choose><when test="finalPoint!=null">`final_point`=#{finalPoint},</when></choose>
+                    <choose><when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+        </set>
+    </sql>
+    <sql id="magicalcoderPkWhereSql">
+        where 1=1
+            and `id` = #{magicalCoderPrimaryKeyName}
+    </sql>
+    <sql id="updatePkWhereSql">
+        where 1=1
+            and `id` = #{id}
+    </sql>
+    <sql id="batchUpdateSetSql">
+        <set>
+                    <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="batchUpdateWithoutNullSetSql">
+        <set>
+                    <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint},</when></choose>
+                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName},</when></choose>
+                    <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint},</when></choose>
+                    <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+        </set>
+    </sql>
+    <sql id="batchUpdatePkWhereSql">
+        where 1=1
+            and `id` = #{item.id}
+    </sql>
+    <!-- 这里可以加上数据库名称 方便的切换数据库-->
+    <sql id="tableSql">
+        hx.base_price_common
+    </sql>
+
+   <sql id="whereSqlModel">
+        <if test="id!=null "> and `id` = #{id}</if>
+        <if test="basePoint!=null "> and `base_point` = #{basePoint}</if>
+        <if test="companyName!=null "> and `company_name` = #{companyName}</if>
+        <if test="finalPoint!=null "> and `final_point` = #{finalPoint}</if>
+        <if test="inputTime!=null "> and `input_time` = #{inputTime,jdbcType=TIMESTAMP}</if>
+                <if test="inputTimeFirst!=null "> and `input_time` <![CDATA[=]]>
+                        #{inputTimeFirst,jdbcType=TIMESTAMP}
+                </if>
+        <!--<if test="whereSql!=null"> ${whereSql}</if>-->
+    </sql>
+
+    <sql id="safeGroupBy">
+        <if test="safeGroupBy!=null and safeGroupBy!=''">
+            group by
+            <choose>
+                <when test="safeGroupBy != null and safeGroupBy == 'id'">  `id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'base_point'">  `base_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'company_name'">  `company_name` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'final_point'">  `final_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'input_time'">  `input_time` </when>
+            </choose>
+        </if>
+    </sql>
+    <sql id="safeOrderBy">
+        <if test="safeOrderBy!=null and safeOrderBy!=''">
+            <choose>
+                <when test="safeOrderBy != null and safeOrderBy == 'id desc'"> order by  `id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'id asc'"> order by `id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'base_point desc'"> order by  `base_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'base_point asc'"> order by `base_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'company_name desc'"> order by  `company_name` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'company_name asc'"> order by `company_name` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'final_point desc'"> order by  `final_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'final_point asc'"> order by `final_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'input_time desc'"> order by  `input_time` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'input_time asc'"> order by `input_time` asc </when>
+            </choose>
+        </if>
+    </sql>
+
+    <sql id="orderGroupLimit">
+        <include refid="safeGroupBy"/>
+        <if test="notSafeGroupBy != null and notSafeGroupBy != ''"> group by ${notSafeGroupBy}</if>
+        <include refid="safeOrderBy"/>
+        <if test="notSafeOrderBy != null and notSafeOrderBy != ''"> order by ${notSafeOrderBy}</if>
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </sql>
+
+</mapper>
