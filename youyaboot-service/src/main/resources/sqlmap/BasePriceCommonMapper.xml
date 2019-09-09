@@ -12,9 +12,9 @@
     <resultMap id="resultMap" type="BasePriceCommon">
         <id column="id" property="id"/>
         <result column="base_point" property="basePoint" />
-        <result column="company_name" property="companyName" />
         <result column="final_point" property="finalPoint" />
         <result column="input_time" property="inputTime" />
+        <result column="project_id" property="projectId" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -123,32 +123,32 @@
         <trim suffixOverrides=",">
             <if test="idIgnore_ == null or !idIgnore_">`id`,</if>
             <if test="basePointIgnore_ == null or !basePointIgnore_">`base_point`,</if>
-            <if test="companyNameIgnore_ == null or !companyNameIgnore_">`company_name`,</if>
             <if test="finalPointIgnore_ == null or !finalPointIgnore_">`final_point`,</if>
-            <if test="inputTimeIgnore_ == null or !inputTimeIgnore_">`input_time`</if>
+            <if test="inputTimeIgnore_ == null or !inputTimeIgnore_">`input_time`,</if>
+            <if test="projectIdIgnore_ == null or !projectIdIgnore_">`project_id`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
         <trim suffixOverrides=",">
          <if test="idNotIgnore_ != null and idNotIgnore_">`id`,</if>
          <if test="basePointNotIgnore_ != null and basePointNotIgnore_">`base_point`,</if>
-         <if test="companyNameNotIgnore_ != null and companyNameNotIgnore_">`company_name`,</if>
          <if test="finalPointNotIgnore_ != null and finalPointNotIgnore_">`final_point`,</if>
-         <if test="inputTimeNotIgnore_ != null and inputTimeNotIgnore_">`input_time`</if>
+         <if test="inputTimeNotIgnore_ != null and inputTimeNotIgnore_">`input_time`,</if>
+         <if test="projectIdNotIgnore_ != null and projectIdNotIgnore_">`project_id`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,
+            <if test="id!=null">`id`,</if> `base_point`,`final_point`,`input_time`,`project_id`,
         </trim>
     </sql>
     <sql id="douValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
                 <choose><when test="basePoint!=null">#{basePoint},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="companyName!=null">#{companyName},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="finalPoint!=null">#{finalPoint},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="projectId!=null">#{projectId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
@@ -156,9 +156,9 @@
         <trim suffixOverrides=",">
                 <if test="id!=null">`id`,</if>
                 <if test="basePoint!=null">`base_point`,</if>
-                <if test="companyName!=null">`company_name`,</if>
                 <if test="finalPoint!=null">`final_point`,</if>
                 <if test="inputTime!=null">`input_time`,</if>
+                <if test="projectId!=null">`project_id`,</if>
 
         </trim>
     </sql>
@@ -166,32 +166,32 @@
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
                 <choose><when test="basePoint!=null">#{basePoint},</when></choose>
-                <choose><when test="companyName!=null">#{companyName},</when></choose>
                 <choose><when test="finalPoint!=null">#{finalPoint},</when></choose>
                 <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="projectId!=null">#{projectId},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,
+                <if test="item.id!=null">`id`,</if> `base_point`,`final_point`,`input_time`,`project_id`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
                 <choose><when test="item.basePoint!=null">#{item.basePoint},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.companyName!=null">#{item.companyName},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.projectId!=null">#{item.projectId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
         <trim suffixOverrides=",">
                 <if test="item.id!=null">`id`,</if>
                 <if test="item.basePoint!=null">`base_point`,</if>
-                <if test="item.companyName!=null">`company_name`,</if>
                 <if test="item.finalPoint!=null">`final_point`,</if>
                 <if test="item.inputTime!=null">`input_time`,</if>
+                <if test="item.projectId!=null">`project_id`,</if>
 
         </trim>
     </sql>
@@ -199,25 +199,25 @@
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
                 <choose><when test="item.basePoint!=null">#{item.basePoint},</when></choose>
-                <choose><when test="item.companyName!=null">#{item.companyName},</when></choose>
                 <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when></choose>
                 <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="item.projectId!=null">#{item.projectId},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
         <set>
                     <choose> <when test="basePoint!=null">`base_point`=#{basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
-                    <choose> <when test="companyName!=null">`company_name`=#{companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
                     <choose> <when test="finalPoint!=null">`final_point`=#{finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
                     <choose> <when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+                    <choose> <when test="projectId!=null">`project_id`=#{projectId}</when> <otherwise> `project_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
         <set>
                     <choose><when test="basePoint!=null">`base_point`=#{basePoint},</when></choose>
-                    <choose><when test="companyName!=null">`company_name`=#{companyName},</when></choose>
                     <choose><when test="finalPoint!=null">`final_point`=#{finalPoint},</when></choose>
                     <choose><when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+                    <choose><when test="projectId!=null">`project_id`=#{projectId},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -231,17 +231,17 @@
     <sql id="batchUpdateSetSql">
         <set>
                     <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
                     <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
                     <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.projectId!=null">`project_id`=#{item.projectId}</when> <otherwise> `project_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
         <set>
                     <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint},</when></choose>
-                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName},</when></choose>
                     <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint},</when></choose>
                     <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+                    <choose> <when test="item.projectId!=null">`project_id`=#{item.projectId},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -256,11 +256,14 @@
    <sql id="whereSqlModel">
         <if test="id!=null "> and `id` = #{id}</if>
         <if test="basePoint!=null "> and `base_point` = #{basePoint}</if>
-        <if test="companyName!=null "> and `company_name` = #{companyName}</if>
         <if test="finalPoint!=null "> and `final_point` = #{finalPoint}</if>
         <if test="inputTime!=null "> and `input_time` = #{inputTime,jdbcType=TIMESTAMP}</if>
+        <if test="projectId!=null "> and `project_id` = #{projectId}</if>
                 <if test="inputTimeFirst!=null "> and `input_time` <![CDATA[=]]>
                         #{inputTimeFirst,jdbcType=TIMESTAMP}
+                </if>
+                <if test="projectIdFirst!=null "> and `project_id` <![CDATA[=]]>
+                            #{projectIdFirst}
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>
@@ -271,9 +274,9 @@
             <choose>
                 <when test="safeGroupBy != null and safeGroupBy == 'id'">  `id` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'base_point'">  `base_point` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'company_name'">  `company_name` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'final_point'">  `final_point` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'input_time'">  `input_time` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'project_id'">  `project_id` </when>
             </choose>
         </if>
     </sql>
@@ -284,12 +287,12 @@
                 <when test="safeOrderBy != null and safeOrderBy == 'id asc'"> order by `id` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'base_point desc'"> order by  `base_point` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'base_point asc'"> order by `base_point` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'company_name desc'"> order by  `company_name` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'company_name asc'"> order by `company_name` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'final_point desc'"> order by  `final_point` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'final_point asc'"> order by `final_point` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'input_time desc'"> order by  `input_time` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'input_time asc'"> order by `input_time` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'project_id desc'"> order by  `project_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'project_id asc'"> order by `project_id` asc </when>
             </choose>
         </if>
     </sql>

@@ -45,16 +45,16 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="companyNameFirst")                            String companyNameFirst ,
         @RequestParam(required = false,value ="categoryIdFirst")                            Integer categoryIdFirst ,
         @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date dateFirst ,
+        @RequestParam(required = false,value ="projectIdFirst")                            Long projectIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
-        query.put("companyNameFirst",coverBlankToNull(companyNameFirst));
         query.put("categoryIdFirst",categoryIdFirst);
         query.put("dateFirst",dateFirst);
+        query.put("projectIdFirst",projectIdFirst);
         Integer count = scoreService.getModelListCount(query);
         query.put("safeOrderBy",safeOrderBy);
         if(queryType==null || queryType == QUERY_TYPE_SEARCH){//普通查询
@@ -64,8 +64,8 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,scoreService.getModelList(query),"score",
-            new String[]{"编号","售后服务方案情况","投标文件供应商业绩","参选公司","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名","打分表分类","日期"},
-            new String[]{"","","","","","","","","[{\\\"key\\\":1,\\\"value\\\":\\\"设备仪器\\\"},{\\\"key\\\":2,\\\"value\\\":\\\"服务打分\\\"},{\\\"key\\\":3,\\\"value\\\":\\\"试剂打分\\\"},{\\\"key\\\":5,\\\"value\\\":\\\"软件打分\\\"},{\\\"key\\\":6,\\\"value\\\":\\\"仪器设备+配套耗材试剂\\\"}]",""});
+            new String[]{"编号","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名","打分表分类","日期","参选公司"},
+            new String[]{"","","","","","","","","",""});
         }
         return null;
     }

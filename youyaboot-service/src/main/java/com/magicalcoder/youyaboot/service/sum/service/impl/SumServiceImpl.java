@@ -51,20 +51,34 @@ public class SumServiceImpl extends CommonServiceImpl<Sum,Long> implements SumSe
             String signature = imtp.getSignature();
             String[] signatureArr=signature.split(",");
 
-            zhuangjiaList.forEach((String str)->{
-                for (int i=0;i<signatureArr.length;i++){
-                    if (signatureArr[i].equals(str)){
-                        if(i==1){
-                            imtp.setScoreSum1(scoreSumArr[i]);
-                        }else if(i==2){
-                            imtp.setScoreSum2(scoreSumArr[i]);
-                        }else if(i==3){
-                            imtp.setScoreSum3(scoreSumArr[i]);
-                        }
-                    }
+//            zhuangjiaList.forEach((String str)->{
+//                for (int i=0;i<signatureArr.length;i++){
+//                    if (signatureArr[i].equals(str)){
+//                        if(i==1){
+//                            imtp.setScoreSum1(scoreSumArr[i]);
+//                        }else if(i==2){
+//                            imtp.setScoreSum2(scoreSumArr[i]);
+//                        }else if(i==3){
+//                            imtp.setScoreSum3(scoreSumArr[i]);
+//                        }
+//                    }
+//                }
+//
+//            });
+            for (int i=0;i<scoreSumArr.length;i++) {
+                if (i == 0) {
+                    imtp.setScoreSum1(scoreSumArr[i]);
+                    System.out.println(scoreSumArr[i]);
+                }else if (i == 1) {
+                    imtp.setScoreSum2(scoreSumArr[i]);
+                }else if (i == 2) {
+                    imtp.setScoreSum3(scoreSumArr[i]);
+                }else if (i == 3) {
+                    imtp.setScoreSum4(scoreSumArr[i]);
+                }else if (i == 4) {
+                    imtp.setScoreSum5(scoreSumArr[i]);
                 }
-
-            });
+            }
 
         });
 

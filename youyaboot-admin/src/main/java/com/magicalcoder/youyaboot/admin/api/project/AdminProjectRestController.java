@@ -37,7 +37,31 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     @Resource
     private ProjectService projectService;
 
-        //分页查询
+        //外键下拉查询接口
+    @RequestMapping(value = "search")
+    public ResponseMsg search(
+        @RequestParam(required = false) String uniqueField,
+        @RequestParam(required = false,value = "uniqueValue[]") Set<Long> uniqueValue,//主键多个值
+        @RequestParam(required = false,defaultValue = "20") Integer limit,
+        @RequestParam(required = false) String keyword
+    ){
+        limit = Math.min(PageConstant.MAX_LIMIT,limit);
+        List<Project> list = null;
+        Map<String,Object> query = new HashMap();
+        query.put("limit",limit);
+        query.put("notSafeOrderBy","id asc,price asc");
+        if(uniqueValue!=null){//说明是来初始化的
+            list = projectService.getModelInList(uniqueValue);
+        }else {//正常搜索
+            if(ListUtil.isBlank(list)){
+                query.put("projectNameFirst",keyword);
+                list = projectService.getModelList(query);
+                query.remove("projectNameFirst");
+            }
+        }
+        return new ResponseMsg(list);
+    }
+    //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,

@@ -23,6 +23,8 @@ public class CommonSum implements Serializable{
     private String scoreSum1="0";
     private String scoreSum2="0";
     private String scoreSum3="0";
+    private String scoreSum4="0";
+    private String scoreSum5="0";
     private String pj;
     private String signature;
     private String count;

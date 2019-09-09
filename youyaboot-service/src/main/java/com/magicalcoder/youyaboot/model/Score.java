@@ -20,7 +20,6 @@ public class Score implements Serializable{
     private Long id;//id
     private Integer afterSale;//after_sale
     private Integer apply;//apply
-    private String companyName;//company_name
     private Integer geneSitu;//gene_situ
     private Integer standard;//standard
     private Integer techRequire;//tech_require
@@ -29,6 +28,7 @@ public class Score implements Serializable{
     @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date date;//date
+    private Long projectId;//project_id
 
     
     public Long getId(){
@@ -50,13 +50,6 @@ public class Score implements Serializable{
     }
     public void setApply(Integer apply){
         this.apply = apply;
-    }
-
-    public String getCompanyName(){
-        return companyName;
-    }
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
     }
 
     public Integer getGeneSitu(){
@@ -99,5 +92,12 @@ public class Score implements Serializable{
     }
     public void setDate(Date date){
         this.date = date;
+    }
+
+    public Long getProjectId(){
+        return projectId;
+    }
+    public void setProjectId(Long projectId){
+        this.projectId = projectId;
     }
 }

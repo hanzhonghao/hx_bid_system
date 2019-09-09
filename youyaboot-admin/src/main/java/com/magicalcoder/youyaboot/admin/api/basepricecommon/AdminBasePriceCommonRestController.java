@@ -44,11 +44,13 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="inputTimeFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date inputTimeFirst ,
+        @RequestParam(required = false,value ="projectIdFirst")                            Long projectIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
         query.put("inputTimeFirst",inputTimeFirst);
+        query.put("projectIdFirst",projectIdFirst);
         Integer count = basePriceCommonService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
             query.put("notSafeOrderBy","id desc");
@@ -62,7 +64,7 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,basePriceCommonService.getModelList(query),"base_price_common",
-            new String[]{"编号","基准价(万元）","参选公司","最终价格(万元）","录入时间"},
+            new String[]{"编号","基准价(万元）","最终价格(万元）","录入时间","参选公司"},
             new String[]{"","","","",""});
         }
         return null;

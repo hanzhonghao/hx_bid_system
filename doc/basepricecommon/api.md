@@ -26,9 +26,9 @@
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
 | 2 | basePoint              | Integer          | 基准价(万元） |
-| 3 | companyName              | String          | 参选公司 |
-| 4 | finalPoint              | Integer          | 最终价格(万元） |
-| 5 | inputTime              | Date          | 录入时间 |
+| 3 | finalPoint              | Integer          | 最终价格(万元） |
+| 4 | inputTime              | Date          | 录入时间 |
+| 5 | projectId              | Long          | 参选公司 |
 
 ## 1.2 保存base_price_common详情
 
@@ -44,9 +44,9 @@
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
 | 2| basePoint  | Integer  | 基准价(万元） |
-| 3| companyName  | String  | 参选公司 |
-| 4| finalPoint  | Integer  | 最终价格(万元） |
-| 5| inputTime  | Date  | 录入时间 |
+| 3| finalPoint  | Integer  | 最终价格(万元） |
+| 4| inputTime  | Date  | 录入时间 |
+| 5| projectId  | Long  | 参选公司 |
 
 > **输出**
 
@@ -70,9 +70,9 @@
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
 | 2| basePoint  | Integer  | 基准价(万元） |
-| 3| companyName  | String  | 参选公司 |
-| 4| finalPoint  | Integer  | 最终价格(万元） |
-| 5| inputTime  | Date  | 录入时间 |
+| 3| finalPoint  | Integer  | 最终价格(万元） |
+| 4| inputTime  | Date  | 录入时间 |
+| 5| projectId  | Long  | 参选公司 |
 
 > **输出**
 
@@ -147,6 +147,7 @@
 | 2    |limit      |int       |每页多少条 [0,100)   |
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
                 |4|inputTimeFirst|   Date   |录入时间|
+                |5|projectIdFirst|   Long   |参选公司|
 
 > **输出**
 
@@ -160,6 +161,6 @@
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
 | 2 | basePoint              | Integer          | 基准价(万元） |
-| 3 | companyName              | String          | 参选公司 |
-| 4 | finalPoint              | Integer          | 最终价格(万元） |
-| 5 | inputTime              | Date          | 录入时间 |
+| 3 | finalPoint              | Integer          | 最终价格(万元） |
+| 4 | inputTime              | Date          | 录入时间 |
+| 5 | projectId              | Long          | 参选公司 |

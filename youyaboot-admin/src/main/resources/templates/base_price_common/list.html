@@ -38,6 +38,9 @@
                                 <div class="layui-inline security_list_query_param_inputTime">
                                     <input type="text" data-name="inputTime" name="inputTimeFirst" lay-verify="datetime"  placeholder="起始录入时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
                                 </div>
+                                <div class="layui-inline security_list_query_param_projectId">
+                                    <select  data-name="projectId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="projectIdFirst" style="height:30px;width: 200px" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" placeholder="参选公司" data-limit="20"><option value=""></option></select>
+                                </div>
                                 <div class="layui-inline security_list_query_operate_search">
                                     <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
                                     <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>

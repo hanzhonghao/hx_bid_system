@@ -40,7 +40,18 @@
 			</a>
 		</div>-->
 
+
 	</div>
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-carousel" id="test1" lay-filter="test1" >
+                <div carousel-item="">
+                    <div> <img th:src="@{/assets/magicalcoder/v103/images/main.png}"></div>
+                    <div> <img th:src="@{/assets/magicalcoder/v103/images/main.png}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<div th:replace="magicalcoder/v103/include/main-js :: commonMain" />
 	<script type="text/javascript" th:src="@{/assets/magicalcoder/v103/js/main.js}"></script>

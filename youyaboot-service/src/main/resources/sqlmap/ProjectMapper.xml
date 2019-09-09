@@ -371,8 +371,8 @@
         <if test="responer!=null "> and `responer` = #{responer}</if>
         <if test="reviewer!=null "> and `reviewer` = #{reviewer}</if>
         <if test="type!=null "> and `type` = #{type}</if>
-                <if test="projectNameFirst!=null "> and `project_name` <![CDATA[=]]>
-                            #{projectNameFirst}
+                <if test="projectNameFirst!=null "> and `project_name` <![CDATA[like]]>
+                            concat('%',#{projectNameFirst},'%')
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>

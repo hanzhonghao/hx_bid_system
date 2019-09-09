@@ -36,7 +36,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',basePoint:'base_point',companyName:'company_name',finalPoint:'final_point',inputTime:'input_time'
+            id:'id',basePoint:'base_point',finalPoint:'final_point',inputTime:'input_time',projectId:'project_id'
         }
     };
     //后端请求时候的表模块规则url
@@ -46,13 +46,12 @@
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
-            {field: 'inputTime', title: '录入时间', align:'center', minWidth:250, templet :"#inputTimeTemplate",sort:true},
-
-            {field: 'companyName', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.companyName) +'" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
-                }
-                , sort:true
-            },
+                {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
+                    //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_projectId" lay-ignore="true"  name="projectId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="参选公司"  data-limit="20"></select>'
+                    },sort:true
+                },
 
             {field: 'basePoint', title: '基准价(万元）', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.basePoint) +'" class="magicalcoder-table-text layui-input security_list_table_form_basePoint" name="basePoint" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="基准价(万元）"/>'
@@ -65,6 +64,7 @@
                 }
                 , sort:true
             },
+            {field: 'inputTime', title: '录入时间', align:'center', minWidth:250, templet :"#inputTimeTemplate",sort:true},
         {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
     ]];
     var obj = {

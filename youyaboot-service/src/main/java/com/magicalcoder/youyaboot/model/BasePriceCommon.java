@@ -19,13 +19,13 @@ public class BasePriceCommon implements Serializable{
 
     private Long id;//id
     private Integer basePoint;//base_point
-    private String companyName;//company_name
     private Integer finalPoint;//final_point
     @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date inputTime;//input_time
+    private Long projectId;//project_id
 
-
+    
     public Long getId(){
         return id;
     }
@@ -40,13 +40,6 @@ public class BasePriceCommon implements Serializable{
         this.basePoint = basePoint;
     }
 
-    public String getCompanyName(){
-        return companyName;
-    }
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
-    }
-
     public Integer getFinalPoint(){
         return finalPoint;
     }
@@ -59,5 +52,12 @@ public class BasePriceCommon implements Serializable{
     }
     public void setInputTime(Date inputTime){
         this.inputTime = inputTime;
+    }
+
+    public Long getProjectId(){
+        return projectId;
+    }
+    public void setProjectId(Long projectId){
+        this.projectId = projectId;
     }
 }

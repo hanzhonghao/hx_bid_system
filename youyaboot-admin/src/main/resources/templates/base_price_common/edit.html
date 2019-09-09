@@ -24,10 +24,10 @@
                             <input type="text" disabled="true" class="layui-input" name="id"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
                         </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_companyName">
+                    <div class="layui-form-item security_edit_form_param_projectId">
                         <label class="layui-form-label">参选公司</label>
                         <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="companyName" placeholder="参选公司" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        <select name="projectId"  data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" data-value=""  placeholder="参选公司" data-limit="20"><option value=""></option></select>
                         </div>
                     </div>
                     <div class="layui-form-item security_edit_form_param_basePoint">

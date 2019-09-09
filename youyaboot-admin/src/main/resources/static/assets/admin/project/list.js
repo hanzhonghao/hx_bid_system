@@ -30,6 +30,16 @@
             select2Change:function (elem,name,value) {//外键下拉更新事件
             }
         },
+        childrenPage:[//子页面的一些基础信息 更多信息
+            {
+                tabTitle:"score",
+                url:"admin/page_v2/score/list",
+                mcForeignName:"projectId"
+            },            {
+                tabTitle:"base_price_common",
+                url:"admin/page_v2/base_price_common/list",
+                mcForeignName:"projectId"
+            }        ],
         layTable : {//表格内容 到list.html查找即可明白
             elem : '#newsList',
             id : "newsListTable"

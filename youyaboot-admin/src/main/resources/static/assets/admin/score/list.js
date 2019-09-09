@@ -36,7 +36,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',afterSale:'after_sale',apply:'apply',companyName:'company_name',geneSitu:'gene_situ',standard:'standard',techRequire:'tech_require',signature:'signature',categoryId:'category_id',date:'date'
+            id:'id',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',techRequire:'tech_require',signature:'signature',categoryId:'category_id',date:'date',projectId:'project_id'
         }
     };
     //后端请求时候的表模块规则url
@@ -46,19 +46,18 @@
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
-            {field: 'date', title: '日期', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
+                {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
+                    //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_projectId" lay-ignore="true"  name="projectId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="参选公司"  data-limit="20"></select>'
+                    },sort:true
+                },
                 {field: 'categoryId', title: '打分表分类', align:'center', minWidth:250, templet:function (d) {
                     var value = (!d.categoryId || d.categoryId==null) ? '' : d.categoryId
                     //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
                     return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_categoryId" lay-ignore="true"  name="categoryId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"  data-limit="20"></select>'
                     },sort:true
                 },
-
-            {field: 'companyName', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.companyName) +'" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
-                }
-                , sort:true
-            },
 
             {field: 'techRequire', title: '商务技术要求响应情况', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25"  placeholder="满分25分"/>'
@@ -89,6 +88,7 @@
                 }
                 , sort:true
             },
+            {field: 'date', title: '日期', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
 
             {field: 'signature', title: '专家签名', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.signature) +'" class="magicalcoder-table-text layui-input security_list_table_form_signature" name="signature" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="专家签名"/>'
