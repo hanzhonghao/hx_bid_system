@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+* 代码为自动生成 Created by www.magicalcoder.com
+* 软件作者：何栋宇 qq:709876443
+* 如果你改变了此类 read 请将此行删除
+*  欢迎加入官方QQ群:648595928
+-->
+<mapper namespace="com.magicalcoder.youyaboot.service.sum.mapper.SumMapper">
+    <!-- Sum -->
+    <resultMap id="resultMap" type="Sum">
+        <id column="id" property="id"/>
+        <result column="base_point" property="basePoint" />
+        <result column="company_name" property="companyName" />
+        <result column="final_point" property="finalPoint" />
+        <result column="input_time" property="inputTime" />
+        <result column="paiming" property="paiming" />
+        <result column="sum_ping_jia" property="sumPingJia" />
+        <result column="sum_point" property="sumPoint" />
+        <result column="toubiao_point" property="toubiaoPoint" />
+        <result column="zhuanjia" property="zhuanjia" />
+    </resultMap>
+    <!-- 查询单个实体 -->
+    <select id="getModel" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!--根据主键 查询单个实体 -->
+    <select id="getModelByPk" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  <include refid="magicalcoderPkWhereSql"/>
+    </select>
+    <!-- 查询一组实体 -->
+    <select id="getCommonSumList" parameterType="String"  resultType="CommonSum">
+        select tem.* ,(tem.basePoint/tem.finalPoint*45) as tbdf  , ((tem.basePoint/tem.finalPoint*45) + tem.pj) as zh from
+        (SELECT
+        project_name as projectName,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT(signature) as signature,
+        count(s.project_id) as `count`,
+        bpc.base_point as basePoint,
+        bpc.final_point as finalPoint
+        FROM
+        project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
+        LEFT JOIN base_price_common bpc on p.id=bpc.project_id and bpc.input_time=#{date}
+        WHERE p.date=#{date}
+        GROUP BY p.id
+        ) tem
+        ORDER BY zh DESC
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </select>
+    <!-- 查询一组实体 in 语句-->
+    <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where  `id` in
+        <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
+        <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 查询一组实体的数量 -->
+    <select id="getModelListCount" parameterType="hashmap" resultType="int">
+        select count(1)  from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 插入单个实体 遇到入参null转换成数据库NULL-->
+    <insert id="insertModel" parameterType="Sum"  useGeneratedKeys="true" keyProperty="id" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库NULL-->
+    <insert id="replaceModel" parameterType="Sum"  useGeneratedKeys="true" keyProperty="id" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 插入单个实体 遇到入参null转换成数据库默认值-->
+    <insert id="insertModelWithoutNull" parameterType="Sum"  useGeneratedKeys="true" keyProperty="id" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库默认值-->
+    <insert id="replaceModelWithoutNull" parameterType="Sum"  useGeneratedKeys="true" keyProperty="id" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 批量插入一组实体 -->
+    <insert id="batchInsertModel" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <!-- 批量替换一组实体 -->
+    <insert id="batchReplaceModel" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchInsertModelWithoutNull" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchReplaceModelWithoutNull" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="id" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+
+        <!-- 清空表 操作危险 慎用，暂时注销掉-->
+    <delete id="truncateModel">
+        -- truncate table <include refid="tableSql"/>
+    </delete>
+
+    <!-- 根据主键删除一个实体 magicalCoderPrimaryKeyName 框架封装-->
+    <delete id="deleteModelByPk" parameterType="hashmap">
+        delete from <include refid="tableSql"/> <include refid="magicalcoderPkWhereSql"/>
+    </delete>
+
+    <delete id="deleteModelList" parameterType="hashmap">
+        delete from <include refid="tableSql"/> where 1=1 <include refid="whereSqlModel"/>
+    </delete>
+
+    <!-- 批量删除实体 in 根据主键-->
+    <delete id="deleteModelByIds" parameterType="java.util.Set">
+        delete from <include refid="tableSql"/> where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    <!-- 更新一个实体 -->
+    <update id="updateModel" parameterType="Sum">
+        update <include refid="tableSql"/> <include refid="updateSetSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+    <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->
+    <update id="updateModelWithoutNull" parameterType="Sum">
+        update <include refid="tableSql"/> <include refid="updateSetWithoutNullSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+     <!-- 批量更新实体 传入一组实体，分别根据主键作为查询条件-->
+    <update id="batchUpdateModel" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <update id="batchUpdateModelWithoutNull" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateWithoutNullSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <!-- sql 片段 -->
+   <sql id="selectSqlIgnoreModel">
+        <trim suffixOverrides=",">
+            <if test="idIgnore_ == null or !idIgnore_">`id`,</if>
+            <if test="basePointIgnore_ == null or !basePointIgnore_">`base_point`,</if>
+            <if test="companyNameIgnore_ == null or !companyNameIgnore_">`company_name`,</if>
+            <if test="finalPointIgnore_ == null or !finalPointIgnore_">`final_point`,</if>
+            <if test="inputTimeIgnore_ == null or !inputTimeIgnore_">`input_time`,</if>
+            <if test="paimingIgnore_ == null or !paimingIgnore_">`paiming`,</if>
+            <if test="sumPingJiaIgnore_ == null or !sumPingJiaIgnore_">`sum_ping_jia`,</if>
+            <if test="sumPointIgnore_ == null or !sumPointIgnore_">`sum_point`,</if>
+            <if test="toubiaoPointIgnore_ == null or !toubiaoPointIgnore_">`toubiao_point`,</if>
+            <if test="zhuanjiaIgnore_ == null or !zhuanjiaIgnore_">`zhuanjia`</if>
+        </trim>
+    </sql>
+    <sql id="selectSqlNotIgnoreModel">
+        <trim suffixOverrides=",">
+         <if test="idNotIgnore_ != null and idNotIgnore_">`id`,</if>
+         <if test="basePointNotIgnore_ != null and basePointNotIgnore_">`base_point`,</if>
+         <if test="companyNameNotIgnore_ != null and companyNameNotIgnore_">`company_name`,</if>
+         <if test="finalPointNotIgnore_ != null and finalPointNotIgnore_">`final_point`,</if>
+         <if test="inputTimeNotIgnore_ != null and inputTimeNotIgnore_">`input_time`,</if>
+         <if test="paimingNotIgnore_ != null and paimingNotIgnore_">`paiming`,</if>
+         <if test="sumPingJiaNotIgnore_ != null and sumPingJiaNotIgnore_">`sum_ping_jia`,</if>
+         <if test="sumPointNotIgnore_ != null and sumPointNotIgnore_">`sum_point`,</if>
+         <if test="toubiaoPointNotIgnore_ != null and toubiaoPointNotIgnore_">`toubiao_point`,</if>
+         <if test="zhuanjiaNotIgnore_ != null and zhuanjiaNotIgnore_">`zhuanjia`</if>
+        </trim>
+    </sql>
+    <sql id="douFieldSql">
+        <trim suffixOverrides=",">
+            <if test="id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,`paiming`,`sum_ping_jia`,`sum_point`,`toubiao_point`,`zhuanjia`,
+        </trim>
+    </sql>
+    <sql id="douValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="basePoint!=null">#{basePoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="companyName!=null">#{companyName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="finalPoint!=null">#{finalPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="paiming!=null">#{paiming},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="sumPingJia!=null">#{sumPingJia},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="sumPoint!=null">#{sumPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="toubiaoPoint!=null">#{toubiaoPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="zhuanjia!=null">#{zhuanjia},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+
+    <sql id="douFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="id!=null">`id`,</if>
+                <if test="basePoint!=null">`base_point`,</if>
+                <if test="companyName!=null">`company_name`,</if>
+                <if test="finalPoint!=null">`final_point`,</if>
+                <if test="inputTime!=null">`input_time`,</if>
+                <if test="paiming!=null">`paiming`,</if>
+                <if test="sumPingJia!=null">`sum_ping_jia`,</if>
+                <if test="sumPoint!=null">`sum_point`,</if>
+                <if test="toubiaoPoint!=null">`toubiao_point`,</if>
+                <if test="zhuanjia!=null">`zhuanjia`,</if>
+
+        </trim>
+    </sql>
+    <sql id="douValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="basePoint!=null">#{basePoint},</when></choose>
+                <choose><when test="companyName!=null">#{companyName},</when></choose>
+                <choose><when test="finalPoint!=null">#{finalPoint},</when></choose>
+                <choose><when test="inputTime!=null">#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="paiming!=null">#{paiming},</when></choose>
+                <choose><when test="sumPingJia!=null">#{sumPingJia},</when></choose>
+                <choose><when test="sumPoint!=null">#{sumPoint},</when></choose>
+                <choose><when test="toubiaoPoint!=null">#{toubiaoPoint},</when></choose>
+                <choose><when test="zhuanjia!=null">#{zhuanjia},</when></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldSql">
+        <trim suffixOverrides=",">
+                <if test="item.id!=null">`id`,</if> `base_point`,`company_name`,`final_point`,`input_time`,`paiming`,`sum_ping_jia`,`sum_point`,`toubiao_point`,`zhuanjia`,
+        </trim>
+    </sql>
+    <sql id="batchDouValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.basePoint!=null">#{item.basePoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.companyName!=null">#{item.companyName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.paiming!=null">#{item.paiming},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.sumPingJia!=null">#{item.sumPingJia},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.sumPoint!=null">#{item.sumPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.toubiaoPoint!=null">#{item.toubiaoPoint},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.zhuanjia!=null">#{item.zhuanjia},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="item.id!=null">`id`,</if>
+                <if test="item.basePoint!=null">`base_point`,</if>
+                <if test="item.companyName!=null">`company_name`,</if>
+                <if test="item.finalPoint!=null">`final_point`,</if>
+                <if test="item.inputTime!=null">`input_time`,</if>
+                <if test="item.paiming!=null">`paiming`,</if>
+                <if test="item.sumPingJia!=null">`sum_ping_jia`,</if>
+                <if test="item.sumPoint!=null">`sum_point`,</if>
+                <if test="item.toubiaoPoint!=null">`toubiao_point`,</if>
+                <if test="item.zhuanjia!=null">`zhuanjia`,</if>
+
+        </trim>
+    </sql>
+    <sql id="batchDouValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.basePoint!=null">#{item.basePoint},</when></choose>
+                <choose><when test="item.companyName!=null">#{item.companyName},</when></choose>
+                <choose><when test="item.finalPoint!=null">#{item.finalPoint},</when></choose>
+                <choose><when test="item.inputTime!=null">#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="item.paiming!=null">#{item.paiming},</when></choose>
+                <choose><when test="item.sumPingJia!=null">#{item.sumPingJia},</when></choose>
+                <choose><when test="item.sumPoint!=null">#{item.sumPoint},</when></choose>
+                <choose><when test="item.toubiaoPoint!=null">#{item.toubiaoPoint},</when></choose>
+                <choose><when test="item.zhuanjia!=null">#{item.zhuanjia},</when></choose>
+        </trim>
+    </sql>
+    <sql id="updateSetSql">
+        <set>
+                    <choose> <when test="basePoint!=null">`base_point`=#{basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="companyName!=null">`company_name`=#{companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="finalPoint!=null">`final_point`=#{finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+                    <choose> <when test="paiming!=null">`paiming`=#{paiming}</when> <otherwise> `paiming`=NULL</otherwise> </choose>,
+                    <choose> <when test="sumPingJia!=null">`sum_ping_jia`=#{sumPingJia}</when> <otherwise> `sum_ping_jia`=NULL</otherwise> </choose>,
+                    <choose> <when test="sumPoint!=null">`sum_point`=#{sumPoint}</when> <otherwise> `sum_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="toubiaoPoint!=null">`toubiao_point`=#{toubiaoPoint}</when> <otherwise> `toubiao_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="zhuanjia!=null">`zhuanjia`=#{zhuanjia}</when> <otherwise> `zhuanjia`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="updateSetWithoutNullSql">
+        <set>
+                    <choose><when test="basePoint!=null">`base_point`=#{basePoint},</when></choose>
+                    <choose><when test="companyName!=null">`company_name`=#{companyName},</when></choose>
+                    <choose><when test="finalPoint!=null">`final_point`=#{finalPoint},</when></choose>
+                    <choose><when test="inputTime!=null">`input_time`=#{inputTime,jdbcType=TIMESTAMP},</when></choose>
+                    <choose><when test="paiming!=null">`paiming`=#{paiming},</when></choose>
+                    <choose><when test="sumPingJia!=null">`sum_ping_jia`=#{sumPingJia},</when></choose>
+                    <choose><when test="sumPoint!=null">`sum_point`=#{sumPoint},</when></choose>
+                    <choose><when test="toubiaoPoint!=null">`toubiao_point`=#{toubiaoPoint},</when></choose>
+                    <choose><when test="zhuanjia!=null">`zhuanjia`=#{zhuanjia},</when></choose>
+        </set>
+    </sql>
+    <sql id="magicalcoderPkWhereSql">
+        where 1=1
+            and `id` = #{magicalCoderPrimaryKeyName}
+    </sql>
+    <sql id="updatePkWhereSql">
+        where 1=1
+            and `id` = #{id}
+    </sql>
+    <sql id="batchUpdateSetSql">
+        <set>
+                    <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint}</when> <otherwise> `base_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName}</when> <otherwise> `company_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint}</when> <otherwise> `final_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP}</when> <otherwise> `input_time`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.paiming!=null">`paiming`=#{item.paiming}</when> <otherwise> `paiming`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.sumPingJia!=null">`sum_ping_jia`=#{item.sumPingJia}</when> <otherwise> `sum_ping_jia`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.sumPoint!=null">`sum_point`=#{item.sumPoint}</when> <otherwise> `sum_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.toubiaoPoint!=null">`toubiao_point`=#{item.toubiaoPoint}</when> <otherwise> `toubiao_point`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.zhuanjia!=null">`zhuanjia`=#{item.zhuanjia}</when> <otherwise> `zhuanjia`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="batchUpdateWithoutNullSetSql">
+        <set>
+                    <choose> <when test="item.basePoint!=null">`base_point`=#{item.basePoint},</when></choose>
+                    <choose> <when test="item.companyName!=null">`company_name`=#{item.companyName},</when></choose>
+                    <choose> <when test="item.finalPoint!=null">`final_point`=#{item.finalPoint},</when></choose>
+                    <choose> <when test="item.inputTime!=null">`input_time`=#{item.inputTime,jdbcType=TIMESTAMP},</when></choose>
+                    <choose> <when test="item.paiming!=null">`paiming`=#{item.paiming},</when></choose>
+                    <choose> <when test="item.sumPingJia!=null">`sum_ping_jia`=#{item.sumPingJia},</when></choose>
+                    <choose> <when test="item.sumPoint!=null">`sum_point`=#{item.sumPoint},</when></choose>
+                    <choose> <when test="item.toubiaoPoint!=null">`toubiao_point`=#{item.toubiaoPoint},</when></choose>
+                    <choose> <when test="item.zhuanjia!=null">`zhuanjia`=#{item.zhuanjia},</when></choose>
+        </set>
+    </sql>
+    <sql id="batchUpdatePkWhereSql">
+        where 1=1
+            and `id` = #{item.id}
+    </sql>
+    <!-- 这里可以加上数据库名称 方便的切换数据库-->
+    <sql id="tableSql">
+        hx.sum
+    </sql>
+
+   <sql id="whereSqlModel">
+        <if test="id!=null "> and `id` = #{id}</if>
+        <if test="basePoint!=null "> and `base_point` = #{basePoint}</if>
+        <if test="companyName!=null "> and `company_name` = #{companyName}</if>
+        <if test="finalPoint!=null "> and `final_point` = #{finalPoint}</if>
+        <if test="inputTime!=null "> and `input_time` = #{inputTime,jdbcType=TIMESTAMP}</if>
+        <if test="paiming!=null "> and `paiming` = #{paiming}</if>
+        <if test="sumPingJia!=null "> and `sum_ping_jia` = #{sumPingJia}</if>
+        <if test="sumPoint!=null "> and `sum_point` = #{sumPoint}</if>
+        <if test="toubiaoPoint!=null "> and `toubiao_point` = #{toubiaoPoint}</if>
+        <if test="zhuanjia!=null "> and `zhuanjia` = #{zhuanjia}</if>
+                <if test="inputTimeFirst!=null "> and `input_time` <![CDATA[=]]>
+                        #{inputTimeFirst,jdbcType=TIMESTAMP}
+                </if>
+        <!--<if test="whereSql!=null"> ${whereSql}</if>-->
+    </sql>
+
+    <sql id="safeGroupBy">
+        <if test="safeGroupBy!=null and safeGroupBy!=''">
+            group by
+            <choose>
+                <when test="safeGroupBy != null and safeGroupBy == 'id'">  `id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'base_point'">  `base_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'company_name'">  `company_name` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'final_point'">  `final_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'input_time'">  `input_time` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'paiming'">  `paiming` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'sum_ping_jia'">  `sum_ping_jia` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'sum_point'">  `sum_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'toubiao_point'">  `toubiao_point` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'zhuanjia'">  `zhuanjia` </when>
+            </choose>
+        </if>
+    </sql>
+    <sql id="safeOrderBy">
+        <if test="safeOrderBy!=null and safeOrderBy!=''">
+            <choose>
+                <when test="safeOrderBy != null and safeOrderBy == 'id desc'"> order by  `id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'id asc'"> order by `id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'base_point desc'"> order by  `base_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'base_point asc'"> order by `base_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'company_name desc'"> order by  `company_name` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'company_name asc'"> order by `company_name` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'final_point desc'"> order by  `final_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'final_point asc'"> order by `final_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'input_time desc'"> order by  `input_time` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'input_time asc'"> order by `input_time` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'paiming desc'"> order by  `paiming` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'paiming asc'"> order by `paiming` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'sum_ping_jia desc'"> order by  `sum_ping_jia` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'sum_ping_jia asc'"> order by `sum_ping_jia` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'sum_point desc'"> order by  `sum_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'sum_point asc'"> order by `sum_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'toubiao_point desc'"> order by  `toubiao_point` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'toubiao_point asc'"> order by `toubiao_point` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'zhuanjia desc'"> order by  `zhuanjia` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'zhuanjia asc'"> order by `zhuanjia` asc </when>
+            </choose>
+        </if>
+    </sql>
+
+    <sql id="orderGroupLimit">
+        <include refid="safeGroupBy"/>
+        <if test="notSafeGroupBy != null and notSafeGroupBy != ''"> group by ${notSafeGroupBy}</if>
+        <include refid="safeOrderBy"/>
+        <if test="notSafeOrderBy != null and notSafeOrderBy != ''"> order by ${notSafeOrderBy}</if>
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </sql>
+
+</mapper>

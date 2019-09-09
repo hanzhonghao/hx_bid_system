@@ -1,7 +1,8 @@
-package com.magicalcoder.youyaboot.service.score.service;
+package com.magicalcoder.youyaboot.service.sum.service;
 
 import com.magicalcoder.youyaboot.core.service.ICommonService;
-import com.magicalcoder.youyaboot.model.Score;
+import com.magicalcoder.youyaboot.model.CommonSum;
+import com.magicalcoder.youyaboot.model.Sum;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -15,8 +16,8 @@ import java.math.*;
 * 欢迎加入官方QQ群:648595928
 */
 
-public interface ScoreService extends ICommonService<Score,Long>{
+public interface SumService extends ICommonService<Sum,Long>{
 
 
-    List<String> getDayZhangJia(String date);
+    List<CommonSum> getCommonSumList(Map<String, Object> query);
 }

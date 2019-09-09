@@ -35,4 +35,10 @@ public class ScoreServiceImpl extends CommonServiceImpl<Score,Long> implements S
     public void afterPropertiesSet() {
         super.commonMapper = scoreMapper;
     }
+
+    @Override
+    public List<String> getDayZhangJia(String date) {
+        List<String> list=scoreMapper.getDayZhangJia(date);
+        return list;
+    }
 }

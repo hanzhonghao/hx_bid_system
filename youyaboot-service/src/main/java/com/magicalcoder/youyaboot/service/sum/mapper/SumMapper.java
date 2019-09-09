@@ -1,9 +1,8 @@
-package com.magicalcoder.youyaboot.service.score.mapper;
+package com.magicalcoder.youyaboot.service.sum.mapper;
 
 import com.magicalcoder.youyaboot.core.service.ICommonMapper;
-import com.magicalcoder.youyaboot.model.Score;
-import org.apache.ibatis.annotations.Param;
-
+import com.magicalcoder.youyaboot.model.CommonSum;
+import com.magicalcoder.youyaboot.model.Sum;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -17,7 +16,8 @@ import java.math.*;
 * 欢迎加入官方QQ群:648595928
 */
 
-public interface ScoreMapper extends ICommonMapper<Score,Long>{
+public interface SumMapper extends ICommonMapper<Sum,Long>{
 
-    List<String> getDayZhangJia(@Param("date") String date);
+   List<CommonSum>  getCommonSumList(Map query);
+
 }

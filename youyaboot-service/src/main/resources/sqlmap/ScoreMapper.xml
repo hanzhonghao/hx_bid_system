@@ -393,4 +393,14 @@
         <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
     </sql>
 
+
+    <select id="getDayZhangJia" resultType="String">
+        SELECT
+            signature
+        FROM
+            score
+        WHERE
+            date = #{date}
+    </select>
+
 </mapper>

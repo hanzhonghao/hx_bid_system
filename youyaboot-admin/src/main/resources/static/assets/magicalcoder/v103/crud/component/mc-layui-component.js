@@ -203,7 +203,7 @@
                     elem : options['elem'] || select,
                     type : options['type'] || 'datetime',
                     value : options['value']|| value,
-                    format : options['format'] || 'yyyy-MM-dd HH:mm:ss',
+                    format : options['format'] || 'yyyy-MM-dd',
                     trigger : options['trigger'] || 'click',
                     done : options['done'] || function (value,date,endDate) {
                         if(identify && identify!=''){
@@ -411,7 +411,7 @@
                 var inputNameItem = $("input[name='"+inputName+"']");
                 var value = inputNameItem.val()
                 var identify = $(item).attr("data-identify")
-                
+
                 $.extend(options,{
                     elem : options['elem'] || $(item),
                     length : options['length']|| 5,
@@ -455,7 +455,7 @@
                 var options = _t._options(item);
                 var inputNameItem = $("textarea[name='"+inputName+"']");
                 var value = inputNameItem.val()
-                
+
                 $(elem).html(value);
                 $.extend(options,{
                     elem : elem,

@@ -1,6 +1,8 @@
 package com.magicalcoder.youyaboot.admin.api.score;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +65,7 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,scoreService.getModelList(query),"score",
             new String[]{"编号","售后服务方案情况","投标文件供应商业绩","参选公司","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名","打分表分类","日期"},
-            new String[]{"","","","","","","","","",""});
+            new String[]{"","","","","","","","","[{\\\"key\\\":1,\\\"value\\\":\\\"设备仪器\\\"},{\\\"key\\\":2,\\\"value\\\":\\\"服务打分\\\"},{\\\"key\\\":3,\\\"value\\\":\\\"试剂打分\\\"},{\\\"key\\\":5,\\\"value\\\":\\\"软件打分\\\"},{\\\"key\\\":6,\\\"value\\\":\\\"仪器设备+配套耗材试剂\\\"}]",""});
         }
         return null;
     }
@@ -73,4 +75,15 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         super.commonService = scoreService;
         super.primaryKey = "id";//硬编码此实体的主键名称
     }
+
+    //查询当天专家
+    @RequestMapping(value={"getDayZhangJia"}, method={RequestMethod.POST})
+    public ResponseMsg getDayZhangJia(String date){
+        if(StringUtils.isBlank(date)){
+            date=DateFormatUtil.getDateTimeStr();
+        }
+        List<String> zhangJiaList=scoreService.getDayZhangJia(date);
+    return new ResponseMsg(zhangJiaList);
+}
+
 }

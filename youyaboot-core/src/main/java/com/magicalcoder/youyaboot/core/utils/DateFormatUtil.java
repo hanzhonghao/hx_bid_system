@@ -145,7 +145,7 @@ public class DateFormatUtil {
 		}
 		return "";
 	}
-	
+
 	/**获取年月日整形返回
 	 * @param date
 	 * @return
@@ -169,10 +169,10 @@ public class DateFormatUtil {
 		String dateStr = getStringDate(date, "HHmmss");
 		return Integer.valueOf(dateStr);
 	}
-	   /** 
-     * 获取日期年份 
-     * @param date 
-     * @return 
+	   /**
+     * 获取日期年份
+     * @param date
+     * @return
      * @throws ParseException
      */
     public static int getIntYear(Date date) {
@@ -231,12 +231,12 @@ public class DateFormatUtil {
      * @param date
      * @return
      * @throws ParseException
-     */  
-    public static Date getMonthDateEnd(Date date){  
-        Calendar calendar = Calendar.getInstance();  
-        calendar.setTime(date);  
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));  
-        return calendar.getTime();  
+     */
+    public static Date getMonthDateEnd(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        return calendar.getTime();
     }
 
     /**
@@ -287,12 +287,11 @@ public class DateFormatUtil {
 		return (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(System.currentTimeMillis());
 	}
 
-/*    public static void main(String[] args) {
-        Date now =
-        DateFormatUtils.getMonday(DateFormatUtils.getDateBegin(20140320));
-        Date monday = getMonday(now);
-        Date sunday = getSunday(now);
-        System.out.println(getIntDateYmd(monday));
-        System.out.println(getIntDateYmd(sunday));
-    }*/
+    public static String getDateTimeStr() {
+        return (new SimpleDateFormat("yyyy-MM-dd")).format(System.currentTimeMillis());
+    }
+
+   public static void main(String[] args) {
+       System.out.println(getDateTimeStr());
+    }
 }
