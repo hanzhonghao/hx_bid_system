@@ -14,12 +14,34 @@
         <div class="layui-row layui-col-space10">
             <div class="layui-col-md12">
                 <div class="layui-card">
+                    <div class="layui-tab layui-tab-card">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">网站设置</li>
+                            <li>用户管理</li>
+                            <li>权限分配</li>
+                            <li>商品管理</li>
+                            <li>订单管理</li>
+                        </ul>
+                        <div class="layui-tab-content" style="height: 100px;">
+                            <div class="layui-tab-item layui-show">1</div>
+                            <div class="layui-tab-item">2</div>
+                            <div class="layui-tab-item">3</div>
+                            <div class="layui-tab-item">4</div>
+                            <div class="layui-tab-item">5</div>
+                            <div class="layui-tab-item">6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md12">
+                <div class="layui-card">
                     <div class="layui-card-header">查询条件</div>
                     <div class="layui-card-body">
                         <form class="layui-form queryForm security_list_query_form">
                             <div class="layui-form-item">
                                 <div class="layui-inline security_list_query_param_id">
-                                    <input type="text" id="inputTimeFirst" class="layui-input" data-name="id" name="idFirst" placeholder="id" />
+                                    <input type="text" id="inputTimeFirst" class="layui-input" data-name="id" name="idFirst" placeholder="输入查询时间" />
                                 </div>
                                 <div class="layui-inline security_list_query_operate_search">
                                     <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
@@ -33,12 +55,6 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-header"  style="height: auto;">
-                        <div class="layui-inline security_list_query_operate_add_news">
-                            <a class="layui-btn layui-btn-normal layui-btn-sm addNews_btn"><i class="layui-icon layui-icon-add-1"></i>添加</a>
-                        </div>
-                        <div class="layui-inline security_list_query_operate_del_all">
-                            <a class="layui-btn layui-btn-danger layui-btn-sm delAll_btn"><i class="layui-icon layui-icon-delete"></i>批量删除</a>
-                        </div>
                         <div class="layui-inline security_list_export_excel_all">
                             <a class="layui-btn layui-btn-sm exportExcelAll_btn" title="数据量很多时谨慎使用,出于安全考虑最大导出20000条" data-max-export-count="20000"><i class="layui-icon layui-icon-export"></i>导出EXCEL</a>
                         </div>

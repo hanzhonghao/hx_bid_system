@@ -33,7 +33,7 @@
     </select>
     <!-- 查询一组实体 -->
     <select id="getSpecialSumList" parameterType="String"  resultType="SpecialSum">
-        select tem.* ,(tem.eBasePoint/tem.eFinalPoint*45) as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,

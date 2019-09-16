@@ -36,7 +36,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',projectId:'project_id',eBasePoint:'e_base_point',eFinalPoint:'e_final_point',sBasePoint:'s_base_point',sFinalPoint:'s_final_point',inputTime:'input_time'
+            id:'id',projectId:'project_id',ebasePoint:'e_base_point',efinalPoint:'e_final_point',inputTime:'input_time',sbasePoint:'s_base_point',sfinalPoint:'s_final_point'
         }
     };
     //后端请求时候的表模块规则url
@@ -53,31 +53,31 @@
                     },sort:true
                 },
 
-            {field: 'eBasePoint', title: '设备基准价(万元)', minWidth:200,templet:function (d) {
+            {field: 'ebasePoint', title: '设备基准价(万元)', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.ebasePoint) +'" class="magicalcoder-table-text layui-input security_list_table_form_ebasePoint" name="ebasePoint" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="设备基准价(万元)"/>'
                 }
                 , sort:true
             },
 
-            {field: 'eFinalPoint', title: '设备最终价(万元)', minWidth:200,templet:function (d) {
+            {field: 'efinalPoint', title: '设备最终价(万元)', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.efinalPoint) +'" class="magicalcoder-table-text layui-input security_list_table_form_efinalPoint" name="efinalPoint" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="设备最终价(万元)"/>'
                 }
                 , sort:true
             },
 
-            {field: 'sBasePoint', title: '试剂基准价(万元)', minWidth:200,templet:function (d) {
+            {field: 'sbasePoint', title: '试剂基准价(万元)', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.sbasePoint) +'" class="magicalcoder-table-text layui-input security_list_table_form_sbasePoint" name="sbasePoint" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="试剂基准价(万元)"/>'
                 }
                 , sort:true
             },
 
-            {field: 'sFinalPoint', title: '实际最终价(万元)', minWidth:200,templet:function (d) {
+            {field: 'sfinalPoint', title: '实际最终价(万元)', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.sfinalPoint) +'" class="magicalcoder-table-text layui-input security_list_table_form_sfinalPoint" name="sfinalPoint" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="实际最终价(万元)"/>'
                 }
                 , sort:true
             },
             {field: 'inputTime', title: '录入时间', align:'center', minWidth:250, templet :"#inputTimeTemplate",sort:true},
-
+        {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
     ]];
     var obj = {
         layTable:function () {//表格

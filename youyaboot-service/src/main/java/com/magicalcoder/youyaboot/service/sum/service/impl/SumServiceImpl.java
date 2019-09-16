@@ -8,6 +8,7 @@ import com.magicalcoder.youyaboot.model.Sum;
 import com.magicalcoder.youyaboot.core.service.CommonServiceImpl;
 import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.magicalcoder.youyaboot.core.utils.CopyUtil;
@@ -29,6 +30,7 @@ import java.math.*;
 */
 
 @Service
+@Slf4j
 public class SumServiceImpl extends CommonServiceImpl<Sum,Long> implements SumService,InitializingBean{
     @Resource
     private SumMapper sumMapper;
@@ -47,9 +49,25 @@ public class SumServiceImpl extends CommonServiceImpl<Sum,Long> implements SumSe
         List<String> zhuangjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
         list.forEach((CommonSum imtp)->{
             String scoreSum = imtp.getScoreSum();
-            String[] scoreSumArr=scoreSum.split(",");
             String signature = imtp.getSignature();
-            String[] signatureArr=signature.split(",");
+            if (null!=scoreSum&&null!=signature) {
+                String[] scoreSumArr=scoreSum.split(",");
+                String[] signatureArr=signature.split(",");
+                for (int i=0;i<scoreSumArr.length;i++) {
+                    if (i == 0) {
+                        imtp.setScoreSum1(scoreSumArr[i]);
+                        System.out.println(scoreSumArr[i]);
+                    }else if (i == 1) {
+                        imtp.setScoreSum2(scoreSumArr[i]);
+                    }else if (i == 2) {
+                        imtp.setScoreSum3(scoreSumArr[i]);
+                    }else if (i == 3) {
+                        imtp.setScoreSum4(scoreSumArr[i]);
+                    }else if (i == 4) {
+                        imtp.setScoreSum5(scoreSumArr[i]);
+                    }
+                }
+            }
 
 //            zhuangjiaList.forEach((String str)->{
 //                for (int i=0;i<signatureArr.length;i++){
@@ -65,20 +83,6 @@ public class SumServiceImpl extends CommonServiceImpl<Sum,Long> implements SumSe
 //                }
 //
 //            });
-            for (int i=0;i<scoreSumArr.length;i++) {
-                if (i == 0) {
-                    imtp.setScoreSum1(scoreSumArr[i]);
-                    System.out.println(scoreSumArr[i]);
-                }else if (i == 1) {
-                    imtp.setScoreSum2(scoreSumArr[i]);
-                }else if (i == 2) {
-                    imtp.setScoreSum3(scoreSumArr[i]);
-                }else if (i == 3) {
-                    imtp.setScoreSum4(scoreSumArr[i]);
-                }else if (i == 4) {
-                    imtp.setScoreSum5(scoreSumArr[i]);
-                }
-            }
 
         });
 

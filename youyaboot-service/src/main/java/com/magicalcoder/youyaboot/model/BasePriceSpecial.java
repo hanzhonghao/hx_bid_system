@@ -3,6 +3,9 @@ package com.magicalcoder.youyaboot.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.math.*;
 import java.io.Serializable;
 import lombok.Data;
 /**
@@ -16,15 +19,15 @@ public class BasePriceSpecial implements Serializable{
 
     private Long id;//id
     private Long projectId;//project_id
-    private Integer eBasePoint;//e_base_point
-    private Integer eFinalPoint;//e_final_point
+    private Integer ebasePoint;//e_base_point
+    private Integer efinalPoint;//e_final_point
     @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date inputTime;//input_time
-    private Integer sBasePoint;//s_base_point
-    private Integer sFinalPoint;//s_final_point
+    private Integer sbasePoint;//s_base_point
+    private Integer sfinalPoint;//s_final_point
 
-
+    
     public Long getId(){
         return id;
     }
@@ -39,18 +42,18 @@ public class BasePriceSpecial implements Serializable{
         this.projectId = projectId;
     }
 
-    public Integer getEBasePoint(){
-        return eBasePoint;
+    public Integer getEbasePoint(){
+        return ebasePoint;
     }
-    public void setEBasePoint(Integer eBasePoint){
-        this.eBasePoint = eBasePoint;
+    public void setEbasePoint(Integer ebasePoint){
+        this.ebasePoint = ebasePoint;
     }
 
-    public Integer getEFinalPoint(){
-        return eFinalPoint;
+    public Integer getEfinalPoint(){
+        return efinalPoint;
     }
-    public void setEFinalPoint(Integer eFinalPoint){
-        this.eFinalPoint = eFinalPoint;
+    public void setEfinalPoint(Integer efinalPoint){
+        this.efinalPoint = efinalPoint;
     }
 
     public Date getInputTime(){
@@ -60,17 +63,17 @@ public class BasePriceSpecial implements Serializable{
         this.inputTime = inputTime;
     }
 
-    public Integer getSBasePoint(){
-        return sBasePoint;
+    public Integer getSbasePoint(){
+        return sbasePoint;
     }
-    public void setSBasePoint(Integer sBasePoint){
-        this.sBasePoint = sBasePoint;
+    public void setSbasePoint(Integer sbasePoint){
+        this.sbasePoint = sbasePoint;
     }
 
-    public Integer getSFinalPoint(){
-        return sFinalPoint;
+    public Integer getSfinalPoint(){
+        return sfinalPoint;
     }
-    public void setSFinalPoint(Integer sFinalPoint){
-        this.sFinalPoint = sFinalPoint;
+    public void setSfinalPoint(Integer sfinalPoint){
+        this.sfinalPoint = sfinalPoint;
     }
 }
