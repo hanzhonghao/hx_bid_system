@@ -4,7 +4,7 @@ server:
     #当前环境上下文 比如http://{ip}:{port}{/context-path}中的{/context-path} 以/开头配置
     #    context-path: /youyaboot-admin
     servlet:
-        context-path: /youyaboot-admin
+        context-path: /hx
 #log
 logging:
     config:
@@ -26,7 +26,7 @@ spring:
             force: true
     application:
         #service-name
-        name: youyaboot-admin
+        name: bidding-system
     jackson:
         time-zone: GMT+8
     mvc:
