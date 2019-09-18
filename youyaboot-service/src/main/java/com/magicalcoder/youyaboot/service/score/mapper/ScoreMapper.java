@@ -1,6 +1,7 @@
 package com.magicalcoder.youyaboot.service.score.mapper;
 
 import com.magicalcoder.youyaboot.core.service.ICommonMapper;
+import com.magicalcoder.youyaboot.model.ExcelObject;
 import com.magicalcoder.youyaboot.model.Score;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,4 +21,6 @@ import java.math.*;
 public interface ScoreMapper extends ICommonMapper<Score,Long>{
 
     List<String> getDayZhangJia(@Param("date") String date);
+
+    List<ExcelObject> getModelProjectNameList(Map<String, Object> query);
 }

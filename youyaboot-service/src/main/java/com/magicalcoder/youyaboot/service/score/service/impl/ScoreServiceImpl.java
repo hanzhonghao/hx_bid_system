@@ -1,5 +1,6 @@
 package com.magicalcoder.youyaboot.service.score.service.impl;
 
+import com.magicalcoder.youyaboot.model.ExcelObject;
 import com.magicalcoder.youyaboot.service.score.mapper.ScoreMapper;
 import com.magicalcoder.youyaboot.service.score.service.ScoreService;
 import com.magicalcoder.youyaboot.model.Score;
@@ -40,5 +41,11 @@ public class ScoreServiceImpl extends CommonServiceImpl<Score,Long> implements S
     public List<String> getDayZhangJia(String date) {
         List<String> list=scoreMapper.getDayZhangJia(date);
         return list;
+    }
+
+    @Override
+    public List<ExcelObject> getModelProjectNameList(Map<String, Object> query) {
+        List<ExcelObject> modelProjectNameList = scoreMapper.getModelProjectNameList(query);
+        return modelProjectNameList;
     }
 }

@@ -1,6 +1,7 @@
 package com.magicalcoder.youyaboot.service.score.service;
 
 import com.magicalcoder.youyaboot.core.service.ICommonService;
+import com.magicalcoder.youyaboot.model.ExcelObject;
 import com.magicalcoder.youyaboot.model.Score;
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,6 @@ public interface ScoreService extends ICommonService<Score,Long>{
 
 
     List<String> getDayZhangJia(String date);
+
+    List<ExcelObject> getModelProjectNameList(Map<String, Object> query);
 }

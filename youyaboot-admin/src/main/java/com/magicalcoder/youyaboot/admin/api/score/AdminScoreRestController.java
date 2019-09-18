@@ -1,7 +1,10 @@
 package com.magicalcoder.youyaboot.admin.api.score;
 
+import com.alibaba.fastjson.JSON;
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
 import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import com.magicalcoder.youyaboot.model.ExcelObject;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,9 +66,11 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
             return new ResponseMsg(count,scoreService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,scoreService.getModelList(query),"score",
+            List<ExcelObject> modelProjectNameList = scoreService.getModelProjectNameList(query);
+            String formatString = revertListToJson(modelProjectNameList);
+            exportExcel(response,scoreService.getModelList(query),"通用打分模块",
             new String[]{"编号","参选公司","打分表分类","商务技术要求响应情况","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","日期","专家签名"},
-            new String[]{"","","[{\n" +
+            new String[]{"",formatString,"[{\n" +
                 "\t\"key\": 1,\n" +
                 "\t\"value\": \"设备仪器\"\n" +
                 "}, {\n" +
@@ -74,6 +79,9 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
                 "}, {\n" +
                 "\t\"key\": 3,\n" +
                 "\t\"value\": \"试剂打分\"\n" +
+                "}, {\n" +
+                "\t\"key\": 4,\n" +
+                "\t\"value\": \"耗材打分\"\n" +
                 "}, {\n" +
                 "\t\"key\": 5,\n" +
                 "\t\"value\": \"软件打分\"\n" +
@@ -85,10 +93,21 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         return null;
     }
 
+    private String revertListToJson(List<ExcelObject> modelProjectNameList) {
+        String str= JSON.toJSON(modelProjectNameList)
+            .toString()
+            .replace("id","key")
+            .replace("project_name","value")
+            .replace("\"", "\\\"");
+        return str;
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
         super.commonService = scoreService;
-        super.primaryKey = "id";//硬编码此实体的主键名称
+        super.primaryKey = "id";//硬编码此实体的主键
+
+        // 名称
     }
 
     //查询当天专家
@@ -102,3 +121,25 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
 }
 
 }
+
+
+/*
+[{
+    "key": 1,
+    "value": "设备仪器"
+    }, {
+    "key": 2,
+    "value": "服务打分"
+    }, {
+    "key": 3,
+    "value": "试剂打分"
+    }, {
+    "key": 4,
+    "value": "耗材打分"
+    }, {
+    "key": 5,
+    "value": "软件打分"
+    }, {
+    "key": 6,
+    "value": "仪器设备+配套耗材试剂"
+    }]*/
