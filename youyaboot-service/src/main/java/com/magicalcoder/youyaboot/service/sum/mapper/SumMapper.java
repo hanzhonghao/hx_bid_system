@@ -16,7 +16,7 @@ import java.math.*;
 * 欢迎加入官方QQ群:648595928
 */
 
-public interface SumMapper extends ICommonMapper<Sum,Long>{
+public interface SumMapper extends ICommonMapper<CommonSum,Long>{
 
    List<CommonSum>  getCommonSumList(Map query);
 

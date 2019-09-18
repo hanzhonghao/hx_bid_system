@@ -25,15 +25,15 @@
 |          |               |          |                         |
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
-| 2 | afterSale              | Integer          | 售后服务方案情况 |
-| 3 | apply              | Integer          | 投标文件供应商业绩 |
-| 4 | geneSitu              | Integer          | 制造厂商综合情况 |
-| 5 | standard              | Integer          | 投标文件规范性 |
-| 6 | techRequire              | Integer          | 商务技术要求响应情况 |
-| 7 | signature              | String          | 专家签名 |
-| 8 | categoryId              | Integer          | 打分表分类 |
+| 2 | projectId              | Long          | 参选公司 |
+| 3 | categoryId              | Integer          | 打分表分类 |
+| 4 | techRequire              | Integer          | 商务技术要求响应情况 |
+| 5 | afterSale              | Integer          | 售后服务方案情况 |
+| 6 | apply              | Integer          | 投标文件供应商业绩 |
+| 7 | geneSitu              | Integer          | 制造厂商综合情况 |
+| 8 | standard              | Integer          | 投标文件规范性 |
 | 9 | date              | Date          | 日期 |
-| 10 | projectId              | Long          | 参选公司 |
+| 10 | signature              | String          | 专家签名 |
 
 ## 1.2 保存score详情
 
@@ -48,15 +48,15 @@
 | 序号 | 字段名称 | 字段类型 | 字段描述     |
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
-| 2| afterSale  | Integer  | 售后服务方案情况 |
-| 3| apply  | Integer  | 投标文件供应商业绩 |
-| 4| geneSitu  | Integer  | 制造厂商综合情况 |
-| 5| standard  | Integer  | 投标文件规范性 |
-| 6| techRequire  | Integer  | 商务技术要求响应情况 |
-| 7| signature  | String  | 专家签名 |
-| 8| categoryId  | Integer  | 打分表分类 |
+| 2| projectId  | Long  | 参选公司 |
+| 3| categoryId  | Integer  | 打分表分类 |
+| 4| techRequire  | Integer  | 商务技术要求响应情况 |
+| 5| afterSale  | Integer  | 售后服务方案情况 |
+| 6| apply  | Integer  | 投标文件供应商业绩 |
+| 7| geneSitu  | Integer  | 制造厂商综合情况 |
+| 8| standard  | Integer  | 投标文件规范性 |
 | 9| date  | Date  | 日期 |
-| 10| projectId  | Long  | 参选公司 |
+| 10| signature  | String  | 专家签名 |
 
 > **输出**
 
@@ -79,15 +79,15 @@
 | 序号 | 字段名称 | 字段类型 | 字段描述     |
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
-| 2| afterSale  | Integer  | 售后服务方案情况 |
-| 3| apply  | Integer  | 投标文件供应商业绩 |
-| 4| geneSitu  | Integer  | 制造厂商综合情况 |
-| 5| standard  | Integer  | 投标文件规范性 |
-| 6| techRequire  | Integer  | 商务技术要求响应情况 |
-| 7| signature  | String  | 专家签名 |
-| 8| categoryId  | Integer  | 打分表分类 |
+| 2| projectId  | Long  | 参选公司 |
+| 3| categoryId  | Integer  | 打分表分类 |
+| 4| techRequire  | Integer  | 商务技术要求响应情况 |
+| 5| afterSale  | Integer  | 售后服务方案情况 |
+| 6| apply  | Integer  | 投标文件供应商业绩 |
+| 7| geneSitu  | Integer  | 制造厂商综合情况 |
+| 8| standard  | Integer  | 投标文件规范性 |
 | 9| date  | Date  | 日期 |
-| 10| projectId  | Long  | 参选公司 |
+| 10| signature  | String  | 专家签名 |
 
 > **输出**
 
@@ -161,9 +161,9 @@
 | 1    |page      |int       |第几页 [1,n)   |
 | 2    |limit      |int       |每页多少条 [0,100)   |
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
-                |4|categoryIdFirst|   Integer   |打分表分类|
-                |5|dateFirst|   Date   |日期|
-                |6|projectIdFirst|   Long   |参选公司|
+                |4|projectIdFirst|   Long   |参选公司|
+                |5|categoryIdFirst|   Integer   |打分表分类|
+                |6|dateFirst|   Date   |日期|
 
 > **输出**
 
@@ -176,12 +176,12 @@
 |          |               |          |                         |
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
-| 2 | afterSale              | Integer          | 售后服务方案情况 |
-| 3 | apply              | Integer          | 投标文件供应商业绩 |
-| 4 | geneSitu              | Integer          | 制造厂商综合情况 |
-| 5 | standard              | Integer          | 投标文件规范性 |
-| 6 | techRequire              | Integer          | 商务技术要求响应情况 |
-| 7 | signature              | String          | 专家签名 |
-| 8 | categoryId              | Integer          | 打分表分类 |
+| 2 | projectId              | Long          | 参选公司 |
+| 3 | categoryId              | Integer          | 打分表分类 |
+| 4 | techRequire              | Integer          | 商务技术要求响应情况 |
+| 5 | afterSale              | Integer          | 售后服务方案情况 |
+| 6 | apply              | Integer          | 投标文件供应商业绩 |
+| 7 | geneSitu              | Integer          | 制造厂商综合情况 |
+| 8 | standard              | Integer          | 投标文件规范性 |
 | 9 | date              | Date          | 日期 |
-| 10 | projectId              | Long          | 参选公司 |
+| 10 | signature              | String          | 专家签名 |

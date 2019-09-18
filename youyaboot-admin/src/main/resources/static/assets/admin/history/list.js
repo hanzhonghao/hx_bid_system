@@ -45,7 +45,7 @@
     //表格每一列配置
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+            {title: '编号', type:'numbers',align:"center",minWidth:100 },
 
             {field: 'bidProject', title: '中标供应商名称', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.bidProject) +'" class="magicalcoder-table-text layui-input security_list_table_form_bidProject" name="bidProject" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="中标供应商名称"/>'

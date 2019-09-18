@@ -31,7 +31,7 @@ import java.math.*;
 
 @Service
 @Slf4j
-public class SumServiceImpl extends CommonServiceImpl<Sum,Long> implements SumService,InitializingBean{
+public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements SumService,InitializingBean{
     @Resource
     private SumMapper sumMapper;
 

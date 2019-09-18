@@ -36,7 +36,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',techRequire:'tech_require',signature:'signature',categoryId:'category_id',date:'date',projectId:'project_id'
+            id:'id',projectId:'project_id',categoryId:'category_id',techRequire:'tech_require',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',date:'date',signature:'signature'
         }
     };
     //后端请求时候的表模块规则url
@@ -45,7 +45,7 @@
     //表格每一列配置
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+                {title: '编号', type:'numbers',align:"center",minWidth:100 },
                 {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
                     var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
                     //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'

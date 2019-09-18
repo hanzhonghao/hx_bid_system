@@ -67,7 +67,7 @@
                         // date = new Date();
                     }
                     COLS = [[
-                        {field:'id',type: 'numbers', title: '编号',sort: true},
+                        {title: '编号', type:'numbers',align:"center",minWidth:100 },
                         {
                             field: 'projectName', title: '参选公司', minWidth: 200, templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.projectName) + '" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
@@ -130,7 +130,7 @@
                         type: 'numbers', title: '排名', minWidth: 200, templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.paiming) + '" class="magicalcoder-table-text layui-input security_list_table_form_paiming" name="paiming" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="排名"/>'
                         }
-                        , sort: true
+                        ,align:"center"
                     });
 
 

@@ -1,7 +1,10 @@
 package com.magicalcoder.youyaboot.service.project.mapper;
 
 import com.magicalcoder.youyaboot.core.service.ICommonMapper;
+import com.magicalcoder.youyaboot.model.CommonSum;
 import com.magicalcoder.youyaboot.model.Project;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -16,5 +19,5 @@ import java.math.*;
 */
 
 public interface ProjectMapper extends ICommonMapper<Project,Long>{
-
+    List<Project> getModelRandomList(@Param("date")String date);
 }

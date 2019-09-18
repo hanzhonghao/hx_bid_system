@@ -1,6 +1,7 @@
 package com.magicalcoder.youyaboot.admin.api.project;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -83,7 +84,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,projectService.getModelList(query),"project",
-            new String[]{"编号","内容","备注","时间","最终报价","地点","产地及品牌","报价","参选公司","记录人","经办人","复核人","型号"},
+            new String[]{"编号","参选公司","产地及品牌","型号","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"},
             new String[]{"","","","","","","","","","","","",""});
         }
         return null;
@@ -96,33 +97,26 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     }
 
     //分页随机查询
-    @RequestMapping(value={"random/page"},method={RequestMethod.GET})
+    @RequestMapping(value = {"random/page"}, method = {RequestMethod.GET})
     public ResponseMsg random(
-        @RequestParam(required = false,value ="idFirst")                            Long idFirst ,
-        @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
-        @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
-        ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
-    ){
-        Map<String,Object> query = new HashMap();
-        query.put("idFirst",idFirst);
-        query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
-        Integer count = projectService.getModelListCount(query);
-        if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","id asc");
-        }else{
-            query.put("safeOrderBy",safeOrderBy);
+        @RequestParam int page, @RequestParam int limit, @RequestParam(required = false) String safeOrderBy
+        , HttpServletResponse response, @RequestParam(required = false) Integer queryType
+    ) {
+        Map<String, Object> query = new HashMap();
+        String time= DateFormatUtil.getDateTimeStr();
+        Integer count = projectService.getModelRandomList(time).size();
+        if (StringUtil.isBlank(safeOrderBy)) {
+            query.put("notSafeOrderBy", "id asc");
+        } else {
+            query.put("safeOrderBy", safeOrderBy);
         }
-        if(queryType==null || queryType == QUERY_TYPE_SEARCH){//普通查询
+        if (queryType == null || queryType == QUERY_TYPE_SEARCH) {//普通查询
             limit = Math.min(limit, PageConstant.MAX_LIMIT);
-            query.put("start",(page - 1) * limit);query.put("limit",limit);
-            List<Project> modelList = projectService.getModelList(query);
+            query.put("start", (page - 1) * limit);
+            query.put("limit", limit);
+            List<Project> modelList = projectService.getModelRandomList(time);
             Collections.shuffle(modelList);
-            return new ResponseMsg(count,modelList);
-        }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
-            query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,projectService.getModelList(query),"project",
-                new String[]{"编号","内容","备注","时间","最终报价","地点","产地及品牌","报价","参选公司","记录人","经办人","复核人","型号"},
-                new String[]{"","","","","","","","","","","","",""});
+            return new ResponseMsg(count, modelList);
         }
         return null;
     }

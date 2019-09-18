@@ -35,4 +35,11 @@ public class ProjectServiceImpl extends CommonServiceImpl<Project,Long> implemen
     public void afterPropertiesSet() {
         super.commonMapper = projectMapper;
     }
+
+    @Override
+    public List<Project> getModelRandomList(String time){
+        List<Project> modelList = projectMapper.getModelRandomList(time);
+        return modelList;
+
+    }
 }

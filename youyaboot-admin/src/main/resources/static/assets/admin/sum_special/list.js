@@ -1,31 +1,38 @@
 /**
-* 代码为自动生成 Created by www.magicalcoder.com
-* 软件作者：何栋宇 qq:709876443
-* 如果你改变了此类 read 请将此行删除
-* 欢迎加入官方QQ群:648595928
-*/
+ * 代码为自动生成 Created by www.magicalcoder.com
+ * 软件作者：何栋宇 qq:709876443
+ * 如果你改变了此类 read 请将此行删除
+ * 欢迎加入官方QQ群:648595928
+ */
 //不要被如此多的代码唬住，读懂一个 其他的模块都明白了，之所以写这么多开放出来，主要是为了定制和维护性，您可以随意修改逻辑 适应你的业务场景
 ;!function(){
-        var $ = layui.jquery
+    var $ = layui.jquery
         ,layer = parent.layer === undefined ? layui.layer : top.layer
         ,table = layui.table
         ,laydate=layui.laydate
-        var mc_children = youyaboot_all.mc_children
+    var mc_children = youyaboot_all.mc_children
         ,mc_constant = youyaboot_all.mc_constant
         ,mc_util = youyaboot_all.mc_util
         ,mc_rmp = youyaboot_all.mc_rmp
         ,mc_layui_component = youyaboot_all.mc_layui_component
     ;
 
+
+
     laydate.render({
         elem: '#inputTimeFirst'
     });
+
+
 // 子表 排序相关
     var CONFIG = {
         tableNameRest:"sum_special_rest",
         tableName:"sum_special",
         moduleName:"sum_special",//sys_module的moduleName
         form:{
+            inputTime:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd","show":false,"range":false,"trigger":"click","type":"date","isInitValue":true,"showBottom":true,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
+            }
         },
         event:{
             select2Change:function (elem,name,value) {//外键下拉更新事件
@@ -34,7 +41,7 @@
         layTable : {//表格内容 到list.html查找即可明白
             elem : '#newsList',
             id : "newsListTable"
-         },
+        },
         //排序跟数据库实际字段名的映射
         sortMap:{
             id:'id'
@@ -59,7 +66,7 @@
                         // date = new Date();
                     }
                     COLS = [[
-                        {field:'id',type: 'numbers', title: '编号',sort: true},
+                        {title: '编号', type:'numbers',align:"center",minWidth:100 },
                         {
                             field: 'projectName', title: '参选公司', minWidth: 200, templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.projectName) + '" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
@@ -134,7 +141,8 @@
                         type: 'numbers', title: '排名', minWidth: 200, templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.paiming) + '" class="magicalcoder-table-text layui-input security_list_table_form_paiming" name="paiming" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="排名"/>'
                         }
-                        , sort: true
+                        ,align:"center"
+
                     });
 
 
@@ -161,9 +169,9 @@
                                 mc_rmp.paintBody(CONFIG.moduleName,function () {//权限判断
                                     //禁用一些外键字段 当更多信息场景时才会触发
                                     mc_children.disabledTableParentArea();
-        //laytable中有很多控件需要初始化 比如日期等
+                                    //laytable中有很多控件需要初始化 比如日期等
                                     mc_layui_component.bindMagicalCoderLayUiComponentFromTable(CONFIG,function(){_this.refreshTableFromCurrentPage()})
-        //每一行的操作条目事件
+                                    //每一行的操作条目事件
                                     _this.tableOperateEvent()
                                 })
                             }else {

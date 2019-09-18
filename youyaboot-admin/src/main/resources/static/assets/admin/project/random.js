@@ -44,10 +44,10 @@
     var tableName = CONFIG.tableName;
     //表格每一列配置
     var COLS = [[
-        {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+        {title: '编号', type:'numbers',align:"center",minWidth:100 },
 
         {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
-                return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
+                return '<input type="text" readonly="readonly" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
             }
             , sort:true
         }
@@ -75,7 +75,7 @@
                         id : CONFIG.layTable.id,
                         cols : COLS,//放入列配置
                         loading : true,
-                        where : this.buildQueryFormParams(""),//构造查询参数 注意这里layui会缓存你的上一次查询参数 无法清除 只能考虑设置成空字符才能清理
+                        // where : this.buildQueryFormParams(""),//构造查询参数 注意这里layui会缓存你的上一次查询参数 无法清除 只能考虑设置成空字符才能清理
                         done:function (res,curr,count) {//请求成功后处理
                             if(res.flag){
                                 mc_rmp.paintBody(CONFIG.moduleName,function () {//权限判断

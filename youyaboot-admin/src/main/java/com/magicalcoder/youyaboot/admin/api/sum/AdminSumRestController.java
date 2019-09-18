@@ -2,6 +2,7 @@ package com.magicalcoder.youyaboot.admin.api.sum;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
 import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import com.magicalcoder.youyaboot.model.CommonSum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +37,7 @@ import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
 @RequestMapping("/admin/sum_rest/")
 @RestController
-public class AdminSumRestController extends CommonRestController<Sum,Long> implements InitializingBean
+    public class AdminSumRestController extends CommonRestController<CommonSum,Long> implements InitializingBean
 {
 
     @Resource
@@ -69,7 +70,7 @@ public class AdminSumRestController extends CommonRestController<Sum,Long> imple
             return new ResponseMsg(count,sumService.getCommonSumList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,sumService.getModelList(query),"sum",
+            exportExcel(response,sumService.getCommonSumList(query),"sum",
             new String[]{"id","基准价","参选公司","最终价","时间","排名","综合评价得分","综合得分","投标报价","专家"},
             new String[]{"","","","","","","","","",""});
         }

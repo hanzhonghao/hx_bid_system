@@ -55,7 +55,7 @@
     //表格每一列配置
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+            {title: '编号', type:'numbers',align:"center",minWidth:100 },
 
             {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
@@ -225,7 +225,7 @@
                         type : 2,//打开iframe页面 很多人不知道原理：从列表页进入详情页是直接打开新iframe,详情页根据iframe的入参主键，获取详情页数据，然后重绘详情页，整个过程都是js处理
                         maxmin: true,
                         area: ['80%', '80%'],
-                        content : "admin/page_v2/"+tableName+"/random?identify="+identify+mc_children.buildForeignParam(),
+                        content : "admin/page_v2/"+tableName+"/random",
                         success : function(layero, index){
                             setTimeout(function(){
                                 layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {

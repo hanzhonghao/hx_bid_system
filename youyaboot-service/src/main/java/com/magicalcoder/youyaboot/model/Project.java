@@ -20,8 +20,8 @@ public class Project implements Serializable{
     private Long id;//id
     private String bargain;//bargain
     private String comment;//comment
-    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date date;//date
     private Integer fprice;//fprice
     private String location;//location
@@ -33,7 +33,7 @@ public class Project implements Serializable{
     private String reviewer;//reviewer
     private String type;//type
 
-    
+
     public Long getId(){
         return id;
     }

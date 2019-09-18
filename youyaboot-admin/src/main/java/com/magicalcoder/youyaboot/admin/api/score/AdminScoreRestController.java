@@ -46,7 +46,7 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="categoryIdFirst")                            Integer categoryIdFirst ,
-        @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date dateFirst ,
+        @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFirst ,
         @RequestParam(required = false,value ="projectIdFirst")                            Long projectIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
@@ -64,8 +64,23 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,scoreService.getModelList(query),"score",
-            new String[]{"编号","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","商务技术要求响应情况","专家签名","打分表分类","日期","参选公司"},
-            new String[]{"","","","","","","","","",""});
+            new String[]{"编号","参选公司","打分表分类","商务技术要求响应情况","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","日期","专家签名"},
+            new String[]{"","","[{\n" +
+                "\t\"key\": 1,\n" +
+                "\t\"value\": \"设备仪器\"\n" +
+                "}, {\n" +
+                "\t\"key\": 2,\n" +
+                "\t\"value\": \"服务打分\"\n" +
+                "}, {\n" +
+                "\t\"key\": 3,\n" +
+                "\t\"value\": \"试剂打分\"\n" +
+                "}, {\n" +
+                "\t\"key\": 5,\n" +
+                "\t\"value\": \"软件打分\"\n" +
+                "}, {\n" +
+                "\t\"key\": 6,\n" +
+                "\t\"value\": \"仪器设备+配套耗材试剂\"\n" +
+                "}]","","","","","","",""});
         }
         return null;
     }

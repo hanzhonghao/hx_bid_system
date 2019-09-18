@@ -16,7 +16,7 @@ import java.math.*;
 * 欢迎加入官方QQ群:648595928
 */
 
-public interface SumService extends ICommonService<Sum,Long>{
+public interface SumService extends ICommonService<CommonSum,Long>{
 
 
     List<CommonSum> getCommonSumList(Map<String, Object> query);
