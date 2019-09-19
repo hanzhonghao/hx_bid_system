@@ -15,27 +15,48 @@ import lombok.Data;
 * 欢迎加入官方QQ群:648595928
 */
 @Data
-public class Score implements Serializable{
+public class ScoreForZhuanjia implements Serializable{
 
     private Long id;//id
+    private Long projectId;//project_id
+    private Integer categoryId;//category_id
+    private Integer techRequire;//tech_require
     private Integer afterSale;//after_sale
     private Integer apply;//apply
     private Integer geneSitu;//gene_situ
     private Integer standard;//standard
-    private Integer techRequire;//tech_require
-    private String signature;//signature
-    private Integer categoryId;//category_id
-    @DateTimeFormat( pattern = "yyyy-MM-dd" )
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date date;//date
-    private Long projectId;//project_id
+    private String signature;//signature
 
-
+    
     public Long getId(){
         return id;
     }
     public void setId(Long id){
         this.id = id;
+    }
+
+    public Long getProjectId(){
+        return projectId;
+    }
+    public void setProjectId(Long projectId){
+        this.projectId = projectId;
+    }
+
+    public Integer getCategoryId(){
+        return categoryId;
+    }
+    public void setCategoryId(Integer categoryId){
+        this.categoryId = categoryId;
+    }
+
+    public Integer getTechRequire(){
+        return techRequire;
+    }
+    public void setTechRequire(Integer techRequire){
+        this.techRequire = techRequire;
     }
 
     public Integer getAfterSale(){
@@ -66,27 +87,6 @@ public class Score implements Serializable{
         this.standard = standard;
     }
 
-    public Integer getTechRequire(){
-        return techRequire;
-    }
-    public void setTechRequire(Integer techRequire){
-        this.techRequire = techRequire;
-    }
-
-    public String getSignature(){
-        return signature;
-    }
-    public void setSignature(String signature){
-        this.signature = signature;
-    }
-
-    public Integer getCategoryId(){
-        return categoryId;
-    }
-    public void setCategoryId(Integer categoryId){
-        this.categoryId = categoryId;
-    }
-
     public Date getDate(){
         return date;
     }
@@ -94,10 +94,10 @@ public class Score implements Serializable{
         this.date = date;
     }
 
-    public Long getProjectId(){
-        return projectId;
+    public String getSignature(){
+        return signature;
     }
-    public void setProjectId(Long projectId){
-        this.projectId = projectId;
+    public void setSignature(String signature){
+        this.signature = signature;
     }
 }

@@ -84,7 +84,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             exportExcel(response,projectService.getModelList(query),"project",
-            new String[]{"编号","参选公司","产地及品牌","型号","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"},
+            new String[]{"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"},
             new String[]{"","","","","","","","","","","","",""});
         }
         return null;

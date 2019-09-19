@@ -6,7 +6,7 @@
 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head  th:include="magicalcoder/v103/include/head :: commonHead('score列表')"/>
+<head  th:include="magicalcoder/v103/include/head :: commonHead('score_for_zhuanjia列表')"/>
 <body class="childrenBody">
 <!--请不要删除magicaldrag注释标签，可以配合布局器进行联动布局-->
 <!--magicaldrag-->
@@ -287,33 +287,27 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="layui-col-md12">-->
-<!--                <div class="layui-card">-->
-<!--                    <div class="layui-card-header">查询条件</div>-->
-<!--                    <div class="layui-card-body">-->
-<!--                        <form class="layui-form queryForm security_list_query_form">-->
-<!--                            <div class="layui-form-item">-->
-<!--                                <div class="layui-inline security_list_query_param_companyName">-->
-<!--                                    <input type="text" class="layui-input" data-name="companyName" name="companyNameFirst" placeholder="参选公司" />-->
-<!--                                </div>-->
-<!--                                <div class="layui-inline security_list_query_param_categoryId">-->
-<!--                                    <select  data-name="categoryId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="categoryIdFirst" style="height:30px;width: 200px" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" placeholder="打分表分类" data-limit="20"><option value=""></option></select>-->
-<!--                                </div>-->
-<!--                                <div class="layui-inline security_list_query_param_date">-->
-<!--                                    <input type="text" data-name="date" name="dateFirst" lay-verify="datetime"  placeholder="起始日期" autocomplete="off" class="magicalcoder-laydate layui-input"/>-->
-<!--                                </div>-->
-<!-- 			<div class="layui-inline security_list_query_param_projectId">-->
-<!--                                    <select  data-name="projectId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="projectIdFirst" style="height:30px;width: 200px" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" placeholder="参选公司外键" data-limit="20"><option value=""></option></select>-->
- <!--                               </div>-->
-<!--                                <div class="layui-inline security_list_query_operate_search">-->
-<!--                                    <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>-->
-<!--                                    <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">查询条件</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form queryForm security_list_query_form">
+                            <div class="layui-form-item">
+                                <div class="layui-inline security_list_query_param_projectId">
+                                    <select  data-name="projectId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="projectIdFirst" style="height:30px;width: 200px" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" placeholder="参选公司" data-limit="20"><option value=""></option></select>
+                                </div>
+                                <div class="layui-inline security_list_query_param_categoryId">
+                                    <select  data-name="categoryId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="categoryIdFirst" style="height:30px;width: 200px" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" placeholder="打分表分类" data-limit="20"><option value=""></option></select>
+                                </div>
+                                <div class="layui-inline security_list_query_operate_search">
+                                    <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
+                                    <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-header"  style="height: auto;">
@@ -338,7 +332,7 @@
     </div>
 <!--/magicaldrag-->
         <script type="text/html" id="dateTemplate">
-            <input type="text" id="_date_{{= d.id }}" name="date"  data-identify="{{= d.id }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_date" value="{{= d.date}}" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="日期"/>
+            <input type="text" id="_date_{{= d.id }}" name="date"  data-identify="{{= d.id }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_date" value="{{= d.date}}" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分日期"/>
         </script>
     <!--操作-->
     <script type="text/html" id="newsListOperateTemplate">
@@ -346,6 +340,6 @@
         <a class="layui-btn layui-btn-danger layui-btn-xs security_list_table_operate_del" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
     </script>
     <div th:replace="magicalcoder/v103/include/main-js :: commonMain" />
-    <script type="text/javascript"  th:src="@{/assets/admin/score/list.js}"></script>
+    <script type="text/javascript"  th:src="@{/assets/admin/score_for_zhuanjia/list.js}"></script>
 </body>
 </html>

@@ -18,11 +18,26 @@
 
 // 子表 排序相关
     var CONFIG = {
-        tableNameRest:"project_rest",
-        tableName:"project",
-        moduleName:"project",//sys_module的moduleName
+        tableNameRest:"score_for_zhuanjia_rest",
+        tableName:"score_for_zhuanjia",
+        moduleName:"score_for_zhuanjia",//sys_module的moduleName
         form:{
-                date:{
+                techRequire:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                }
+                    ,afterSale:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                }
+                    ,apply:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                }
+                    ,geneSitu:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                }
+                    ,standard:{
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                }
+                    ,date:{
                 renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd","show":false,"range":false,"trigger":"click","type":"date","isInitValue":true,"showBottom":true,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
                 }
         },
@@ -30,31 +45,13 @@
             select2Change:function (elem,name,value) {//外键下拉更新事件
             }
         },
-        childrenPage:[//子页面的一些基础信息 更多信息
-            {
-                tabTitle:"score",
-                url:"admin/page_v2/score/list",
-                mcForeignName:"projectId"
-            },            {
-                tabTitle:"base_price_common",
-                url:"admin/page_v2/base_price_common/list",
-                mcForeignName:"projectId"
-            },            {
-                tabTitle:"base_price_special",
-                url:"admin/page_v2/base_price_special/list",
-                mcForeignName:"projectId"
-            },            {
-                tabTitle:"score_for_zhuanjia",
-                url:"admin/page_v2/score_for_zhuanjia/list",
-                mcForeignName:"projectId"
-            }        ],
         layTable : {//表格内容 到list.html查找即可明白
             elem : '#newsList',
             id : "newsListTable"
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',projectName:'project_name',type:'type',origin:'origin',price:'price',fprice:'fprice',comment:'comment',date:'date',location:'location',recoder:'recoder',reviewer:'reviewer',responer:'responer',bargain:'bargain'
+            id:'id',projectId:'project_id',categoryId:'category_id',techRequire:'tech_require',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',date:'date',signature:'signature'
         }
     };
     //后端请求时候的表模块规则url
@@ -62,72 +59,65 @@
     var tableName = CONFIG.tableName;
     //表格每一列配置
     var COLS = [[
-        {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-            {title: '编号', type:'numbers',align:"center",minWidth:100 },
+                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+                {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
+                    //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_projectId" lay-ignore="true"  name="projectId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="参选公司"  data-limit="20"></select>'
+                    },sort:true
+                },
+                {field: 'categoryId', title: '打分表分类', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.categoryId || d.categoryId==null) ? '' : d.categoryId
+                    //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_categoryId" lay-ignore="true"  name="categoryId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"  data-limit="20"></select>'
+                    },sort:true
+                },
 
-            {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
+            {field: 'projectId', title: '参选公司', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectId) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectId" name="projectId" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
                 }
                 , sort:true
             },
 
-            {field: 'origin', title: '产地及品牌', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.origin) +'" class="magicalcoder-table-text layui-input security_list_table_form_origin" name="origin" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="产地及品牌"/>'
+            {field: 'categoryId', title: '打分表分类', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.categoryId) +'" class="magicalcoder-table-text layui-input security_list_table_form_categoryId" name="categoryId" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"/>'
                 }
                 , sort:true
             },
 
-            {field: 'type', title: '型号', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.type) +'" class="magicalcoder-table-text layui-input security_list_table_form_type" name="type" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="型号"/>'
+            {field: 'techRequire', title: '商务技术要求响应情况', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25|minLength=0"  placeholder="商务技术要求响应情况"/>'
                 }
                 , sort:true
             },
 
-            {field: 'price', title: '报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.price) +'" class="magicalcoder-table-text layui-input security_list_table_form_price" name="price" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="报价"/>'
+            {field: 'afterSale', title: '售后服务方案情况', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.afterSale) +'" class="magicalcoder-table-text layui-input security_list_table_form_afterSale" name="afterSale" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=10|minLength=0"  placeholder="售后服务方案情况"/>'
                 }
                 , sort:true
             },
 
-            {field: 'fprice', title: '最终报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.fprice) +'" class="magicalcoder-table-text layui-input security_list_table_form_fprice" name="fprice" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终报价"/>'
+            {field: 'apply', title: '投标文件供应商业绩', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.apply) +'" class="magicalcoder-table-text layui-input security_list_table_form_apply" name="apply" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2|minLength=0"  placeholder="投标文件供应商业绩"/>'
                 }
                 , sort:true
             },
 
-            {field: 'comment', title: '备注', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.comment) +'" class="magicalcoder-table-text layui-input security_list_table_form_comment" name="comment" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="备注"/>'
-                }
-                , sort:true
-            },
-            {field: 'date', title: '时间', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
-
-            {field: 'location', title: '地点', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.location) +'" class="magicalcoder-table-text layui-input security_list_table_form_location" name="location" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="地点"/>'
+            {field: 'geneSitu', title: '制造厂商综合情况', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.geneSitu) +'" class="magicalcoder-table-text layui-input security_list_table_form_geneSitu" name="geneSitu" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=8|minLength=0"  placeholder="制造厂商综合情况"/>'
                 }
                 , sort:true
             },
 
-            {field: 'recoder', title: '记录人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.recoder) +'" class="magicalcoder-table-text layui-input security_list_table_form_recoder" name="recoder" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="记录人"/>'
+            {field: 'standard', title: '投标文件规范性', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.standard) +'" class="magicalcoder-table-text layui-input security_list_table_form_standard" name="standard" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2|minLength=0"  placeholder="投标文件规范性"/>'
                 }
                 , sort:true
             },
+            {field: 'date', title: '打分日期', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
 
-            {field: 'reviewer', title: '复核人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.reviewer) +'" class="magicalcoder-table-text layui-input security_list_table_form_reviewer" name="reviewer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="复核人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'responer', title: '经办人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.responer) +'" class="magicalcoder-table-text layui-input security_list_table_form_responer" name="responer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="经办人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'bargain', title: '内容', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
+            {field: 'signature', title: '打分人', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.signature) +'" class="magicalcoder-table-text layui-input security_list_table_form_signature" name="signature" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分人"/>'
                 }
                 , sort:true
             },
@@ -223,25 +213,6 @@
                     //$(window).on("resize",function(){
                     //    layui.layer.full(index);
                     //})
-                },
-                randomList : function (identify) {//identify 代表主键值
-                    var title = identify ? '随机抽取':'随机抽取'
-                    if(!identify){identify = ''}
-                    var index = layui.layer.open({
-                        skin:'magicalcoder-layer-admin',
-                        title : title,
-                        type : 2,//打开iframe页面 很多人不知道原理：从列表页进入详情页是直接打开新iframe,详情页根据iframe的入参主键，获取详情页数据，然后重绘详情页，整个过程都是js处理
-                        maxmin: true,
-                        area: ['80%', '80%'],
-                        content : "admin/page_v2/"+tableName+"/random",
-                        success : function(layero, index){
-                            setTimeout(function(){
-                                layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
-                                    tips: 3
-                                });
-                            },500)
-                        }
-                    })
                 },
                 _deleteOneTr : function (identify) {//删除一行
                     var _this = this;
@@ -365,10 +336,6 @@
             //添加
             $(".addNews_btn").click(function(){
                 _t.layTable().editOrAdd();
-            })
-            //随机
-            $(".random_btn").click(function(){
-                _t.layTable().randomList();
             })
             //批量删除
             $(".delAll_btn").click(function(){
