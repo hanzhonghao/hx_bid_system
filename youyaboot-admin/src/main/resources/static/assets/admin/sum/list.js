@@ -67,9 +67,9 @@
                         // date = new Date();
                     }
                     COLS = [[
-                        {title: '编号', type:'numbers',align:"center",minWidth:100 },
+                        {title: '编号', type:'numbers',align:"center"},
                         {
-                            field: 'projectName', title: '参选公司', minWidth: 200, templet: function (d) {
+                            field: 'projectName', title: '参选公司',templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.projectName) + '" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
                             }
                             , sort: true
@@ -92,42 +92,42 @@
                     // $.ajaxSettings.async = true;
 
                     for (var i = 1; i < 6; i++) {
-                        COLS[0].push({field: 'scoreSum'+i, title: "专家"+i, minWidth:200});
+                        COLS[0].push({field: 'scoreSum'+i, title: "专家"+i});
                     }
                     COLS[0].push({
-                            field: 'pj', title: '综合评价得分', minWidth: 200, templet: function (d) {
+                            field: 'pj', title: '综合评价得分', templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.pj) + '" class="magicalcoder-table-text layui-input security_list_table_form_sumPingJia" name="sumPingJia" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="综合评价得分"/>'
                             }
                             , sort: true
                         }
                     );
                     COLS[0].push({
-                        field: 'basePoint', title: '基准价', minWidth: 200, templet: function (d) {
+                        field: 'basePoint', title: '基准价', templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.basePoint) + '" class="magicalcoder-table-text layui-input security_list_table_form_basePoint" name="basePoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="基准价"/>'
                         }
                         , sort: true
                     });
                     COLS[0].push({
-                        field: 'finalPoint', title: '最终价', minWidth: 200, templet: function (d) {
+                        field: 'finalPoint', title: '最终价', templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.finalPoint) + '" class="magicalcoder-table-text layui-input security_list_table_form_finalPoint" name="finalPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终价"/>'
                         }
                         , sort: true
                     });
                     COLS[0].push({
-                        field: 'tbdf', title: '投标报价', minWidth: 200, templet: function (d) {
+                        field: 'tbdf', title: '投标报价', templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.tbdf) + '" class="magicalcoder-table-text layui-input security_list_table_form_toubiaoPoint" name="toubiaoPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="投标报价"/>'
                         }
                         , sort: true
                     });
 
                     COLS[0].push({
-                        field: 'zh', title: '综合得分', minWidth: 200, templet: function (d) {
+                        field: 'zh', title: '综合得分', templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.zh) + '" class="magicalcoder-table-text layui-input security_list_table_form_sumPoint" name="sumPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="综合得分"/>'
                         }
                         , sort: true
                     });
                     COLS[0].push({
-                        type: 'numbers', title: '排名', minWidth: 200, templet: function (d) {
+                        type: 'numbers', title: '排名', templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.paiming) + '" class="magicalcoder-table-text layui-input security_list_table_form_paiming" name="paiming" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="排名"/>'
                         }
                         ,align:"center"
@@ -142,7 +142,7 @@
                     table.render({//这里是layui的table分页写法 具体可参考layui官方文档
                         elem: CONFIG.layTable.elem,
                         url : 'admin/'+tableNameRest+'/page',
-                        cellMinWidth : 95,
+                        // cellMinWidth : 95,
                         page : true,//是否分页
                         //height : "full-10",//高度样式
                         // height : 500,

@@ -23,19 +23,19 @@
         moduleName:"score_for_zhuanjia",//sys_module的moduleName
         form:{
                 techRequire:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":25,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,afterSale:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,apply:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,geneSitu:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":8,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,standard:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":2,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,date:{
                 renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd","show":false,"range":false,"trigger":"click","type":"date","isInitValue":true,"showBottom":true,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
@@ -59,7 +59,8 @@
     var tableName = CONFIG.tableName;
     //表格每一列配置
     var COLS = [[
-                 {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+        {type: "checkbox", /*fixed:"left",*/ width:50},//全选
+                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
                 {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
                     var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
                     //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
@@ -72,18 +73,6 @@
                     return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_categoryId" lay-ignore="true"  name="categoryId" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"  data-limit="20"></select>'
                     },sort:true
                 },
-
-            {field: 'projectId', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectId) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectId" name="projectId" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'categoryId', title: '打分表分类', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.categoryId) +'" class="magicalcoder-table-text layui-input security_list_table_form_categoryId" name="categoryId" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="打分表分类"/>'
-                }
-                , sort:true
-            },
 
             {field: 'techRequire', title: '商务技术要求响应情况', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25|minLength=0"  placeholder="商务技术要求响应情况"/>'

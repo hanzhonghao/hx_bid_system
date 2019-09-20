@@ -11,83 +11,88 @@
 <body class="childrenBody layui-hide">
 <!--请不要删除magicaldrag注释标签，可以配合布局器进行联动布局-->
 <!--magicaldrag-->
-    <div class="layui-fluid">
-        <div class="layui-card">
-            <div class="layui-card-header">
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">
 
-            </div>
-            <div class="layui-card-body">
-                <form class="layui-form">
-                    <div class="layui-form-item security_edit_form_param_id">
-                        <label class="layui-form-label">编号</label>
-                        <div class="layui-input-block">
-                            <input type="text" disabled="true" class="layui-input" name="id"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
-                        </div>
+        </div>
+        <div class="layui-card-body">
+            <form class="layui-form">
+                <div class="layui-form-item security_edit_form_param_id">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" disabled="true" class="layui-input" name="id"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_projectId">
-                        <label class="layui-form-label">参选公司</label>
-                        <div class="layui-input-block">
+                </div>
+                <div class="layui-form-item security_edit_form_param_projectId">
+                    <label class="layui-form-label">参选公司</label>
+                    <div class="layui-input-block">
                         <select name="projectId"  data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0" data-value=""  placeholder="参选公司" data-limit="20"><option value=""></option></select>
-                        </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_categoryId">
-                        <label class="layui-form-label">打分表分类</label>
-                        <div class="layui-input-block">
+                </div>
+                <div class="layui-form-item security_edit_form_param_categoryId">
+                    <label class="layui-form-label">打分表分类</label>
+                    <div class="layui-input-block">
                         <select name="categoryId"  data-url="admin/score_category_rest/search" data-id="id" data-text-fields="childCategore" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" data-value=""  placeholder="打分表分类" data-limit="20"><option value=""></option></select>
-                        </div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_techRequire">
-                        <label class="layui-form-label">商务技术要求响应情况</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="techRequire" placeholder="满分25分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_techRequire">
+                    <label class="layui-form-label">商务技术要求响应情况</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="techRequire" placeholder="满分25分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25|minLength=0" value="" />
+                        <div class="magicalcoder-rate" name="techRequireRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="25" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_afterSale">
-                        <label class="layui-form-label">售后服务方案情况</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="afterSale" placeholder="满分10分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=10" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_afterSale">
+                    <label class="layui-form-label">售后服务方案情况</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="afterSale" placeholder="满分10分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=10|minLength=0" value="" />
+                        <div class="magicalcoder-rate" name="afterSaleRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="10" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_apply">
-                        <label class="layui-form-label">投标文件供应商业绩</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="apply" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_apply">
+                    <label class="layui-form-label">投标文件供应商业绩</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="apply" placeholder="满分5分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2|minLength=0" value="" />
+                        <div class="magicalcoder-rate" name="applyRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="5" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_geneSitu">
-                        <label class="layui-form-label">制造厂商综合情况</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="geneSitu" placeholder="满分8分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=8" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_geneSitu">
+                    <label class="layui-form-label">制造厂商综合情况</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="geneSitu" placeholder="满分8分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=8|minLength=0" value="" />
+                        <div class="magicalcoder-rate" name="geneSituRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="8" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_standard">
-                        <label class="layui-form-label">投标文件规范性</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="standard" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_standard">
+                    <label class="layui-form-label">投标文件规范性</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="standard" placeholder="满分2分" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=2|minLength=0" value="" />
+                        <div class="magicalcoder-rate" name="standardRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="2" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
-                    <div class="layui-form-item security_edit_form_param_signature">
-                        <label class="layui-form-label">专家签名</label>
-                        <div class="layui-input-block">
-                        <input type="text" class="layui-input" name="signature" placeholder="专家签名" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_date">
+                    <label class="layui-form-label">打分日期</label>
+                    <div class="layui-input-block">
+                        <input type="text"  name="date" placeholder="打分日期"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="new Date()"  mc-attr-calendar="false" mc-attr-format="yyyy-MM-dd" mc-attr-show="false" mc-attr-range="false" mc-attr-trigger="click" mc-attr-type="date" mc-attr-is-init-value="true" mc-attr-show-bottom="true" mc-attr-theme="default" mc-attr-position="absolute" mc-attr-lang="cn" mc-attr-z-index="66666666" />
                     </div>
-                    <div class="layui-form-item security_edit_form_param_date">
-                        <label class="layui-form-label">日期</label>
-                        <div class="layui-input-block">
-                        <input type="text"  name="date" placeholder="日期"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="new Date()"  mc-attr-calendar="false" mc-attr-format="yyyy-MM-dd" mc-attr-show="false" mc-attr-range="false" mc-attr-trigger="click" mc-attr-type="date" mc-attr-is-init-value="true" mc-attr-show-bottom="false" mc-attr-theme="default" mc-attr-position="absolute" mc-attr-lang="cn" mc-attr-z-index="66666666" />
-                        </div>
+                </div>
+                <div class="layui-form-item security_edit_form_param_signature">
+                    <label class="layui-form-label">打分人</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="signature" placeholder="打分人" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
                     </div>
-                    <div class="layui-form-item ">
-                        <div class="layui-input-block">
-                            <a class="layui-btn security_edit_form_operate_save" lay-submit="" lay-filter="save">立即提交</a>
-                            <button type="reset" class="layui-hide layui-btn layui-btn-primary" >重置</button>
-                        </div>
+                </div>
+                <div class="layui-form-item ">
+                    <div class="layui-input-block">
+                        <a class="layui-btn security_edit_form_operate_save" lay-submit="" lay-filter="save">立即提交</a>
+                        <button type="reset" class="layui-hide layui-btn layui-btn-primary" >重置</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 <!--/magicaldrag-->
     <div th:replace="magicalcoder/v103/include/main-js :: commonMain" />
     <script type="text/javascript"  th:src="@{/assets/admin/score/edit.js}"></script>

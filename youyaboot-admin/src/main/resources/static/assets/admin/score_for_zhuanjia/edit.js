@@ -21,19 +21,19 @@
         moduleName:"score_for_zhuanjia",//sys_module的moduleName
         form:{
                 techRequire:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":25,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,afterSale:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":10,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,apply:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,geneSitu:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":8,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,standard:{
-                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":true,"readonly":false,"length":5,"inputType":"rate","theme":"0xFFB800","text":false}
+                renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"half":false,"readonly":false,"length":2,"inputType":"rate","theme":"0xFFB800","text":false}
                 }
                     ,date:{
                 renderConfig:{}//您可以自定义个性配置 遇到相同的则以dom配置为准 大部分属性已推荐设置在元素标签上 这里您可以自定义事件 {"calendar":false,"format":"yyyy-MM-dd","show":false,"range":false,"trigger":"click","type":"date","isInitValue":true,"showBottom":true,"inputType":"date","theme":"default","position":"absolute","lang":"cn","zIndex":66666666}
