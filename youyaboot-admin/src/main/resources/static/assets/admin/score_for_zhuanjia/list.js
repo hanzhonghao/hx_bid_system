@@ -60,7 +60,7 @@
     //表格每一列配置
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-                {field: 'id', title: '编号', minWidth:100, align:"center",sort:true},
+        {title: '编号', type:'numbers',align:"center",minWidth:100 },
                 {field: 'projectId', title: '参选公司', align:'center', minWidth:250, templet:function (d) {
                     var value = (!d.projectId || d.projectId==null) ? '' : d.projectId
                     //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'

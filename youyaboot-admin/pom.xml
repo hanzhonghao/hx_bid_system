@@ -9,7 +9,7 @@
     </parent>
     <artifactId>youyaboot-admin</artifactId>
     <packaging>jar</packaging>
-    <name>youyaboot-admin-v1</name>
+    <name>youyaboot-admin</name>
     <url>http://maven.apache.org</url>
 
     <!--这种方式 可以配合 以下命令 要在youyaboot_mysql根目录下执行 否则无法启动成功
