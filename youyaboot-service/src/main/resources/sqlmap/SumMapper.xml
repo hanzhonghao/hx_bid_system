@@ -92,6 +92,11 @@
         select COUNT(0) from common_sum  WHERE projectName =#{projectName} and `date`=#{inputTimeFirst}
     </select>
 
+    <select id="getCommonSumListFromDB"  resultType="CommonSum">
+        select * from common_sum  WHERE date=#{date}
+    </select>
+
+
 
     <!-- 查询一组实体 in 语句-->
     <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">

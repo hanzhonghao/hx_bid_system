@@ -71,9 +71,9 @@ public class AdminScoreForZhuanjiaRestController extends CommonRestController<Sc
             return new ResponseMsg(count,scoreForZhuanjiaService.getSelfModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,scoreForZhuanjiaService.getModelList(query),"score_for_zhuanjia",
-            new String[]{"编号","参选公司","打分表分类","商务技术要求响应情况","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","打分日期","打分人"},
-            new String[]{"","","","","","","","","",""});
+//            exportExcel(response,scoreForZhuanjiaService.getModelList(query),"score_for_zhuanjia",
+//            new String[]{"编号","参选公司","打分表分类","商务技术要求响应情况","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","打分日期","打分人"},
+//            new String[]{"","","","","","","","","",""});
         }
         return null;
     }

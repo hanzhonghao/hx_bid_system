@@ -27,4 +27,6 @@ public interface SumMapper extends ICommonMapper<CommonSum,Long>{
     int check(@Param("inputTimeFirst") String inputTimeFirst, @Param("projectName") String projectName);
 
     void updateCommonSum(CommonSum cs);
+
+    List<CommonSum> getCommonSumListFromDB(Map<String, Object> query);
 }

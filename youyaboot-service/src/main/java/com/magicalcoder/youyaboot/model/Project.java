@@ -32,6 +32,7 @@ public class Project implements Serializable{
     private String responer;//responer
     private String reviewer;//reviewer
     private String type;//type
+    private int numbers;
 
 
     public Long getId(){

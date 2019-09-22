@@ -31,6 +31,6 @@ public class CommonSum implements Serializable{
     private String count;
     private Integer basePoint;
     private Integer finalPoint;
-    private String  date;
+    private String date;
 
 }

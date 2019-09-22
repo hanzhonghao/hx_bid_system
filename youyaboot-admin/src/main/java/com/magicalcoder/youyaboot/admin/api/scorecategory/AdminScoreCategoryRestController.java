@@ -1,12 +1,17 @@
 package com.magicalcoder.youyaboot.admin.api.scorecategory;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.ExportPOIUtils;
+import com.magicalcoder.youyaboot.model.Project;
+import com.magicalcoder.youyaboot.model.Score;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.math.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -82,9 +87,22 @@ public class AdminScoreCategoryRestController extends CommonRestController<Score
             return new ResponseMsg(count,scoreCategoryService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,scoreCategoryService.getModelList(query),"score_category",
-            new String[]{"编号","打分表分类"},
-            new String[]{"",""});
+
+            String fileName = "打分表分类表";
+            // 列名
+            String columnNames[] = {"编号","打分表分类"};
+            // map中的key
+            String keys[] = { "id","childCategore"};
+            try {
+                List<ScoreCategory> scoreList = scoreCategoryService.getModelList(query);
+                for (int i=1;i<=scoreList.size();i++){
+                    scoreList.get(i-1).setNumbers(i);
+                }
+                ExportPOIUtils.start_download(response, fileName, scoreList, columnNames, keys);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
         }
         return null;
     }

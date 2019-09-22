@@ -21,13 +21,16 @@ public class BasePriceSpecial implements Serializable{
     private Long projectId;//project_id
     private Integer ebasePoint;//e_base_point
     private Integer efinalPoint;//e_final_point
-    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date inputTime;//input_time
     private Integer sbasePoint;//s_base_point
     private Integer sfinalPoint;//s_final_point
+    private Integer numbers;
+    private String project_str;
 
-    
+
+
     public Long getId(){
         return id;
     }

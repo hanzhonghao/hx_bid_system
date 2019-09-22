@@ -29,5 +29,7 @@ public class SpecialSum implements Serializable{
     private String eFinalPoint;
     private String sBasePoint;
     private String sFinalPoint;
+    private int numbers;
+    private String date;
 
 }

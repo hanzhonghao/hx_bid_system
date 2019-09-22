@@ -8,7 +8,8 @@
 ;!function(){
         var $ = layui.jquery
         ,layer = parent.layer === undefined ? layui.layer : top.layer
-        ,table = layui.table;
+        ,table = layui.table
+        ,laydate=layui.laydate
         var mc_children = youyaboot_all.mc_children
         ,mc_constant = youyaboot_all.mc_constant
         ,mc_util = youyaboot_all.mc_util

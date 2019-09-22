@@ -20,4 +20,7 @@ import java.math.*;
 public interface SumSpecialService extends ICommonService<SpecialSum,Long>{
     List<SpecialSum> getSpecialSumList(Map<String, Object> query);
 
+    Boolean setSpecialSumList(List<SpecialSum> specialSumList1, String inputTimeFirst);
+
+    List<SpecialSum> getSpecialSumListFromDB(Map<String, Object> query);
 }

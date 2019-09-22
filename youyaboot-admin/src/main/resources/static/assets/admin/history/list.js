@@ -52,7 +52,6 @@
                 }
                 , sort:true
             },
-            {field: 'bidTime', title: '中标时间', align:'center', minWidth:250, templet :"#bidTimeTemplate",sort:true},
 
             {field: 'projectName', title: '项目名称', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="项目名称"/>'
@@ -65,6 +64,7 @@
                 }
                 , sort:true
             },
+            {field: 'bidTime', title: '中标时间', align:'center', minWidth:250, templet :"#bidTimeTemplate",sort:true},
         {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
     ]];
     var obj = {

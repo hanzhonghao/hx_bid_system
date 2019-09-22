@@ -15,6 +15,8 @@ import com.magicalcoder.youyaboot.core.utils.CopyUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +76,9 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
                  for (int j=0;j<zhuangjiaList.size();j++){
                     for (int i=0;i<signatureArr.length;i++){
                         if (signatureArr[i].equals(zhuangjiaList.get(j))){
+                            if(j==0){
+                                imtp.setScoreSum0(scoreSumArr[i]);
+                            }
                             if(j==1){
                                 imtp.setScoreSum1(scoreSumArr[i]);
                                 break;
@@ -95,8 +100,6 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
 
                 }
             }
-
-
         });
 
         return list;
@@ -105,18 +108,27 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
     @Override
     public Boolean setCommonSumList(List<CommonSum> commonSumList,String inputTimeFirst) {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for(CommonSum cs: commonSumList){
-           int count = sumMapper.check(inputTimeFirst,cs.getProjectName());
-            cs.setDate(inputTimeFirst);
+            if (StringUtil.isBlank(inputTimeFirst)) {
+                inputTimeFirst = sdf.format(new Date());
+                cs.setDate(inputTimeFirst);
+            } else {
+                cs.setDate(inputTimeFirst);
+            }
+            int count = sumMapper.check(inputTimeFirst,cs.getProjectName());
            if(count>0){
-
                sumMapper.updateCommonSum(cs);
            }else{
-
                sumMapper.setCommmonSumList(cs);
            }
         }
-
         return true;
+    }
+
+    @Override
+    public List<CommonSum> getCommonSumListFromDB(Map<String, Object> query) {
+        List<CommonSum> commonSumListFromDB = sumMapper.getCommonSumListFromDB(query);
+        return commonSumListFromDB;
     }
 }

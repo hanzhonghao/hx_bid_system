@@ -66,7 +66,7 @@ import com.magicalcoder.youyaboot.service.sum.service.SumService;
         if(queryType==null || queryType == QUERY_TYPE_SEARCH){//普通查询
             limit = Math.min(limit, PageConstant.MAX_LIMIT);
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            return new ResponseMsg(count,sumService.getCommonSumList(query));
+            return new ResponseMsg(count,sumService.getCommonSumListFromDB(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
           /*  exportExcel(response,sumService.getCommonSumList(query),"综合评分汇总",
@@ -75,9 +75,9 @@ import com.magicalcoder.youyaboot.service.sum.service.SumService;
 
             String fileName = "综合评分列表";
             // 列名
-            String columnNames[] = {"编号","基准价","参选公司","最终价","综合评价得分","综合得分","投标报价","专家","专家评分","排名"};
+            String columnNames[] = {"编号","参选公司","基准价","最终价","综合评价得分","综合得分","投标报价","专家","专家评分","排名"};
             // map中的key
-            String keys[] = { "numbers","basePoint", "projectName", "finalPoint", "pj", "zh", "tbdf","signature","scoreSum","numbers"};
+            String keys[] = { "numbers", "projectName","basePoint", "finalPoint", "pj", "zh", "tbdf","signature","scoreSum","numbers"};
             try {
                 List<CommonSum> commonSumList1 = sumService.getCommonSumList(query);
                 for (int i=1;i<=commonSumList1.size();i++){

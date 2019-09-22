@@ -15,6 +15,7 @@ import com.magicalcoder.youyaboot.core.utils.CopyUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -43,7 +44,7 @@ public class SumSpecialServiceImpl extends CommonServiceImpl<SpecialSum,Long> im
         String gs =query.get("gs")+"";
         List<SpecialSum> list =new ArrayList<>();
         if("4".equals(gs)){
-            list = sumSpecialMapper.getSpecialSumList(query);
+            list = sumSpecialMapper.getSpecialSumList4(query);
             List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
             list.forEach((SpecialSum imtp)->{
                 String scoreSum = imtp.getScoreSum();
@@ -65,35 +66,116 @@ public class SumSpecialServiceImpl extends CommonServiceImpl<SpecialSum,Long> im
                             imtp.setScoreSum5(scoreSumArr[i]);
                         }
                     }
-
                 }
-
-//            zhuanjiaList.forEach((String str)->{
-//                for (int i=0;i<signatureArr.length;i++){
-
-//                    if (signatureArr[i].equals(str)){
-//                        if(i==1){
-//                            imtp.setScoreSum1(scoreSumArr[i]);
-//                        }else if(i==2){
-//                            imtp.setScoreSum2(scoreSumArr[i]);
-//                        }else if(i==3){
-//                            imtp.setScoreSum3(scoreSumArr[i]);
-//                        }
-//                    }
-//                }
-//
-//            });
-
             });
         }else if("1".equals(gs)){
+            list = sumSpecialMapper.getSpecialSumList1(query);
+            List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
+            list.forEach((SpecialSum imtp)->{
+                String scoreSum = imtp.getScoreSum();
+                String signature = imtp.getSignature();
+                if (null!=scoreSum&&null!=signature){
+                    String[] scoreSumArr=scoreSum.split(",");
+                    String[] signatureArr=signature.split(",");
+                    for (int i=0;i<scoreSumArr.length;i++) {
+                        if (i == 0) {
+                            imtp.setScoreSum1(scoreSumArr[i]);
+                            System.out.println(scoreSumArr[i]);
+                        }else if (i == 1) {
+                            imtp.setScoreSum2(scoreSumArr[i]);
+                        }else if (i == 2) {
+                            imtp.setScoreSum3(scoreSumArr[i]);
+                        }else if (i == 3) {
+                            imtp.setScoreSum4(scoreSumArr[i]);
+                        }else if (i == 4) {
+                            imtp.setScoreSum5(scoreSumArr[i]);
+                        }
+                    }
+                }
+            });
 
         }else if("2".equals(gs)){
+            list = sumSpecialMapper.getSpecialSumList2(query);
+            List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
+            list.forEach((SpecialSum imtp)->{
+                String scoreSum = imtp.getScoreSum();
+                String signature = imtp.getSignature();
+                if (null!=scoreSum&&null!=signature){
+                    String[] scoreSumArr=scoreSum.split(",");
+                    String[] signatureArr=signature.split(",");
+                    for (int i=0;i<scoreSumArr.length;i++) {
+                        if (i == 0) {
+                            imtp.setScoreSum1(scoreSumArr[i]);
+                            System.out.println(scoreSumArr[i]);
+                        }else if (i == 1) {
+                            imtp.setScoreSum2(scoreSumArr[i]);
+                        }else if (i == 2) {
+                            imtp.setScoreSum3(scoreSumArr[i]);
+                        }else if (i == 3) {
+                            imtp.setScoreSum4(scoreSumArr[i]);
+                        }else if (i == 4) {
+                            imtp.setScoreSum5(scoreSumArr[i]);
+                        }
+                    }
+                }
+            });
 
         }else if("3".equals(gs)){
+            list = sumSpecialMapper.getSpecialSumList3(query);
+            List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
+            list.forEach((SpecialSum imtp)->{
+                String scoreSum = imtp.getScoreSum();
+                String signature = imtp.getSignature();
+                if (null!=scoreSum&&null!=signature){
+                    String[] scoreSumArr=scoreSum.split(",");
+                    String[] signatureArr=signature.split(",");
+                    for (int i=0;i<scoreSumArr.length;i++) {
+                        if (i == 0) {
+                            imtp.setScoreSum1(scoreSumArr[i]);
+                            System.out.println(scoreSumArr[i]);
+                        }else if (i == 1) {
+                            imtp.setScoreSum2(scoreSumArr[i]);
+                        }else if (i == 2) {
+                            imtp.setScoreSum3(scoreSumArr[i]);
+                        }else if (i == 3) {
+                            imtp.setScoreSum4(scoreSumArr[i]);
+                        }else if (i == 4) {
+                            imtp.setScoreSum5(scoreSumArr[i]);
+                        }
+                    }
+                }
+            });
 
         }
 
 
         return list;
+    }
+
+    @Override
+    public Boolean setSpecialSumList(List<SpecialSum> specialSumList1, String inputTimeFirst) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        for(SpecialSum cs: specialSumList1){
+            if (StringUtil.isBlank(inputTimeFirst)) {
+                inputTimeFirst = sdf.format(new Date());
+                cs.setDate(inputTimeFirst);
+            } else {
+                cs.setDate(inputTimeFirst);
+            }
+            int count = sumSpecialMapper.check(inputTimeFirst,cs.getProjectName());
+            if(count>0){
+                sumSpecialMapper.updateSpecialSum(cs);
+            }else{
+                sumSpecialMapper.setSpecialSumList(cs);
+            }
+        }
+        return true;
+
+    }
+
+    @Override
+    public List<SpecialSum> getSpecialSumListFromDB(Map<String, Object> query) {
+        List<SpecialSum> specialSumListFromDB = sumSpecialMapper.getSpecialSumListFromDB(query);
+        return specialSumListFromDB;
     }
 }

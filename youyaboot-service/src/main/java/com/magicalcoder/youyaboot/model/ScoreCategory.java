@@ -16,8 +16,9 @@ public class ScoreCategory implements Serializable{
 
     private Long id;//id
     private String childCategore;//child_categore
+    private int numbers;
 
-    
+
     public Long getId(){
         return id;
     }

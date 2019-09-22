@@ -1,11 +1,16 @@
 package com.magicalcoder.youyaboot.admin.api.basepricespecial;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.ExportPOIUtils;
+import com.magicalcoder.youyaboot.model.BasePriceCommon;
+import com.magicalcoder.youyaboot.model.Project;
+import com.magicalcoder.youyaboot.service.project.service.ProjectService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -40,11 +45,14 @@ public class AdminBasePriceSpecialRestController extends CommonRestController<Ba
     @Resource
     private BasePriceSpecialService basePriceSpecialService;
 
+    @Resource
+    private ProjectService projectService;
+
         //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="projectIdFirst")                            Long projectIdFirst ,
-        @RequestParam(required = false,value ="inputTimeFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date inputTimeFirst ,
+        @RequestParam(required = false,value ="inputTimeFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date inputTimeFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
@@ -63,6 +71,28 @@ public class AdminBasePriceSpecialRestController extends CommonRestController<Ba
             return new ResponseMsg(count,basePriceSpecialService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
+
+            String fileName = "设备仪器基价表";
+            // 列名
+            String columnNames[] = {"编号","参选公司","设备基准价(万元)","设备最终价(万元)","试剂基准价(万元)","实际最终价(万元)","录入时间"};
+            // map中的key
+            String keys[] = { "numbers","project_str", "ebasePoint", "efinalPoint", "sbasePoint", "sfinalPoint", "inputTime"};
+            try {
+                //Excel的编号
+                List<BasePriceSpecial> list = basePriceSpecialService.getModelList(query);
+                for (int i=1;i<=list.size();i++){
+                    list.get(i-1).setNumbers(i);
+                    Long projectId = list.get(i - 1).getProjectId();
+                    Project model = projectService.getModel(projectId);
+                    list.get(i-1).setProject_str(model.getProjectName());
+                }
+
+                ExportPOIUtils.start_download(response, fileName, list, columnNames, keys);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
             exportExcel(response,basePriceSpecialService.getModelList(query),"base_price_special",
             new String[]{"编号","参选公司","设备基准价(万元)","设备最终价(万元)","录入时间","试剂基准价(万元)","实际最终价(万元)"},
             new String[]{"","","","","","",""});

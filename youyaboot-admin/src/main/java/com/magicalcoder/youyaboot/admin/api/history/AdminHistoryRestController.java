@@ -1,11 +1,18 @@
 package com.magicalcoder.youyaboot.admin.api.history;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.ExportPOIUtils;
+import com.magicalcoder.youyaboot.model.Project;
+import com.magicalcoder.youyaboot.model.Score;
+import com.magicalcoder.youyaboot.model.ScoreCategory;
+import com.magicalcoder.youyaboot.service.project.service.ProjectService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -40,10 +47,13 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
     @Resource
     private HistoryService historyService;
 
+    @Resource
+    private ProjectService projectService;
+
         //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="bidProjectFirst")                            String bidProjectFirst ,
+        @RequestParam(required = false,value ="bidProjectFirst")                            Long bidProjectFirst ,
         @RequestParam(required = false,value ="bidTimeFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date bidTimeFirst ,
         @RequestParam(required = false,value ="bidTimeSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date bidTimeSecond ,
         @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
@@ -52,7 +62,7 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
-        query.put("bidProjectFirst",coverBlankToNull(bidProjectFirst));
+        query.put("bidProjectFirst",bidProjectFirst);
         query.put("bidTimeFirst",bidTimeFirst);
         query.put("bidTimeSecond",bidTimeSecond);
         query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
@@ -69,8 +79,29 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
             return new ResponseMsg(count,historyService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
+
+            String fileName = "历史记录查询表";
+            // 列名
+            String columnNames[] = {"编号","中标供应商名称","中标时间","项目名称","采购员姓名"};
+            // map中的key
+            String keys[] = {"numbers","project_str","bidTime","projectName","purchaserName" };
+            try {
+                List<History> list = historyService.getModelList(query);
+                for (int i=1;i<=list.size();i++){
+                    list.get(i-1).setNumbers(i);
+                    Long projectId = list.get(i - 1).getBidProject();
+                    Project model = projectService.getModel(projectId);
+                    list.get(i-1).setProject_str(model.getProjectName());
+                }
+
+                ExportPOIUtils.start_download(response, fileName, list, columnNames, keys);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
             exportExcel(response,historyService.getModelList(query),"history",
-            new String[]{"编号","中标供应商名称","中标时间","项目名称","采购员姓名"},
+            new String[]{},
             new String[]{"","","","",""});
         }
         return null;

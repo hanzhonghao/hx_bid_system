@@ -8,7 +8,8 @@
 ;!function(){
         var $ = layui.jquery
         ,layer = parent.layer === undefined ? layui.layer : top.layer
-        ,table = layui.table;
+        ,table = layui.table
+        ,laydate=layui.laydate
         var mc_children = youyaboot_all.mc_children
         ,mc_constant = youyaboot_all.mc_constant
         ,mc_util = youyaboot_all.mc_util
@@ -16,6 +17,9 @@
         ,mc_layui_component = youyaboot_all.mc_layui_component
     ;
 
+    laydate.render({
+        elem: '#_inputTime'
+    });
 // 子表 排序相关
     var CONFIG = {
         tableNameRest:"base_price_special_rest",

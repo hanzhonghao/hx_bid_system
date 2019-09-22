@@ -1,12 +1,14 @@
 package com.magicalcoder.youyaboot.admin.api.project;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
-import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import com.magicalcoder.youyaboot.core.utils.*;
+import com.magicalcoder.youyaboot.model.CommonSum;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -17,10 +19,6 @@ import com.magicalcoder.youyaboot.core.common.exception.BusinessException;
 import com.magicalcoder.youyaboot.core.serialize.ResponseMsg;
 import com.magicalcoder.youyaboot.model.Project;
 import com.magicalcoder.youyaboot.service.project.service.ProjectService;
-
-import com.magicalcoder.youyaboot.core.utils.ListUtil;
-import com.magicalcoder.youyaboot.core.utils.MapUtil;
-import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
 
 /**
@@ -83,9 +81,22 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
             return new ResponseMsg(count,projectService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,projectService.getModelList(query),"project",
-            new String[]{"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"},
-            new String[]{"","","","","","","","","","","","",""});
+            String fileName = "竞标信息录入表";
+            // 列名
+            String columnNames[] = {"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"};
+            // map中的key
+            String keys[] = { "numbers","projectName", "type", "origin", "price", "fprice", "comment","date","location","recoder","reviewer","responer","bargain"};
+            try {
+                List<Project> projectList = projectService.getModelList(query);
+                for (int i=1;i<=projectList.size();i++){
+                    projectList.get(i-1).setNumbers(i);
+                }
+
+                ExportPOIUtils.start_download(response, fileName, projectList, columnNames, keys);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
         }
         return null;
     }

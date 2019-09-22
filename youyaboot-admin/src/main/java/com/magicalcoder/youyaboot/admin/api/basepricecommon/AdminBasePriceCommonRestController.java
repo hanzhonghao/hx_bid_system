@@ -70,7 +70,7 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
 
-            String fileName = "综合评分列表";
+            String fileName = "通用基价表";
             // 列名
             String columnNames[] = {"编号","参选公司","基准价(万元）","最终价格(万元）","录入时间"};
             // map中的key
@@ -91,10 +91,6 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
                 e.printStackTrace();
             }
 
-
-            exportExcel(response,basePriceCommonService.getModelList(query),"通用基价录入表",
-            new String[]{},
-            new String[]{"","","","",""});
         }
         return null;
     }

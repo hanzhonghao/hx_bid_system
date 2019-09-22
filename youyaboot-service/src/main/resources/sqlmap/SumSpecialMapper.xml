@@ -32,7 +32,7 @@
         from  <include refid="tableSql"/>  <include refid="magicalcoderPkWhereSql"/>
     </select>
     <!-- 查询一组实体 -->
-    <select id="getSpecialSumList" parameterType="String"  resultType="SpecialSum">
+    <select id="getSpecialSumList4" parameterType="String"  resultType="SpecialSum">
         select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
@@ -403,5 +403,147 @@
         <if test="notSafeOrderBy != null and notSafeOrderBy != ''"> order by ${notSafeOrderBy}</if>
         <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
     </sql>
+
+    <select id="getSpecialSumList3" parameterType="String"  resultType="SpecialSum">
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        (SELECT
+        project_name as projectName,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT(signature) as signature,
+        count(s.project_id) as `count`,
+        bps.e_base_point as eBasePoint,
+        bps.e_final_point as eFinalPoint,
+        bps.s_base_point as sBasePoint,
+        bps.s_final_point as sFinalPoint
+        FROM
+        project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
+        LEFT JOIN base_price_special bps on p.id=bps.project_id and bps.input_time=#{date}
+        WHERE p.date=#{date} and s.category_id='6'
+        GROUP BY p.id
+        ) tem
+        ORDER BY zh DESC
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </select>
+
+    <!-- 查询一组实体 -->
+    <select id="getSpecialSumList2" parameterType="String"  resultType="SpecialSum">
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/3))+(tem.sBasePoint/tem.sFinalPoint*(2/3)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        (SELECT
+        project_name as projectName,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT(signature) as signature,
+        count(s.project_id) as `count`,
+        bps.e_base_point as eBasePoint,
+        bps.e_final_point as eFinalPoint,
+        bps.s_base_point as sBasePoint,
+        bps.s_final_point as sFinalPoint
+        FROM
+        project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
+        LEFT JOIN base_price_special bps on p.id=bps.project_id and bps.input_time=#{date}
+        WHERE p.date=#{date} and s.category_id='6'
+        GROUP BY p.id
+        ) tem
+        ORDER BY zh DESC
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </select>
+
+    <!-- 查询一组实体 -->
+    <select id="getSpecialSumList1" parameterType="String"  resultType="SpecialSum">
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        (SELECT
+        project_name as projectName,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT(signature) as signature,
+        count(s.project_id) as `count`,
+        bps.e_base_point as eBasePoint,
+        bps.e_final_point as eFinalPoint,
+        bps.s_base_point as sBasePoint,
+        bps.s_final_point as sFinalPoint
+        FROM
+        project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
+        LEFT JOIN base_price_special bps on p.id=bps.project_id and bps.input_time=#{date}
+        WHERE p.date=#{date} and s.category_id='6'
+        GROUP BY p.id
+        ) tem
+        ORDER BY zh DESC
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </select>
+
+    <select id="check"  resultType="int">
+        select COUNT(0) from special_sum  WHERE projectName =#{projectName} and `date`=#{inputTimeFirst}
+    </select>
+
+    <!-- 更新一个实体 -->
+    <update id="updateSpecialSum" parameterType="SpecialSum">
+        update  special_sum
+        set
+        projectName =#{projectName},
+        scoreSum=#{scoreSum},
+        scoreSum0 =#{scoreSum0},
+        scoreSum1=#{scoreSum1},
+        scoreSum2=#{scoreSum2},
+        scoreSum3=#{scoreSum3},
+        scoreSum4=#{scoreSum4},
+        scoreSum5=#{scoreSum5},
+        pj =#{pj},
+        eBasePoint=#{eBasePoint},
+        eFinalPoint=#{eFinalPoint},
+        sBasePoint=#{sBasePoint},
+        sFinalPoint=#{sFinalPoint},
+        tbdf =#{tbdf},
+        `date`=#{date},
+        zh=#{zh}
+        WHERE projectName =#{projectName} and `date`=${date}
+        <!--        <include refid="updatePkWhereSql"/>-->
+    </update>
+
+    <select id="getSpecialSumListFromDB"  resultType="SpecialSum">
+        select * from special_sum  WHERE date=#{date}
+    </select>
+
+
+    <insert id="setSpecialSumList" parameterType="SpecialSum" >
+        insert INTO hx.special_sum (
+        projectName,
+        scoreSum,
+        scoreSum0,
+        scoreSum1,
+        scoreSum2,
+        scoreSum3,
+        scoreSum4,
+        scoreSum5,
+        pj,
+        eBasePoint,
+        eFinalPoint,
+        sBasePoint,
+        sFinalPoint,
+        tbdf,
+        `date`,
+        zh)
+        VALUES
+        <!--        <foreach collection="list" item="item" index="index" separator=",">-->
+        (
+        #{projectName,jdbcType=VARCHAR},
+        #{scoreSum,jdbcType=VARCHAR},
+        #{scoreSum0,jdbcType=VARCHAR},
+        #{scoreSum1,jdbcType=VARCHAR},
+        #{scoreSum2,jdbcType=VARCHAR},
+        #{scoreSum3,jdbcType=VARCHAR},
+        #{scoreSum4,jdbcType=VARCHAR},
+        #{scoreSum5,jdbcType=VARCHAR},
+        #{pj,jdbcType=VARCHAR},
+        #{eBasePoint,jdbcType=VARCHAR},
+        #{eFinalPoint,jdbcType=VARCHAR},
+        #{sBasePoint,jdbcType=VARCHAR},
+        #{sFinalPoint,jdbcType=VARCHAR},
+        #{tbdf,jdbcType=VARCHAR},
+        #{date},
+        #{zh,jdbcType=VARCHAR}
+        )
+        <!--       </foreach>-->
+    </insert>
 
 </mapper>

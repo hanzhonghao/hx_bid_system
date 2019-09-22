@@ -4,6 +4,8 @@ import com.magicalcoder.youyaboot.core.service.ICommonMapper;
 import com.magicalcoder.youyaboot.model.CommonSum;
 import com.magicalcoder.youyaboot.model.SpecialSum;
 import com.magicalcoder.youyaboot.model.SumSpecial;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -18,5 +20,15 @@ import java.math.*;
 */
 
 public interface SumSpecialMapper extends ICommonMapper<SpecialSum,Long>{
-    List<SpecialSum>  getSpecialSumList(Map query);
+    List<SpecialSum>  getSpecialSumList1(Map query);
+    List<SpecialSum>  getSpecialSumList2(Map query);
+    List<SpecialSum>  getSpecialSumList3(Map query);
+    List<SpecialSum>  getSpecialSumList4(Map query);
+
+    int check(@Param("inputTimeFirst") String inputTimeFirst, @Param("projectName") String projectName);
+
+    void updateSpecialSum(SpecialSum cs);
+
+    List<SpecialSum> getSpecialSumListFromDB(Map<String, Object> query);
+    Boolean setSpecialSumList(SpecialSum SpecialSumList);
 }

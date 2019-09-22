@@ -24,80 +24,12 @@ public class Score implements Serializable{
     private Integer standard;//standard
     private Integer techRequire;//tech_require
     private String signature;//signature
-    private Integer categoryId;//category_id
+    private Long categoryId;//category_id
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date date;//date
     private Long projectId;//project_id
-
-
-    public Long getId(){
-        return id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Integer getAfterSale(){
-        return afterSale;
-    }
-    public void setAfterSale(Integer afterSale){
-        this.afterSale = afterSale;
-    }
-
-    public Integer getApply(){
-        return apply;
-    }
-    public void setApply(Integer apply){
-        this.apply = apply;
-    }
-
-    public Integer getGeneSitu(){
-        return geneSitu;
-    }
-    public void setGeneSitu(Integer geneSitu){
-        this.geneSitu = geneSitu;
-    }
-
-    public Integer getStandard(){
-        return standard;
-    }
-    public void setStandard(Integer standard){
-        this.standard = standard;
-    }
-
-    public Integer getTechRequire(){
-        return techRequire;
-    }
-    public void setTechRequire(Integer techRequire){
-        this.techRequire = techRequire;
-    }
-
-    public String getSignature(){
-        return signature;
-    }
-    public void setSignature(String signature){
-        this.signature = signature;
-    }
-
-    public Integer getCategoryId(){
-        return categoryId;
-    }
-    public void setCategoryId(Integer categoryId){
-        this.categoryId = categoryId;
-    }
-
-    public Date getDate(){
-        return date;
-    }
-    public void setDate(Date date){
-        this.date = date;
-    }
-
-    public Long getProjectId(){
-        return projectId;
-    }
-    public void setProjectId(Long projectId){
-        this.projectId = projectId;
-    }
+    private int numbers;
+    private String project_str;
+    private String category_str;
 }

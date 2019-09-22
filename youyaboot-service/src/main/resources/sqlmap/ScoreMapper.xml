@@ -403,11 +403,5 @@
             date = #{date}
     </select>
 
-    <select id="getModelProjectNameList" resultType="ExcelObject">
-        SELECT
-	        id,project_name
-        FROM
-	        project
-    </select>
 
 </mapper>

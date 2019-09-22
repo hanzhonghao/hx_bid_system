@@ -18,12 +18,14 @@ import lombok.Data;
 public class History implements Serializable{
 
     private Long id;//id
-    private String bidProject;//bid_project
-    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    private Long bidProject;//bid_project
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
+    @JsonFormat(pattern = "yyyy-MM-dd HH", timezone="GMT+8")
     private Date bidTime;//bid_time
     private String projectName;//project_name
     private String purchaserName;//purchaser_name
+    private int numbers;
+    private String project_str;
 
     
     public Long getId(){
@@ -33,10 +35,10 @@ public class History implements Serializable{
         this.id = id;
     }
 
-    public String getBidProject(){
+    public Long getBidProject(){
         return bidProject;
     }
-    public void setBidProject(String bidProject){
+    public void setBidProject(Long bidProject){
         this.bidProject = bidProject;
     }
 
