@@ -17,6 +17,6 @@ import java.math.*;
 * 欢迎加入官方QQ群:648595928
 */
 
-public interface SumSpecialMapper extends ICommonMapper<SumSpecial,Long>{
+public interface SumSpecialMapper extends ICommonMapper<SpecialSum,Long>{
     List<SpecialSum>  getSpecialSumList(Map query);
 }

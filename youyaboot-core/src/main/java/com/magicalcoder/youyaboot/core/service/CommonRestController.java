@@ -142,7 +142,11 @@ public class CommonRestController<E,P> {
      * @param titles 标题
      * @param mappingArr 如遇下拉 给出下拉映射值
      */
-    protected void exportExcel(HttpServletResponse response,List<E> dataList,String fileNamePrefix,String[] titles, String[] mappingArr){
+    protected void exportExcel(HttpServletResponse response,
+                               List<E> dataList,
+                               String fileNamePrefix,
+                               String[] titles,
+                               String[] mappingArr){
         try {
             if(fileNamePrefix.length()<3){
                 fileNamePrefix = fileNamePrefix+"magicalcoder";

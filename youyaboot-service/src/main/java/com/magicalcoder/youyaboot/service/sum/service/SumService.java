@@ -20,4 +20,6 @@ public interface SumService extends ICommonService<CommonSum,Long>{
 
 
     List<CommonSum> getCommonSumList(Map<String, Object> query);
+
+    Boolean setCommonSumList(List<CommonSum> commonSumList,String inputTimeFirst);
 }

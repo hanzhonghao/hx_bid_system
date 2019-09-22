@@ -3,6 +3,8 @@ package com.magicalcoder.youyaboot.service.sum.mapper;
 import com.magicalcoder.youyaboot.core.service.ICommonMapper;
 import com.magicalcoder.youyaboot.model.CommonSum;
 import com.magicalcoder.youyaboot.model.Sum;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -20,4 +22,9 @@ public interface SumMapper extends ICommonMapper<CommonSum,Long>{
 
    List<CommonSum>  getCommonSumList(Map query);
 
+    Boolean setCommmonSumList(CommonSum commonSumList);
+
+    int check(@Param("inputTimeFirst") String inputTimeFirst, @Param("projectName") String projectName);
+
+    void updateCommonSum(CommonSum cs);
 }

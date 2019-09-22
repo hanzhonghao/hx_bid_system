@@ -39,18 +39,60 @@
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
         (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
-        count(s.project_id) as `count`,
         bpc.base_point as basePoint,
         bpc.final_point as finalPoint
         FROM
         project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
         LEFT JOIN base_price_common bpc on p.id=bpc.project_id and bpc.input_time=#{date}
-        WHERE p.date=#{date}
+        WHERE p.date=#{date} and s.category_id in('1','2','3','4','5')
         GROUP BY p.id
         ) tem
         ORDER BY zh DESC
         <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
     </select>
+
+    <insert id="setCommmonSumList" parameterType="CommonSum" >
+        insert INTO hx.common_sum (
+	        projectName,
+            scoreSum,
+            scoreSum0,
+            scoreSum1,
+            scoreSum2,
+            scoreSum3,
+            scoreSum4,
+            scoreSum5,
+	        pj,
+	        basePoint,
+	        finalPoint,
+	        tbdf,
+	        `date`,
+	        zh)
+        VALUES
+<!--        <foreach collection="list" item="item" index="index" separator=",">-->
+	    (
+            #{projectName,jdbcType=VARCHAR},
+            #{scoreSum,jdbcType=VARCHAR},
+            #{scoreSum0,jdbcType=VARCHAR},
+            #{scoreSum1,jdbcType=VARCHAR},
+            #{scoreSum2,jdbcType=VARCHAR},
+            #{scoreSum3,jdbcType=VARCHAR},
+            #{scoreSum4,jdbcType=VARCHAR},
+            #{scoreSum5,jdbcType=VARCHAR},
+            #{pj,jdbcType=VARCHAR},
+            #{basePoint,jdbcType=VARCHAR},
+            #{finalPoint,jdbcType=VARCHAR},
+            #{tbdf,jdbcType=VARCHAR},
+            #{date},
+            #{zh,jdbcType=VARCHAR}
+        )
+<!--       </foreach>-->
+    </insert>
+
+    <select id="check"  resultType="int">
+        select COUNT(0) from common_sum  WHERE projectName =#{projectName} and `date`=#{inputTimeFirst}
+    </select>
+
+
     <!-- 查询一组实体 in 语句-->
     <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">
         select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
@@ -120,8 +162,25 @@
         delete from <include refid="tableSql"/> where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
     </delete>
     <!-- 更新一个实体 -->
-    <update id="updateModel" parameterType="Sum">
-        update <include refid="tableSql"/> <include refid="updateSetSql"/> <include refid="updatePkWhereSql"/>
+    <update id="updateCommonSum" parameterType="CommonSum">
+        update  common_sum
+        set
+        projectName =#{projectName},
+        scoreSum=#{scoreSum},
+        scoreSum0 =#{scoreSum0},
+        scoreSum1=#{scoreSum1},
+        scoreSum2=#{scoreSum2},
+        scoreSum3=#{scoreSum3},
+        scoreSum4=#{scoreSum4},
+        scoreSum5=#{scoreSum5},
+        pj =#{pj},
+        basePoint=#{basePoint},
+        finalPoint=#{finalPoint},
+        tbdf =#{tbdf},
+        `date`=#{date},
+        zh=#{zh}
+        WHERE projectName =#{projectName} and `date`=${date}
+<!--        <include refid="updatePkWhereSql"/>-->
     </update>
     <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->
     <update id="updateModelWithoutNull" parameterType="Sum">
@@ -275,6 +334,8 @@
                     <choose> <when test="sumPoint!=null">`sum_point`=#{sumPoint}</when> <otherwise> `sum_point`=NULL</otherwise> </choose>,
                     <choose> <when test="toubiaoPoint!=null">`toubiao_point`=#{toubiaoPoint}</when> <otherwise> `toubiao_point`=NULL</otherwise> </choose>,
                     <choose> <when test="zhuanjia!=null">`zhuanjia`=#{zhuanjia}</when> <otherwise> `zhuanjia`=NULL</otherwise> </choose>,
+                    <choose> <when test="date!=null">`date`=#{date}</when> <otherwise> `date`=NULL</otherwise> </choose>,
+
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">

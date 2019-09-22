@@ -47,7 +47,7 @@
         FROM
         project p LEFT JOIN score  s on p.id=s.project_id  and s.date=#{date}
         LEFT JOIN base_price_special bps on p.id=bps.project_id and bps.input_time=#{date}
-        WHERE p.date=#{date}
+        WHERE p.date=#{date} and s.category_id='6'
         GROUP BY p.id
         ) tem
         ORDER BY zh DESC

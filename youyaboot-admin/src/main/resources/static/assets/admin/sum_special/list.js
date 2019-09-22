@@ -272,8 +272,9 @@
                     var whereData = this.buildQueryFormParams(safeOrderBy)
                     this._startReloadTableFromStartPage(null,whereData)
                 },
-                refreshTableFromPageOne : function () {//从第一页 重新加载 搜索场景使用 清空各种参数
+                refreshTableFromPageOne : function (gs) {//从第一页 重新加载 搜索场景使用 清空各种参数
                     var whereData = this.buildQueryFormParams("")
+                    whereData.gs=gs;
                     this._startReloadTableFromStartPage(1,whereData)
                 },
                 buildQueryFormParams : function (safeOrderBy) {//自动封装查询区域数据
@@ -341,9 +342,23 @@
             var _t = this;
             //搜索
             $(".search_btn").click(function(){
+
+                var gs="";
+                var data=$(".layui-tab-title").children("li").each(function () {
+                     gs="";
+                    var liClass= $(this).prop("class");
+                   if("layui-this"==liClass){
+                       gs=$(this).attr("data_gs");
+                       return false
+                   }
+                });
                 _t.layTable().initCOLS();
-                _t.layTable().refreshTableFromPageOne();
+                _t.layTable().refreshTableFromPageOne(gs);
             });
+
+
+
+
             //重置
             $("button[type='reset']").click(function(){
                 $("."+mc_constant.MC_LAY_CLASS_NAME.FORM.foreign_select2).val(null).trigger('change');

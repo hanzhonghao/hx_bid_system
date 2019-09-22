@@ -52,6 +52,7 @@
         select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
         from  <include refid="tableSql"/>  where  `id` in
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
+
         <include refid="orderGroupLimit"/>
     </select>
     <!-- 查询一组实体的数量 -->

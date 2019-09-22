@@ -51,7 +51,7 @@
     var tableNameRest = CONFIG.tableNameRest;
     var tableName = CONFIG.tableName;
     //表格每一列配置
-    var COLS = [[]];
+    var COLS = [];
     var obj = {
         layTable:function () {//表格
             var tableObj = {
@@ -61,73 +61,76 @@
                     this.tableOperateEvent();
                 },
                 initCOLS: function () {
-                    var date = $("#inputTimeFirst").val();
+                    var _t=this
+                    var whereData =_t.buildQueryFormParams("")
+                    var date =whereData.inputTimeFirst;
+                    //var date = $("#inputTimeFirst").val();
 
                     if (date == "") {
                         // date = new Date();
                     }
-                    COLS = [[
-                        {title: '编号', type:'numbers',align:"center"},
+                    COLS = [
+                        {title: '编号', type:'numbers',align:"center", minWidth: 100},
                         {
-                            field: 'projectName', title: '参选公司',templet: function (d) {
+                            field: 'projectName', title: '参选公司', minWidth: 200,templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.projectName) + '" class="magicalcoder-table-text layui-input security_list_table_form_companyName" name="companyName" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
                             }
                             , sort: true
                         }
-                    ]];
-                    // $.ajaxSettings.async = false;
-                    // $.post('admin/score_rest/getDayZhangJia', {date: date}, function (data) {
-                    //     if (!data.flag) {
-                    //         layer.msg("删除失败:" + data.desc);
-                    //     } else {
-                    //         var list = data.data;
-                    //         var list2={0:'专家1',1:'专家2',2:'专家3',3:'专家4',4:'专家4'};
-                    //         for (var i = 0; i < list.length; i++) {
-                    //             var temp = {field: 'scoreSum' + i, title: list2[i], minWidth: 200}
-                    //             COLS[0].push(temp);
-                    //         }
-                    //
-                    //     }
-                    // })
-                    // $.ajaxSettings.async = true;
+                    ];
+                    $.ajaxSettings.async = false;
+                    $.post('admin/score_rest/getDayZhangJia', {date: date}, function (data) {
+                        if (!data.flag) {
+                            layer.msg("删除失败:" + data.desc);
+                        } else {
+                            var list = data.data;
+                            var list2={0:'专家1',1:'专家2',2:'专家3',3:'专家4',4:'专家4'};
+                            for (var i = 0; i < list.length; i++) {
+                                var temp = {field: 'scoreSum'+(i+1), title: list[i], minwidth: 200}
+                                COLS.push(temp);
+                            }
 
-                    for (var i = 1; i < 6; i++) {
-                        COLS[0].push({field: 'scoreSum'+i, title: "专家"+i});
-                    }
-                    COLS[0].push({
-                            field: 'pj', title: '综合评价得分', templet: function (d) {
+                        }
+                    })
+                    $.ajaxSettings.async = true;
+
+                    // for (var i = 1; i < 6; i++) {
+                    //     COLS[0].push({field: 'scoreSum'+i, title: "专家"+i,minWidth: 200});
+                    // }
+                    COLS.push({
+                            field: 'pj', title: '综合评价得分',minWidth: 200, templet: function (d) {
                                 return '<input type="text" value="' + mc_util.escapeHTML(d.pj) + '" class="magicalcoder-table-text layui-input security_list_table_form_sumPingJia" name="sumPingJia" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="综合评价得分"/>'
                             }
                             , sort: true
                         }
                     );
-                    COLS[0].push({
-                        field: 'basePoint', title: '基准价', templet: function (d) {
+                    COLS.push({
+                        field: 'basePoint', title: '基准价', minWidth: 200,templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.basePoint) + '" class="magicalcoder-table-text layui-input security_list_table_form_basePoint" name="basePoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="基准价"/>'
                         }
                         , sort: true
                     });
-                    COLS[0].push({
-                        field: 'finalPoint', title: '最终价', templet: function (d) {
+                    COLS.push({
+                        field: 'finalPoint', title: '最终价', minWidth: 200,templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.finalPoint) + '" class="magicalcoder-table-text layui-input security_list_table_form_finalPoint" name="finalPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终价"/>'
                         }
                         , sort: true
                     });
-                    COLS[0].push({
-                        field: 'tbdf', title: '投标报价', templet: function (d) {
+                    COLS.push({
+                        field: 'tbdf', title: '投标报价',minWidth: 200, templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.tbdf) + '" class="magicalcoder-table-text layui-input security_list_table_form_toubiaoPoint" name="toubiaoPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="投标报价"/>'
                         }
                         , sort: true
                     });
 
-                    COLS[0].push({
-                        field: 'zh', title: '综合得分', templet: function (d) {
+                    COLS.push({
+                        field: 'zh', title: '综合得分', minWidth: 200,templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.zh) + '" class="magicalcoder-table-text layui-input security_list_table_form_sumPoint" name="sumPoint" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="综合得分"/>'
                         }
                         , sort: true
                     });
-                    COLS[0].push({
-                        type: 'numbers', title: '排名', templet: function (d) {
+                    COLS.push({
+                        type: 'numbers', title: '排名',minWidth: 100, templet: function (d) {
                             return '<input type="text" value="' + mc_util.escapeHTML(d.paiming) + '" class="magicalcoder-table-text layui-input security_list_table_form_paiming" name="paiming" data-identify="' + d.id + '" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="排名"/>'
                         }
                         ,align:"center"
@@ -136,20 +139,23 @@
 
                 },
                 //初始化一个表格
+
                 initTable : function () {
                     var _this = this;
+
                     _this.initCOLS();
+
                     table.render({//这里是layui的table分页写法 具体可参考layui官方文档
                         elem: CONFIG.layTable.elem,
                         url : 'admin/'+tableNameRest+'/page',
-                        // cellMinWidth : 95,
+                        cellMinWidth : 95,
                         page : true,//是否分页
                         //height : "full-10",//高度样式
                         // height : 500,
                         limit : 20,//每页多少条
                         limits : [10,15,20,25],//下拉
                         id : CONFIG.layTable.id,
-                        cols : COLS,//放入列配置
+                        cols : [COLS],//放入列配置
                         loading : true,
                         where : this.buildQueryFormParams(""),//构造查询参数 注意这里layui会缓存你的上一次查询参数 无法清除 只能考虑设置成空字符才能清理
                         done:function (res,curr,count) {//请求成功后处理
@@ -329,8 +335,9 @@
             var _t = this;
             //搜索
             $(".search_btn").click(function(){
-                _t.layTable().initCOLS();
-                _t.layTable().refreshTableFromPageOne();
+             /*   _t.layTable().initCOLS();
+                _t.layTable().refreshTableFromPageOne();*/
+                _t.layTable().render();//初始化表格数
             });
             //重置
             $("button[type='reset']").click(function(){

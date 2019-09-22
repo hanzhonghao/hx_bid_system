@@ -53,8 +53,8 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
             if (null!=scoreSum&&null!=signature) {
                 String[] scoreSumArr=scoreSum.split(",");
                 String[] signatureArr=signature.split(",");
-                for (int i=0;i<scoreSumArr.length;i++) {
-                    if (i == 0) {
+                /* for (int i=0;i<scoreSumArr.length;i++) {
+                   if (i == 0) {
                         imtp.setScoreSum1(scoreSumArr[i]);
                         System.out.println(scoreSumArr[i]);
                     }else if (i == 1) {
@@ -66,26 +66,57 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
                     }else if (i == 4) {
                         imtp.setScoreSum5(scoreSumArr[i]);
                     }
+
+
+                }*/
+
+
+                 for (int j=0;j<zhuangjiaList.size();j++){
+                    for (int i=0;i<signatureArr.length;i++){
+                        if (signatureArr[i].equals(zhuangjiaList.get(j))){
+                            if(j==1){
+                                imtp.setScoreSum1(scoreSumArr[i]);
+                                break;
+                            }else if(j==2){
+                                imtp.setScoreSum2(scoreSumArr[i]);
+                                break;
+                            }else if(j==3){
+                                imtp.setScoreSum3(scoreSumArr[i]);
+                                break;
+                            }else if(j==4){
+                                imtp.setScoreSum4(scoreSumArr[i]);
+                                break;
+                            }else if(j==5){
+                                imtp.setScoreSum5(scoreSumArr[i]);
+                                break;
+                            }
+                        }
+                    }
+
                 }
             }
 
-//            zhuangjiaList.forEach((String str)->{
-//                for (int i=0;i<signatureArr.length;i++){
-//                    if (signatureArr[i].equals(str)){
-//                        if(i==1){
-//                            imtp.setScoreSum1(scoreSumArr[i]);
-//                        }else if(i==2){
-//                            imtp.setScoreSum2(scoreSumArr[i]);
-//                        }else if(i==3){
-//                            imtp.setScoreSum3(scoreSumArr[i]);
-//                        }
-//                    }
-//                }
-//
-//            });
 
         });
 
         return list;
+    }
+
+    @Override
+    public Boolean setCommonSumList(List<CommonSum> commonSumList,String inputTimeFirst) {
+
+        for(CommonSum cs: commonSumList){
+           int count = sumMapper.check(inputTimeFirst,cs.getProjectName());
+            cs.setDate(inputTimeFirst);
+           if(count>0){
+
+               sumMapper.updateCommonSum(cs);
+           }else{
+
+               sumMapper.setCommmonSumList(cs);
+           }
+        }
+
+        return true;
     }
 }

@@ -1,19 +1,21 @@
 package com.magicalcoder.youyaboot.admin.api.basepricecommon;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
+import com.magicalcoder.youyaboot.core.utils.ExportPOIUtils;
+import com.magicalcoder.youyaboot.model.CommonSum;
+import com.magicalcoder.youyaboot.model.Project;
+import com.magicalcoder.youyaboot.service.project.service.ProjectService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.io.IOException;
+import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.math.*;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
+
 import com.magicalcoder.youyaboot.core.common.constant.PageConstant;
 import com.magicalcoder.youyaboot.core.common.exception.BusinessException;
 import com.magicalcoder.youyaboot.core.serialize.ResponseMsg;
@@ -40,6 +42,10 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
     @Resource
     private BasePriceCommonService basePriceCommonService;
 
+    @Resource
+    private ProjectService projectService;
+
+
         //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
@@ -63,8 +69,31 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
             return new ResponseMsg(count,basePriceCommonService.getModelList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
+
+            String fileName = "综合评分列表";
+            // 列名
+            String columnNames[] = {"编号","参选公司","基准价(万元）","最终价格(万元）","录入时间"};
+            // map中的key
+            String keys[] = { "numbers","project_str", "basePoint", "finalPoint", "inputTime"};
+            try {
+                //Excel的编号
+                List<BasePriceCommon> list = basePriceCommonService.getModelList(query);
+                for (int i=1;i<=list.size();i++){
+                    list.get(i-1).setNumbers(i);
+                    Long projectId = list.get(i - 1).getProjectId();
+                    Project model = projectService.getModel(projectId);
+                    list.get(i-1).setProject_str(model.getProjectName());
+                }
+
+                ExportPOIUtils.start_download(response, fileName, list, columnNames, keys);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+
             exportExcel(response,basePriceCommonService.getModelList(query),"通用基价录入表",
-            new String[]{"编号","基准价(万元）","最终价格(万元）","录入时间","参选公司"},
+            new String[]{},
             new String[]{"","","","",""});
         }
         return null;

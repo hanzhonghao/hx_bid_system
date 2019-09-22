@@ -15,6 +15,7 @@ import java.util.Date;
 */
 @Data
 public class CommonSum implements Serializable{
+    private int numbers;
     private String tbdf;
     private String zh;
     private String projectName;
@@ -28,7 +29,8 @@ public class CommonSum implements Serializable{
     private String pj;
     private String signature;
     private String count;
-    private String basePoint;
-    private String finalPoint;
+    private Integer basePoint;
+    private Integer finalPoint;
+    private String  date;
 
 }

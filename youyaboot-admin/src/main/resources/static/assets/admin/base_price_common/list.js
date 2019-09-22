@@ -15,7 +15,9 @@
         ,mc_rmp = youyaboot_all.mc_rmp
         ,mc_layui_component = youyaboot_all.mc_layui_component
     ;
-
+    laydate.render({
+        elem: '#_inputTime'
+    });
 // 子表 排序相关
     var CONFIG = {
         tableNameRest:"base_price_common_rest",

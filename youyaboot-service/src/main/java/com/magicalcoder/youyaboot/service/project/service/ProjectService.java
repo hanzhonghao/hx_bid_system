@@ -18,4 +18,6 @@ import java.math.*;
 public interface ProjectService extends ICommonService<Project,Long>{
     List<Project> getModelRandomList(String time);
 
+
+
 }

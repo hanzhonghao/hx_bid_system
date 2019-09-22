@@ -2,6 +2,7 @@ package com.magicalcoder.youyaboot.admin.api.sumspecial;
 
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
 import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import com.magicalcoder.youyaboot.model.SpecialSum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +37,7 @@ import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
 @RequestMapping("/admin/sum_special_rest/")
 @RestController
-public class AdminSumSpecialRestController extends CommonRestController<SumSpecial,Long> implements InitializingBean
+public class AdminSumSpecialRestController extends CommonRestController<SpecialSum,Long> implements InitializingBean
 {
 
     @Resource
@@ -46,6 +47,7 @@ public class AdminSumSpecialRestController extends CommonRestController<SumSpeci
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="inputTimeFirst")String inputTimeFirst ,
+        @RequestParam(required = false,value ="gs")String gs ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
@@ -55,6 +57,11 @@ public class AdminSumSpecialRestController extends CommonRestController<SumSpeci
         }else{
             query.put("date", inputTimeFirst);
         }
+
+        if(StringUtils.isBlank(gs)){
+            gs="1";
+        }
+        query.put("gs",gs);
         //  query.put("date", "2019-09-01");
         //query.put("inputTimeFirst",inputTimeFirst);
         Integer count = sumSpecialService.getSpecialSumList(query).size();
@@ -69,7 +76,7 @@ public class AdminSumSpecialRestController extends CommonRestController<SumSpeci
             return new ResponseMsg(count,sumSpecialService.getSpecialSumList(query));
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
-            exportExcel(response,sumSpecialService.getModelList(query),"sum",
+            exportExcel(response,sumSpecialService.getSpecialSumList(query),"设备仪器评分汇总",
                 new String[]{"id","基准价","参选公司","最终价","时间","排名","综合评价得分","综合得分","投标报价","专家"},
                 new String[]{"","","","","","","","","",""});
         }

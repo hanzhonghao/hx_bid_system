@@ -15,10 +15,7 @@ import com.magicalcoder.youyaboot.core.utils.CopyUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Date;
+import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.math.*;
@@ -30,7 +27,7 @@ import java.math.*;
 */
 
 @Service
-public class SumSpecialServiceImpl extends CommonServiceImpl<SumSpecial,Long> implements SumSpecialService,InitializingBean{
+public class SumSpecialServiceImpl extends CommonServiceImpl<SpecialSum,Long> implements SumSpecialService,InitializingBean{
     @Resource
     private SumSpecialMapper sumSpecialMapper;
     @Resource
@@ -43,31 +40,33 @@ public class SumSpecialServiceImpl extends CommonServiceImpl<SumSpecial,Long> im
 
     @Override
     public List<SpecialSum> getSpecialSumList(Map<String, Object> query) {
-        List<SpecialSum> list= sumSpecialMapper.getSpecialSumList(query);
-        List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
-        list.forEach((SpecialSum imtp)->{
-
-            String scoreSum = imtp.getScoreSum();
-            String signature = imtp.getSignature();
-            if (null!=scoreSum&&null!=signature){
-                String[] scoreSumArr=scoreSum.split(",");
-                String[] signatureArr=signature.split(",");
-                for (int i=0;i<scoreSumArr.length;i++) {
-                    if (i == 0) {
-                        imtp.setScoreSum1(scoreSumArr[i]);
-                        System.out.println(scoreSumArr[i]);
-                    }else if (i == 1) {
-                        imtp.setScoreSum2(scoreSumArr[i]);
-                    }else if (i == 2) {
-                        imtp.setScoreSum3(scoreSumArr[i]);
-                    }else if (i == 3) {
-                        imtp.setScoreSum4(scoreSumArr[i]);
-                    }else if (i == 4) {
-                        imtp.setScoreSum5(scoreSumArr[i]);
+        String gs =query.get("gs")+"";
+        List<SpecialSum> list =new ArrayList<>();
+        if("4".equals(gs)){
+            list = sumSpecialMapper.getSpecialSumList(query);
+            List<String> zhuanjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
+            list.forEach((SpecialSum imtp)->{
+                String scoreSum = imtp.getScoreSum();
+                String signature = imtp.getSignature();
+                if (null!=scoreSum&&null!=signature){
+                    String[] scoreSumArr=scoreSum.split(",");
+                    String[] signatureArr=signature.split(",");
+                    for (int i=0;i<scoreSumArr.length;i++) {
+                        if (i == 0) {
+                            imtp.setScoreSum1(scoreSumArr[i]);
+                            System.out.println(scoreSumArr[i]);
+                        }else if (i == 1) {
+                            imtp.setScoreSum2(scoreSumArr[i]);
+                        }else if (i == 2) {
+                            imtp.setScoreSum3(scoreSumArr[i]);
+                        }else if (i == 3) {
+                            imtp.setScoreSum4(scoreSumArr[i]);
+                        }else if (i == 4) {
+                            imtp.setScoreSum5(scoreSumArr[i]);
+                        }
                     }
-                }
 
-            }
+                }
 
 //            zhuanjiaList.forEach((String str)->{
 //                for (int i=0;i<signatureArr.length;i++){
@@ -85,7 +84,15 @@ public class SumSpecialServiceImpl extends CommonServiceImpl<SumSpecial,Long> im
 //
 //            });
 
-        });
+            });
+        }else if("1".equals(gs)){
+
+        }else if("2".equals(gs)){
+
+        }else if("3".equals(gs)){
+
+        }
+
 
         return list;
     }
