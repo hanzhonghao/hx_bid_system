@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -74,8 +75,9 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
             // 列名
             String columnNames[] = {"编号","参选公司","基准价(万元）","最终价格(万元）","录入时间"};
             // map中的key
-            String keys[] = { "numbers","project_str", "basePoint", "finalPoint", "inputTime"};
+            String keys[] = { "numbers","project_str", "basePoint", "finalPoint", "dates"};
             try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 //Excel的编号
                 List<BasePriceCommon> list = basePriceCommonService.getModelList(query);
                 for (int i=1;i<=list.size();i++){
@@ -83,6 +85,9 @@ public class AdminBasePriceCommonRestController extends CommonRestController<Bas
                     Long projectId = list.get(i - 1).getProjectId();
                     Project model = projectService.getModel(projectId);
                     list.get(i-1).setProject_str(model.getProjectName());
+
+                    String format = sdf.format(list.get(i - 1).getInputTime());
+                    list.get(i - 1).setDates(format);
                 }
 
                 ExportPOIUtils.start_download(response, fileName, list, columnNames, keys);

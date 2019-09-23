@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -85,11 +86,14 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
             // 列名
             String columnNames[] = {"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"};
             // map中的key
-            String keys[] = { "numbers","projectName", "type", "origin", "price", "fprice", "comment","date","location","recoder","reviewer","responer","bargain"};
+            String keys[] = { "numbers","projectName", "type", "origin", "price", "fprice", "comment","dates","location","recoder","reviewer","responer","bargain"};
             try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 List<Project> projectList = projectService.getModelList(query);
                 for (int i=1;i<=projectList.size();i++){
                     projectList.get(i-1).setNumbers(i);
+                    String formatDate = sdf.format(projectList.get(i - 1).getDate());
+                    projectList.get(i-1).setDates(formatDate);
                 }
 
                 ExportPOIUtils.start_download(response, fileName, projectList, columnNames, keys);

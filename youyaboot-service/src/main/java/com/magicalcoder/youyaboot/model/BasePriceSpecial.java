@@ -28,6 +28,7 @@ public class BasePriceSpecial implements Serializable{
     private Integer sfinalPoint;//s_final_point
     private Integer numbers;
     private String project_str;
+    private String dates;
 
 
 

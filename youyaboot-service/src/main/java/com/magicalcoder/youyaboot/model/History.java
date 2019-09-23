@@ -26,8 +26,9 @@ public class History implements Serializable{
     private String purchaserName;//purchaser_name
     private int numbers;
     private String project_str;
+    private String dates;
 
-    
+
     public Long getId(){
         return id;
     }

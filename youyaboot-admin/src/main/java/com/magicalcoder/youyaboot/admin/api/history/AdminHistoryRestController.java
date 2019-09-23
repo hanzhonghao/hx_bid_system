@@ -80,11 +80,12 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
         }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
             query.put("start",(page - 1) * limit);query.put("limit",limit);
 
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String fileName = "历史记录查询表";
             // 列名
             String columnNames[] = {"编号","中标供应商名称","项目名称","中标时间","采购员姓名"};
             // map中的key
-            String keys[] = {"numbers","project_str","projectName","bidTime","purchaserName" };
+            String keys[] = {"numbers","project_str","projectName","dates","purchaserName" };
             try {
                 List<History> list = historyService.getModelList(query);
                 for (int i=1;i<=list.size();i++){
@@ -92,6 +93,10 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
                     Long projectId = list.get(i - 1).getBidProject();
                     Project model = projectService.getModel(projectId);
                     list.get(i-1).setProject_str(model.getProjectName());
+
+
+                    String format = sdf.format(list.get(i - 1).getBidTime());
+                    list.get(i - 1).setDates(format);
                 }
 
                 ExportPOIUtils.start_download(response, fileName, list, columnNames, keys);

@@ -76,7 +76,7 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
             // 列名
             String columnNames[] = {"编号","参选公司","打分表分类","商务技术要求响应情况","售后服务方案情况","投标文件供应商业绩","制造厂商综合情况","投标文件规范性","日期","专家签名"};
             // map中的key
-            String keys[] = { "numbers","project_str", "category_str", "techRequire", "afterSale", "apply", "geneSitu","standard","date","signature"};
+            String keys[] = { "numbers","project_str", "category_str", "techRequire", "afterSale", "apply", "geneSitu","standard","dates","signature"};
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 List<Score> scoreList = scoreService.getModelList(query);
@@ -89,6 +89,9 @@ public class AdminScoreRestController extends CommonRestController<Score,Long> i
                     Long categoryId = scoreList.get(i - 1).getCategoryId();
                     ScoreCategory model1 = scoreCategoryService.getModel(categoryId);
                     scoreList.get(i-1).setCategory_str(model1.getChildCategore());
+
+                    String format = sdf.format(scoreList.get(i - 1).getDate());
+                    scoreList.get(i-1).setDates(format);
 
                 }
 

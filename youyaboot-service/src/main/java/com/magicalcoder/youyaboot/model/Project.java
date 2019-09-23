@@ -33,6 +33,7 @@ public class Project implements Serializable{
     private String reviewer;//reviewer
     private String type;//type
     private int numbers;
+    private String dates;
 
 
     public Long getId(){

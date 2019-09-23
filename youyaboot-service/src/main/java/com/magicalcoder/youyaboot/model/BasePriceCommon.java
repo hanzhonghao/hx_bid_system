@@ -26,6 +26,7 @@ public class BasePriceCommon implements Serializable{
     private Date inputTime;//input_time
     private Long projectId;//project_id
     private String project_str;
+    private String dates;
 
 
     public Long getId(){
