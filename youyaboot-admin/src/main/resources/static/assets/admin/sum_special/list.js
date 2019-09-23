@@ -144,7 +144,9 @@
                         ,align:"center"
 
                     });
-
+                    COLS[0].push(
+                        {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
+                    );
 
                 },
                 //初始化一个表格
@@ -239,7 +241,7 @@
                             if(!data.flag){
                                 layer.msg("删除失败:"+data.desc);
                             }else {
-                                _this.refreshTableFromCurrentPage();//从当前页刷新列表
+                                // _this.refreshTableFromCurrentPage();//从当前页刷新列表
                                 layer.close(index);
                             }
                         })

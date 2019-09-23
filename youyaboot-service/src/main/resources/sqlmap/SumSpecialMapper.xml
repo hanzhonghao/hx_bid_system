@@ -33,7 +33,7 @@
     </select>
     <!-- 查询一组实体 -->
     <select id="getSpecialSumList4" parameterType="String"  resultType="SpecialSum">
-        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
@@ -110,7 +110,7 @@
 
     <!-- 根据主键删除一个实体 magicalCoderPrimaryKeyName 框架封装-->
     <delete id="deleteModelByPk" parameterType="hashmap">
-        delete from <include refid="tableSql"/> <include refid="magicalcoderPkWhereSql"/>
+        delete from special_sum <include refid="magicalcoderPkWhereSql"/>
     </delete>
 
     <delete id="deleteModelList" parameterType="hashmap">
@@ -405,7 +405,7 @@
     </sql>
 
     <select id="getSpecialSumList3" parameterType="String"  resultType="SpecialSum">
-        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
@@ -428,7 +428,7 @@
 
     <!-- 查询一组实体 -->
     <select id="getSpecialSumList2" parameterType="String"  resultType="SpecialSum">
-        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/3))+(tem.sBasePoint/tem.sFinalPoint*(2/3)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        select tem.* ,(((tem.eBasePoint/tem.eFinalPoint)*(1/3))+((tem.sBasePoint/tem.sFinalPoint)*(2/3)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/3))+(tem.sBasePoint/tem.sFinalPoint*(2/3)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
@@ -451,7 +451,7 @@
 
     <!-- 查询一组实体 -->
     <select id="getSpecialSumList1" parameterType="String"  resultType="SpecialSum">
-        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45 as tbdf  , ((tem.eBasePoint/tem.eFinalPoint*45) + tem.pj) as zh from
+        select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
         GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,

@@ -45,13 +45,13 @@
     //表格每一列配置
     var COLS = [[
         {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-            {title: '编号', type:'numbers',align:"center",minWidth:100 },
-
-            {field: 'bidProject', title: '中标供应商名称', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.bidProject) +'" class="magicalcoder-table-text layui-input security_list_table_form_bidProject" name="bidProject" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="中标供应商名称"/>'
-                }
-                , sort:true
-            },
+                 {title: '编号', type:'numbers',align:"center",minWidth:100 },
+                {field: 'bidProject', title: '中标供应商名称', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.bidProject || d.bidProject==null) ? '' : d.bidProject
+                    //var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_bidProject" lay-ignore="true"  name="bidProject" data-identify="'+d.id+'" data-value="'+value+'" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="中标供应商名称"  data-limit="20"></select>'
+                    },sort:true
+                },
 
             {field: 'projectName', title: '项目名称', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="项目名称"/>'

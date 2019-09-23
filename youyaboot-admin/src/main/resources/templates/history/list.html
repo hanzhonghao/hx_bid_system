@@ -19,7 +19,7 @@
                         <form class="layui-form queryForm security_list_query_form">
                             <div class="layui-form-item">
                                 <div class="layui-inline security_list_query_param_bidProject">
-                                    <input type="text" class="layui-input" data-name="bidProject" name="bidProjectFirst" placeholder="中标供应商名称" />
+                                    <select  data-name="bidProject" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="bidProjectFirst" style="height:30px;width: 200px" data-url="admin/project_rest/search" data-id="id" data-text-fields="projectName" placeholder="中标供应商名称" data-limit="20"><option value=""></option></select>
                                 </div>
                                 <div class="layui-inline security_list_query_param_bidTime">
                                     <input type="text" data-name="bidTime" name="bidTimeFirst" lay-verify="datetime"  placeholder="起始中标时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>

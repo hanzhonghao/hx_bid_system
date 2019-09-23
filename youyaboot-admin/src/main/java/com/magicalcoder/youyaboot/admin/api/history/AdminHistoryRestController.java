@@ -82,9 +82,9 @@ public class AdminHistoryRestController extends CommonRestController<History,Lon
 
             String fileName = "历史记录查询表";
             // 列名
-            String columnNames[] = {"编号","中标供应商名称","中标时间","项目名称","采购员姓名"};
+            String columnNames[] = {"编号","中标供应商名称","项目名称","中标时间","采购员姓名"};
             // map中的key
-            String keys[] = {"numbers","project_str","bidTime","projectName","purchaserName" };
+            String keys[] = {"numbers","project_str","projectName","bidTime","purchaserName" };
             try {
                 List<History> list = historyService.getModelList(query);
                 for (int i=1;i<=list.size();i++){

@@ -49,14 +49,16 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
     public List<CommonSum> getCommonSumList(Map<String, Object> query) {
         List<CommonSum> list= sumMapper.getCommonSumList(query);
         List<String> zhuangjiaList=scoreMapper.getDayZhangJia(query.get("date")+"");
+
         list.forEach((CommonSum imtp)->{
             String scoreSum = imtp.getScoreSum();
             String signature = imtp.getSignature();
             if (null!=scoreSum&&null!=signature) {
                 String[] scoreSumArr=scoreSum.split(",");
                 String[] signatureArr=signature.split(",");
-                /* for (int i=0;i<scoreSumArr.length;i++) {
-                   if (i == 0) {
+
+                for (int i=0;i<scoreSumArr.length;i++) {
+                    if (i == 0) {
                         imtp.setScoreSum1(scoreSumArr[i]);
                         System.out.println(scoreSumArr[i]);
                     }else if (i == 1) {
@@ -68,37 +70,38 @@ public class SumServiceImpl extends CommonServiceImpl<CommonSum,Long> implements
                     }else if (i == 4) {
                         imtp.setScoreSum5(scoreSumArr[i]);
                     }
-
-
-                }*/
-
-
-                 for (int j=0;j<zhuangjiaList.size();j++){
-                    for (int i=0;i<signatureArr.length;i++){
-                        if (signatureArr[i].equals(zhuangjiaList.get(j))){
-                            if(j==0){
-                                imtp.setScoreSum0(scoreSumArr[i]);
-                            }
-                            if(j==1){
-                                imtp.setScoreSum1(scoreSumArr[i]);
-                                break;
-                            }else if(j==2){
-                                imtp.setScoreSum2(scoreSumArr[i]);
-                                break;
-                            }else if(j==3){
-                                imtp.setScoreSum3(scoreSumArr[i]);
-                                break;
-                            }else if(j==4){
-                                imtp.setScoreSum4(scoreSumArr[i]);
-                                break;
-                            }else if(j==5){
-                                imtp.setScoreSum5(scoreSumArr[i]);
-                                break;
-                            }
-                        }
-                    }
-
                 }
+
+
+
+
+
+//                 for (int j=0;j<zhuangjiaList.size();j++){
+//                    for (int i=0;i<signatureArr.length;i++){
+//                        if (signatureArr[i].equals(zhuangjiaList.get(j))){
+//                            if(j==0){
+//                                imtp.setScoreSum0(scoreSumArr[i]);
+//                            }
+//                            if(j==1){
+//                                imtp.setScoreSum1(scoreSumArr[i]);
+//                                break;
+//                            }else if(j==2){
+//                                imtp.setScoreSum2(scoreSumArr[i]);
+//                                break;
+//                            }else if(j==3){
+//                                imtp.setScoreSum3(scoreSumArr[i]);
+//                                break;
+//                            }else if(j==4){
+//                                imtp.setScoreSum4(scoreSumArr[i]);
+//                                break;
+//                            }else if(j==5){
+//                                imtp.setScoreSum5(scoreSumArr[i]);
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                }
             }
         });
 

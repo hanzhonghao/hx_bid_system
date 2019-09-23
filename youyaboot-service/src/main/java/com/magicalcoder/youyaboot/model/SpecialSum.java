@@ -12,6 +12,7 @@ import java.io.Serializable;
 */
 @Data
 public class SpecialSum implements Serializable{
+    private Long id;
     private String tbdf;
     private String zh;
     private String projectName;
