@@ -56,7 +56,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',projectId:'project_id',categoryId:'category_id',techRequire:'tech_require',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',date:'date',signature:'signature'
+            id:'id',projectId:'project_id',categoryId:'category_id',techRequire:'tech_require',afterSale:'after_sale',apply:'apply',geneSitu:'gene_situ',standard:'standard',date:'date',signature:'signature',comment:'comment'
         }
     };
     //后端请求时候的表模块规则url
@@ -81,6 +81,12 @@
 
             {field: 'techRequire', title: '商务技术要求响应情况', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.techRequire) +'" class="magicalcoder-table-text layui-input security_list_table_form_techRequire" name="techRequire" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required|mc_number" magicalcoder-verify="|maxValues=25|minLength=0"  placeholder="商务技术要求响应情况"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'comment', title: '备注', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.comment) +'" class="magicalcoder-table-text layui-input security_list_table_form_comment" name="comment" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="备注"/>'
                 }
                 , sort:true
             },

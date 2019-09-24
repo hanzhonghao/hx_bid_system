@@ -20,6 +20,7 @@
         <result column="standard" property="standard" />
         <result column="date" property="date" />
         <result column="signature" property="signature" />
+        <result column="comment" property="comment" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -141,7 +142,8 @@
             <if test="geneSituIgnore_ == null or !geneSituIgnore_">`gene_situ`,</if>
             <if test="standardIgnore_ == null or !standardIgnore_">`standard`,</if>
             <if test="dateIgnore_ == null or !dateIgnore_">`date`,</if>
-            <if test="signatureIgnore_ == null or !signatureIgnore_">`signature`</if>
+            <if test="signatureIgnore_ == null or !signatureIgnore_">`signature`,</if>
+            <if test="commentIgnore_ == null or !commentIgnore_">`comment`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
@@ -155,12 +157,13 @@
          <if test="geneSituNotIgnore_ != null and geneSituNotIgnore_">`gene_situ`,</if>
          <if test="standardNotIgnore_ != null and standardNotIgnore_">`standard`,</if>
          <if test="dateNotIgnore_ != null and dateNotIgnore_">`date`,</if>
-         <if test="signatureNotIgnore_ != null and signatureNotIgnore_">`signature`</if>
+         <if test="signatureNotIgnore_ != null and signatureNotIgnore_">`signature`,</if>
+         <if test="commentNotIgnore_ != null and commentNotIgnore_">`comment`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="id!=null">`id`,</if> `project_id`,`category_id`,`tech_require`,`after_sale`,`apply`,`gene_situ`,`standard`,`date`,`signature`,
+            <if test="id!=null">`id`,</if> `project_id`,`category_id`,`tech_require`,`after_sale`,`apply`,`gene_situ`,`standard`,`date`,`signature`,`comment`,
         </trim>
     </sql>
     <sql id="douValueSql">
@@ -175,6 +178,7 @@
                 <choose><when test="standard!=null">#{standard},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="signature!=null">#{signature},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="comment!=null">#{comment},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
@@ -190,6 +194,7 @@
                 <if test="standard!=null">`standard`,</if>
                 <if test="date!=null">`date`,</if>
                 <if test="signature!=null">`signature`,</if>
+                <if test="comment!=null">`comment`,</if>
 
         </trim>
     </sql>
@@ -205,11 +210,12 @@
                 <choose><when test="standard!=null">#{standard},</when></choose>
                 <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when></choose>
                 <choose><when test="signature!=null">#{signature},</when></choose>
+                <choose><when test="comment!=null">#{comment},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.id!=null">`id`,</if> `project_id`,`category_id`,`tech_require`,`after_sale`,`apply`,`gene_situ`,`standard`,`date`,`signature`,
+                <if test="item.id!=null">`id`,</if> `project_id`,`category_id`,`tech_require`,`after_sale`,`apply`,`gene_situ`,`standard`,`date`,`signature`,`comment`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
@@ -224,6 +230,7 @@
                 <choose><when test="item.standard!=null">#{item.standard},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.signature!=null">#{item.signature},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.comment!=null">#{item.comment},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
@@ -238,6 +245,7 @@
                 <if test="item.standard!=null">`standard`,</if>
                 <if test="item.date!=null">`date`,</if>
                 <if test="item.signature!=null">`signature`,</if>
+                <if test="item.comment!=null">`comment`,</if>
 
         </trim>
     </sql>
@@ -253,6 +261,7 @@
                 <choose><when test="item.standard!=null">#{item.standard},</when></choose>
                 <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when></choose>
                 <choose><when test="item.signature!=null">#{item.signature},</when></choose>
+                <choose><when test="item.comment!=null">#{item.comment},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
@@ -266,6 +275,7 @@
                     <choose> <when test="standard!=null">`standard`=#{standard}</when> <otherwise> `standard`=NULL</otherwise> </choose>,
                     <choose> <when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
                     <choose> <when test="signature!=null">`signature`=#{signature}</when> <otherwise> `signature`=NULL</otherwise> </choose>,
+                    <choose> <when test="comment!=null">`comment`=#{comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
@@ -279,6 +289,7 @@
                     <choose><when test="standard!=null">`standard`=#{standard},</when></choose>
                     <choose><when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP},</when></choose>
                     <choose><when test="signature!=null">`signature`=#{signature},</when></choose>
+                    <choose><when test="comment!=null">`comment`=#{comment},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -300,6 +311,7 @@
                     <choose> <when test="item.standard!=null">`standard`=#{item.standard}</when> <otherwise> `standard`=NULL</otherwise> </choose>,
                     <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
                     <choose> <when test="item.signature!=null">`signature`=#{item.signature}</when> <otherwise> `signature`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.comment!=null">`comment`=#{item.comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
@@ -313,6 +325,7 @@
                     <choose> <when test="item.standard!=null">`standard`=#{item.standard},</when></choose>
                     <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP},</when></choose>
                     <choose> <when test="item.signature!=null">`signature`=#{item.signature},</when></choose>
+                    <choose> <when test="item.comment!=null">`comment`=#{item.comment},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -335,6 +348,7 @@
         <if test="standard!=null "> and `standard` = #{standard}</if>
         <if test="date!=null "> and `date` = #{date,jdbcType=TIMESTAMP}</if>
         <if test="signature!=null "> and `signature` = #{signature}</if>
+        <if test="comment!=null "> and `comment` = #{comment}</if>
                 <if test="projectIdFirst!=null "> and `project_id` <![CDATA[like]]>
                             concat('%',#{projectIdFirst},'%')
                 </if>
@@ -358,6 +372,7 @@
                 <when test="safeGroupBy != null and safeGroupBy == 'standard'">  `standard` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'date'">  `date` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'signature'">  `signature` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'comment'">  `comment` </when>
             </choose>
         </if>
     </sql>
@@ -384,6 +399,8 @@
                 <when test="safeOrderBy != null and safeOrderBy == 'date asc'"> order by `date` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'signature desc'"> order by  `signature` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'signature asc'"> order by `signature` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'comment desc'"> order by  `comment` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'comment asc'"> order by `comment` asc </when>
             </choose>
         </if>
     </sql>

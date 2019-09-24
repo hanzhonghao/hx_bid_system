@@ -33,4 +33,5 @@ public class Score implements Serializable{
     private String project_str;
     private String category_str;
     private String dates;
+    private String comment;//comment
 }

@@ -34,6 +34,7 @@
 | 8 | standard              | Integer          | 投标文件规范性 |
 | 9 | date              | Date          | 打分日期 |
 | 10 | signature              | String          | 打分人 |
+| 11 | comment              | String          | 备注 |
 
 ## 1.2 保存score_for_zhuanjia详情
 
@@ -57,6 +58,7 @@
 | 8| standard  | Integer  | 投标文件规范性 |
 | 9| date  | Date  | 打分日期 |
 | 10| signature  | String  | 打分人 |
+| 11| comment  | String  | 备注 |
 
 > **输出**
 
@@ -88,6 +90,7 @@
 | 8| standard  | Integer  | 投标文件规范性 |
 | 9| date  | Date  | 打分日期 |
 | 10| signature  | String  | 打分人 |
+| 11| comment  | String  | 备注 |
 
 > **输出**
 
@@ -184,3 +187,4 @@
 | 8 | standard              | Integer          | 投标文件规范性 |
 | 9 | date              | Date          | 打分日期 |
 | 10 | signature              | String          | 打分人 |
+| 11 | comment              | String          | 备注 |

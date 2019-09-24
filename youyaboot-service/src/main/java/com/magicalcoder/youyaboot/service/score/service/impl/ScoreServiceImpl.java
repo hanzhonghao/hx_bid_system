@@ -4,11 +4,15 @@ import com.magicalcoder.youyaboot.service.score.mapper.ScoreMapper;
 import com.magicalcoder.youyaboot.service.score.service.ScoreService;
 import com.magicalcoder.youyaboot.model.Score;
 import com.magicalcoder.youyaboot.core.service.CommonServiceImpl;
+import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import com.magicalcoder.youyaboot.core.utils.CopyUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

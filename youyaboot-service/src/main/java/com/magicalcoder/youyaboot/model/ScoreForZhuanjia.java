@@ -29,6 +29,7 @@ public class ScoreForZhuanjia implements Serializable{
     @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date date;//date
     private String signature;//signature
+    private String comment;//comment
 
 
     public Long getId(){
@@ -99,5 +100,12 @@ public class ScoreForZhuanjia implements Serializable{
     }
     public void setSignature(String signature){
         this.signature = signature;
+    }
+
+    public String getComment(){
+        return comment;
+    }
+    public void setComment(String comment){
+        this.comment = comment;
     }
 }

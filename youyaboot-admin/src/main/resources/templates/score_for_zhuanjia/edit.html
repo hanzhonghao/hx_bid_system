@@ -45,6 +45,12 @@
                         <div class="magicalcoder-rate" name="techRequireRate" mc-attr-half="false" mc-attr-readonly="false" mc-attr-length="25" mc-attr-theme="0xFFB800" mc-attr-text="false" ></div>
                     </div>
                 </div>
+                    <div class="layui-form-item security_edit_form_param_comment">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="comment" placeholder="备注" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
                 <div class="layui-form-item">
                 <div class="layui-inline security_edit_form_param_afterSale">
                     <label class="layui-form-label">售后服务方案情况</label>
