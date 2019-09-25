@@ -135,4 +135,28 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         }
         return null;
     }
+
+    //打印表格内容
+    @RequestMapping(value = {"print/page"}, method = {RequestMethod.GET})
+    public ResponseMsg print(
+        @RequestParam int page, @RequestParam int limit, @RequestParam(required = false) String safeOrderBy
+        , HttpServletResponse response, @RequestParam(required = false) Integer queryType
+    ) {
+        Map<String, Object> query = new HashMap();
+        String time= DateFormatUtil.getDateTimeStr();
+        Integer count = projectService.getModelRandomList(time).size();
+        if (StringUtil.isBlank(safeOrderBy)) {
+            query.put("notSafeOrderBy", "id asc");
+        } else {
+            query.put("safeOrderBy", safeOrderBy);
+        }
+        if (queryType == null || queryType == QUERY_TYPE_SEARCH) {//普通查询
+            limit = Math.min(limit, PageConstant.MAX_LIMIT);
+            query.put("start", (page - 1) * limit);
+            query.put("limit", limit);
+            List<Project> modelList = projectService.getModelRandomList(time);
+            return new ResponseMsg(count, modelList);
+        }
+        return null;
+    }
 }

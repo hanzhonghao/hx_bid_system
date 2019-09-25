@@ -144,9 +144,9 @@
                         ,align:"center"
 
                     });
-                    COLS[0].push(
-                        {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
-                    );
+                    // COLS[0].push(
+                    //     {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
+                    // );
 
                 },
                 //初始化一个表格

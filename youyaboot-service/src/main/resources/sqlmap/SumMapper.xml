@@ -168,7 +168,7 @@
     </delete>
     <!-- 更新一个实体 -->
     <update id="updateCommonSum" parameterType="CommonSum">
-        update  common_sum
+        update common_sum
         set
         projectName =#{projectName},
         scoreSum=#{scoreSum},
@@ -184,7 +184,7 @@
         tbdf =#{tbdf},
         `date`=#{date},
         zh=#{zh}
-        WHERE projectName =#{projectName} and `date`=${date}
+        WHERE projectName =#{projectName} AND `date`=${date}
 <!--        <include refid="updatePkWhereSql"/>-->
     </update>
     <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->

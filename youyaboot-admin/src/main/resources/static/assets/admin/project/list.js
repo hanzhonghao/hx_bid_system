@@ -229,6 +229,27 @@
                     //    layui.layer.full(index);
                     //})
                 },
+                //打印
+                print: function (identify) {
+                    layer.config({
+                        extend: 'extend/layer.ext.js'
+                    });
+                    //页面一打开就执行，放入ready是为了layer所需配件（css、扩展模块）加载完毕
+                    layer.ready(function () {
+                        //官网欢迎页
+                        layer.open({
+                            type: 2,
+                            skin: 'layui-layer-lan',
+                            title: '政府采购委员会竞争性谈判工作记录表',
+                            fix: false,
+                            shadeClose: true,
+                            maxmin: true,
+                            area: ['1000px', '500px'],
+                            content: "admin/page_v2/"+tableName+"/print",
+                        });
+                        layer.msg('政府采购委员会竞争性谈判工作记录表');
+                    });
+                },
                 randomList : function (identify) {//identify 代表主键值
                     var title = identify ? '随机抽取':'随机抽取'
                     if(!identify){identify = ''}
@@ -248,6 +269,7 @@
                         }
                     })
                 },
+
                 _deleteOneTr : function (identify) {//删除一行
                     var _this = this;
                     layer.confirm('确定删除此行记录？',{icon:3, title:'提示信息'},function(index){
@@ -374,6 +396,10 @@
             //随机
             $(".random_btn").click(function(){
                 _t.layTable().randomList();
+            })
+            //打印
+            $(".print_btn").click(function(){
+                _t.layTable().print();
             })
             //批量删除
             $(".delAll_btn").click(function(){
