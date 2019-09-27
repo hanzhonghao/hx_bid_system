@@ -11,18 +11,18 @@
     <!-- Project -->
     <resultMap id="resultMap" type="Project">
         <id column="id" property="id"/>
-        <result column="bargain" property="bargain" />
-        <result column="comment" property="comment" />
-        <result column="date" property="date" />
-        <result column="fprice" property="fprice" />
-        <result column="location" property="location" />
+        <result column="project_name" property="projectName" />
+        <result column="type" property="type" />
         <result column="origin" property="origin" />
         <result column="price" property="price" />
-        <result column="project_name" property="projectName" />
+        <result column="fprice" property="fprice" />
+        <result column="comment" property="comment" />
+        <result column="date" property="date" />
+        <result column="location" property="location" />
         <result column="recoder" property="recoder" />
-        <result column="responer" property="responer" />
         <result column="reviewer" property="reviewer" />
-        <result column="type" property="type" />
+        <result column="responer" property="responer" />
+        <result column="bargain" property="bargain" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -52,7 +52,6 @@
         select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
         from  <include refid="tableSql"/>  where  `id` in
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
-
         <include refid="orderGroupLimit"/>
     </select>
     <!-- 查询一组实体的数量 -->
@@ -139,182 +138,182 @@
    <sql id="selectSqlIgnoreModel">
         <trim suffixOverrides=",">
             <if test="idIgnore_ == null or !idIgnore_">`id`,</if>
-            <if test="bargainIgnore_ == null or !bargainIgnore_">`bargain`,</if>
-            <if test="commentIgnore_ == null or !commentIgnore_">`comment`,</if>
-            <if test="dateIgnore_ == null or !dateIgnore_">`date`,</if>
-            <if test="fpriceIgnore_ == null or !fpriceIgnore_">`fprice`,</if>
-            <if test="locationIgnore_ == null or !locationIgnore_">`location`,</if>
+            <if test="projectNameIgnore_ == null or !projectNameIgnore_">`project_name`,</if>
+            <if test="typeIgnore_ == null or !typeIgnore_">`type`,</if>
             <if test="originIgnore_ == null or !originIgnore_">`origin`,</if>
             <if test="priceIgnore_ == null or !priceIgnore_">`price`,</if>
-            <if test="projectNameIgnore_ == null or !projectNameIgnore_">`project_name`,</if>
+            <if test="fpriceIgnore_ == null or !fpriceIgnore_">`fprice`,</if>
+            <if test="commentIgnore_ == null or !commentIgnore_">`comment`,</if>
+            <if test="dateIgnore_ == null or !dateIgnore_">`date`,</if>
+            <if test="locationIgnore_ == null or !locationIgnore_">`location`,</if>
             <if test="recoderIgnore_ == null or !recoderIgnore_">`recoder`,</if>
-            <if test="responerIgnore_ == null or !responerIgnore_">`responer`,</if>
             <if test="reviewerIgnore_ == null or !reviewerIgnore_">`reviewer`,</if>
-            <if test="typeIgnore_ == null or !typeIgnore_">`type`</if>
+            <if test="responerIgnore_ == null or !responerIgnore_">`responer`,</if>
+            <if test="bargainIgnore_ == null or !bargainIgnore_">`bargain`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
         <trim suffixOverrides=",">
          <if test="idNotIgnore_ != null and idNotIgnore_">`id`,</if>
-         <if test="bargainNotIgnore_ != null and bargainNotIgnore_">`bargain`,</if>
-         <if test="commentNotIgnore_ != null and commentNotIgnore_">`comment`,</if>
-         <if test="dateNotIgnore_ != null and dateNotIgnore_">`date`,</if>
-         <if test="fpriceNotIgnore_ != null and fpriceNotIgnore_">`fprice`,</if>
-         <if test="locationNotIgnore_ != null and locationNotIgnore_">`location`,</if>
+         <if test="projectNameNotIgnore_ != null and projectNameNotIgnore_">`project_name`,</if>
+         <if test="typeNotIgnore_ != null and typeNotIgnore_">`type`,</if>
          <if test="originNotIgnore_ != null and originNotIgnore_">`origin`,</if>
          <if test="priceNotIgnore_ != null and priceNotIgnore_">`price`,</if>
-         <if test="projectNameNotIgnore_ != null and projectNameNotIgnore_">`project_name`,</if>
+         <if test="fpriceNotIgnore_ != null and fpriceNotIgnore_">`fprice`,</if>
+         <if test="commentNotIgnore_ != null and commentNotIgnore_">`comment`,</if>
+         <if test="dateNotIgnore_ != null and dateNotIgnore_">`date`,</if>
+         <if test="locationNotIgnore_ != null and locationNotIgnore_">`location`,</if>
          <if test="recoderNotIgnore_ != null and recoderNotIgnore_">`recoder`,</if>
-         <if test="responerNotIgnore_ != null and responerNotIgnore_">`responer`,</if>
          <if test="reviewerNotIgnore_ != null and reviewerNotIgnore_">`reviewer`,</if>
-         <if test="typeNotIgnore_ != null and typeNotIgnore_">`type`</if>
+         <if test="responerNotIgnore_ != null and responerNotIgnore_">`responer`,</if>
+         <if test="bargainNotIgnore_ != null and bargainNotIgnore_">`bargain`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="id!=null">`id`,</if> `bargain`,`comment`,`date`,`fprice`,`location`,`origin`,`price`,`project_name`,`recoder`,`responer`,`reviewer`,`type`,
+            <if test="id!=null">`id`,</if> `project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,
         </trim>
     </sql>
     <sql id="douValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
-                <choose><when test="bargain!=null">#{bargain},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="comment!=null">#{comment},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="fprice!=null">#{fprice},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="location!=null">#{location},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="projectName!=null">#{projectName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="type!=null">#{type},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="origin!=null">#{origin},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="price!=null">#{price},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="projectName!=null">#{projectName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="fprice!=null">#{fprice},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="comment!=null">#{comment},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="location!=null">#{location},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="recoder!=null">#{recoder},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="responer!=null">#{responer},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="reviewer!=null">#{reviewer},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="type!=null">#{type},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="responer!=null">#{responer},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="bargain!=null">#{bargain},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
     <sql id="douFieldWithoutNullSql">
         <trim suffixOverrides=",">
                 <if test="id!=null">`id`,</if>
-                <if test="bargain!=null">`bargain`,</if>
-                <if test="comment!=null">`comment`,</if>
-                <if test="date!=null">`date`,</if>
-                <if test="fprice!=null">`fprice`,</if>
-                <if test="location!=null">`location`,</if>
+                <if test="projectName!=null">`project_name`,</if>
+                <if test="type!=null">`type`,</if>
                 <if test="origin!=null">`origin`,</if>
                 <if test="price!=null">`price`,</if>
-                <if test="projectName!=null">`project_name`,</if>
+                <if test="fprice!=null">`fprice`,</if>
+                <if test="comment!=null">`comment`,</if>
+                <if test="date!=null">`date`,</if>
+                <if test="location!=null">`location`,</if>
                 <if test="recoder!=null">`recoder`,</if>
-                <if test="responer!=null">`responer`,</if>
                 <if test="reviewer!=null">`reviewer`,</if>
-                <if test="type!=null">`type`,</if>
+                <if test="responer!=null">`responer`,</if>
+                <if test="bargain!=null">`bargain`,</if>
 
         </trim>
     </sql>
     <sql id="douValueWithoutNullSql">
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
-                <choose><when test="bargain!=null">#{bargain},</when></choose>
-                <choose><when test="comment!=null">#{comment},</when></choose>
-                <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when></choose>
-                <choose><when test="fprice!=null">#{fprice},</when></choose>
-                <choose><when test="location!=null">#{location},</when></choose>
+                <choose><when test="projectName!=null">#{projectName},</when></choose>
+                <choose><when test="type!=null">#{type},</when></choose>
                 <choose><when test="origin!=null">#{origin},</when></choose>
                 <choose><when test="price!=null">#{price},</when></choose>
-                <choose><when test="projectName!=null">#{projectName},</when></choose>
+                <choose><when test="fprice!=null">#{fprice},</when></choose>
+                <choose><when test="comment!=null">#{comment},</when></choose>
+                <choose><when test="date!=null">#{date,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="location!=null">#{location},</when></choose>
                 <choose><when test="recoder!=null">#{recoder},</when></choose>
-                <choose><when test="responer!=null">#{responer},</when></choose>
                 <choose><when test="reviewer!=null">#{reviewer},</when></choose>
-                <choose><when test="type!=null">#{type},</when></choose>
+                <choose><when test="responer!=null">#{responer},</when></choose>
+                <choose><when test="bargain!=null">#{bargain},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.id!=null">`id`,</if> `bargain`,`comment`,`date`,`fprice`,`location`,`origin`,`price`,`project_name`,`recoder`,`responer`,`reviewer`,`type`,
+                <if test="item.id!=null">`id`,</if> `project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
-                <choose><when test="item.bargain!=null">#{item.bargain},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.comment!=null">#{item.comment},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.fprice!=null">#{item.fprice},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.location!=null">#{item.location},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.projectName!=null">#{item.projectName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.type!=null">#{item.type},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.origin!=null">#{item.origin},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.price!=null">#{item.price},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.projectName!=null">#{item.projectName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.fprice!=null">#{item.fprice},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.comment!=null">#{item.comment},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.location!=null">#{item.location},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.recoder!=null">#{item.recoder},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.responer!=null">#{item.responer},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.reviewer!=null">#{item.reviewer},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.type!=null">#{item.type},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.responer!=null">#{item.responer},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.bargain!=null">#{item.bargain},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
         <trim suffixOverrides=",">
                 <if test="item.id!=null">`id`,</if>
-                <if test="item.bargain!=null">`bargain`,</if>
-                <if test="item.comment!=null">`comment`,</if>
-                <if test="item.date!=null">`date`,</if>
-                <if test="item.fprice!=null">`fprice`,</if>
-                <if test="item.location!=null">`location`,</if>
+                <if test="item.projectName!=null">`project_name`,</if>
+                <if test="item.type!=null">`type`,</if>
                 <if test="item.origin!=null">`origin`,</if>
                 <if test="item.price!=null">`price`,</if>
-                <if test="item.projectName!=null">`project_name`,</if>
+                <if test="item.fprice!=null">`fprice`,</if>
+                <if test="item.comment!=null">`comment`,</if>
+                <if test="item.date!=null">`date`,</if>
+                <if test="item.location!=null">`location`,</if>
                 <if test="item.recoder!=null">`recoder`,</if>
-                <if test="item.responer!=null">`responer`,</if>
                 <if test="item.reviewer!=null">`reviewer`,</if>
-                <if test="item.type!=null">`type`,</if>
+                <if test="item.responer!=null">`responer`,</if>
+                <if test="item.bargain!=null">`bargain`,</if>
 
         </trim>
     </sql>
     <sql id="batchDouValueWithoutNullSql">
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
-                <choose><when test="item.bargain!=null">#{item.bargain},</when></choose>
-                <choose><when test="item.comment!=null">#{item.comment},</when></choose>
-                <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when></choose>
-                <choose><when test="item.fprice!=null">#{item.fprice},</when></choose>
-                <choose><when test="item.location!=null">#{item.location},</when></choose>
+                <choose><when test="item.projectName!=null">#{item.projectName},</when></choose>
+                <choose><when test="item.type!=null">#{item.type},</when></choose>
                 <choose><when test="item.origin!=null">#{item.origin},</when></choose>
                 <choose><when test="item.price!=null">#{item.price},</when></choose>
-                <choose><when test="item.projectName!=null">#{item.projectName},</when></choose>
+                <choose><when test="item.fprice!=null">#{item.fprice},</when></choose>
+                <choose><when test="item.comment!=null">#{item.comment},</when></choose>
+                <choose><when test="item.date!=null">#{item.date,jdbcType=TIMESTAMP},</when></choose>
+                <choose><when test="item.location!=null">#{item.location},</when></choose>
                 <choose><when test="item.recoder!=null">#{item.recoder},</when></choose>
-                <choose><when test="item.responer!=null">#{item.responer},</when></choose>
                 <choose><when test="item.reviewer!=null">#{item.reviewer},</when></choose>
-                <choose><when test="item.type!=null">#{item.type},</when></choose>
+                <choose><when test="item.responer!=null">#{item.responer},</when></choose>
+                <choose><when test="item.bargain!=null">#{item.bargain},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
         <set>
-                    <choose> <when test="bargain!=null">`bargain`=#{bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
-                    <choose> <when test="comment!=null">`comment`=#{comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
-                    <choose> <when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
-                    <choose> <when test="fprice!=null">`fprice`=#{fprice}</when> <otherwise> `fprice`=NULL</otherwise> </choose>,
-                    <choose> <when test="location!=null">`location`=#{location}</when> <otherwise> `location`=NULL</otherwise> </choose>,
+                    <choose> <when test="projectName!=null">`project_name`=#{projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="type!=null">`type`=#{type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
                     <choose> <when test="origin!=null">`origin`=#{origin}</when> <otherwise> `origin`=NULL</otherwise> </choose>,
                     <choose> <when test="price!=null">`price`=#{price}</when> <otherwise> `price`=NULL</otherwise> </choose>,
-                    <choose> <when test="projectName!=null">`project_name`=#{projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="fprice!=null">`fprice`=#{fprice}</when> <otherwise> `fprice`=NULL</otherwise> </choose>,
+                    <choose> <when test="comment!=null">`comment`=#{comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
+                    <choose> <when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
+                    <choose> <when test="location!=null">`location`=#{location}</when> <otherwise> `location`=NULL</otherwise> </choose>,
                     <choose> <when test="recoder!=null">`recoder`=#{recoder}</when> <otherwise> `recoder`=NULL</otherwise> </choose>,
-                    <choose> <when test="responer!=null">`responer`=#{responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
                     <choose> <when test="reviewer!=null">`reviewer`=#{reviewer}</when> <otherwise> `reviewer`=NULL</otherwise> </choose>,
-                    <choose> <when test="type!=null">`type`=#{type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
+                    <choose> <when test="responer!=null">`responer`=#{responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
+                    <choose> <when test="bargain!=null">`bargain`=#{bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
         <set>
-                    <choose><when test="bargain!=null">`bargain`=#{bargain},</when></choose>
-                    <choose><when test="comment!=null">`comment`=#{comment},</when></choose>
-                    <choose><when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP},</when></choose>
-                    <choose><when test="fprice!=null">`fprice`=#{fprice},</when></choose>
-                    <choose><when test="location!=null">`location`=#{location},</when></choose>
+                    <choose><when test="projectName!=null">`project_name`=#{projectName},</when></choose>
+                    <choose><when test="type!=null">`type`=#{type},</when></choose>
                     <choose><when test="origin!=null">`origin`=#{origin},</when></choose>
                     <choose><when test="price!=null">`price`=#{price},</when></choose>
-                    <choose><when test="projectName!=null">`project_name`=#{projectName},</when></choose>
+                    <choose><when test="fprice!=null">`fprice`=#{fprice},</when></choose>
+                    <choose><when test="comment!=null">`comment`=#{comment},</when></choose>
+                    <choose><when test="date!=null">`date`=#{date,jdbcType=TIMESTAMP},</when></choose>
+                    <choose><when test="location!=null">`location`=#{location},</when></choose>
                     <choose><when test="recoder!=null">`recoder`=#{recoder},</when></choose>
-                    <choose><when test="responer!=null">`responer`=#{responer},</when></choose>
                     <choose><when test="reviewer!=null">`reviewer`=#{reviewer},</when></choose>
-                    <choose><when test="type!=null">`type`=#{type},</when></choose>
+                    <choose><when test="responer!=null">`responer`=#{responer},</when></choose>
+                    <choose><when test="bargain!=null">`bargain`=#{bargain},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -327,34 +326,34 @@
     </sql>
     <sql id="batchUpdateSetSql">
         <set>
-                    <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.comment!=null">`comment`=#{item.comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.fprice!=null">`fprice`=#{item.fprice}</when> <otherwise> `fprice`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.location!=null">`location`=#{item.location}</when> <otherwise> `location`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.type!=null">`type`=#{item.type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
                     <choose> <when test="item.origin!=null">`origin`=#{item.origin}</when> <otherwise> `origin`=NULL</otherwise> </choose>,
                     <choose> <when test="item.price!=null">`price`=#{item.price}</when> <otherwise> `price`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.fprice!=null">`fprice`=#{item.fprice}</when> <otherwise> `fprice`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.comment!=null">`comment`=#{item.comment}</when> <otherwise> `comment`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP}</when> <otherwise> `date`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.location!=null">`location`=#{item.location}</when> <otherwise> `location`=NULL</otherwise> </choose>,
                     <choose> <when test="item.recoder!=null">`recoder`=#{item.recoder}</when> <otherwise> `recoder`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.responer!=null">`responer`=#{item.responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
                     <choose> <when test="item.reviewer!=null">`reviewer`=#{item.reviewer}</when> <otherwise> `reviewer`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.type!=null">`type`=#{item.type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.responer!=null">`responer`=#{item.responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
         <set>
-                    <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain},</when></choose>
-                    <choose> <when test="item.comment!=null">`comment`=#{item.comment},</when></choose>
-                    <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP},</when></choose>
-                    <choose> <when test="item.fprice!=null">`fprice`=#{item.fprice},</when></choose>
-                    <choose> <when test="item.location!=null">`location`=#{item.location},</when></choose>
+                    <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName},</when></choose>
+                    <choose> <when test="item.type!=null">`type`=#{item.type},</when></choose>
                     <choose> <when test="item.origin!=null">`origin`=#{item.origin},</when></choose>
                     <choose> <when test="item.price!=null">`price`=#{item.price},</when></choose>
-                    <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName},</when></choose>
+                    <choose> <when test="item.fprice!=null">`fprice`=#{item.fprice},</when></choose>
+                    <choose> <when test="item.comment!=null">`comment`=#{item.comment},</when></choose>
+                    <choose> <when test="item.date!=null">`date`=#{item.date,jdbcType=TIMESTAMP},</when></choose>
+                    <choose> <when test="item.location!=null">`location`=#{item.location},</when></choose>
                     <choose> <when test="item.recoder!=null">`recoder`=#{item.recoder},</when></choose>
-                    <choose> <when test="item.responer!=null">`responer`=#{item.responer},</when></choose>
                     <choose> <when test="item.reviewer!=null">`reviewer`=#{item.reviewer},</when></choose>
-                    <choose> <when test="item.type!=null">`type`=#{item.type},</when></choose>
+                    <choose> <when test="item.responer!=null">`responer`=#{item.responer},</when></choose>
+                    <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -368,20 +367,26 @@
 
    <sql id="whereSqlModel">
         <if test="id!=null "> and `id` = #{id}</if>
-        <if test="bargain!=null "> and `bargain` = #{bargain}</if>
-        <if test="comment!=null "> and `comment` = #{comment}</if>
-        <if test="date!=null "> and `date` = #{date,jdbcType=TIMESTAMP}</if>
-        <if test="fprice!=null "> and `fprice` = #{fprice}</if>
-        <if test="location!=null "> and `location` = #{location}</if>
+        <if test="projectName!=null "> and `project_name` = #{projectName}</if>
+        <if test="type!=null "> and `type` = #{type}</if>
         <if test="origin!=null "> and `origin` = #{origin}</if>
         <if test="price!=null "> and `price` = #{price}</if>
-        <if test="projectName!=null "> and `project_name` = #{projectName}</if>
+        <if test="fprice!=null "> and `fprice` = #{fprice}</if>
+        <if test="comment!=null "> and `comment` = #{comment}</if>
+        <if test="date!=null "> and `date` = #{date,jdbcType=TIMESTAMP}</if>
+        <if test="location!=null "> and `location` = #{location}</if>
         <if test="recoder!=null "> and `recoder` = #{recoder}</if>
-        <if test="responer!=null "> and `responer` = #{responer}</if>
         <if test="reviewer!=null "> and `reviewer` = #{reviewer}</if>
-        <if test="type!=null "> and `type` = #{type}</if>
+        <if test="responer!=null "> and `responer` = #{responer}</if>
+        <if test="bargain!=null "> and `bargain` = #{bargain}</if>
                 <if test="projectNameFirst!=null "> and `project_name` <![CDATA[like]]>
                             concat('%',#{projectNameFirst},'%')
+                </if>
+                <if test="dateFirst!=null "> and `date` <![CDATA[>=]]>
+                        #{dateFirst,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dateSecond!=null "> and `date` <![CDATA[<=]]>
+                        #{dateSecond,jdbcType=TIMESTAMP}
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>
@@ -391,18 +396,18 @@
             group by
             <choose>
                 <when test="safeGroupBy != null and safeGroupBy == 'id'">  `id` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'bargain'">  `bargain` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'comment'">  `comment` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'date'">  `date` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'fprice'">  `fprice` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'location'">  `location` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'project_name'">  `project_name` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'type'">  `type` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'origin'">  `origin` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'price'">  `price` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'project_name'">  `project_name` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'fprice'">  `fprice` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'comment'">  `comment` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'date'">  `date` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'location'">  `location` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'recoder'">  `recoder` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'responer'">  `responer` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'reviewer'">  `reviewer` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'type'">  `type` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'responer'">  `responer` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'bargain'">  `bargain` </when>
             </choose>
         </if>
     </sql>
@@ -411,30 +416,30 @@
             <choose>
                 <when test="safeOrderBy != null and safeOrderBy == 'id desc'"> order by  `id` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'id asc'"> order by `id` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'bargain desc'"> order by  `bargain` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'bargain asc'"> order by `bargain` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'comment desc'"> order by  `comment` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'comment asc'"> order by `comment` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'date desc'"> order by  `date` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'date asc'"> order by `date` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'fprice desc'"> order by  `fprice` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'fprice asc'"> order by `fprice` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'location desc'"> order by  `location` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'location asc'"> order by `location` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'project_name desc'"> order by  `project_name` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'project_name asc'"> order by `project_name` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'type desc'"> order by  `type` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'type asc'"> order by `type` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'origin desc'"> order by  `origin` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'origin asc'"> order by `origin` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'price desc'"> order by  `price` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'price asc'"> order by `price` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'project_name desc'"> order by  `project_name` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'project_name asc'"> order by `project_name` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'fprice desc'"> order by  `fprice` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'fprice asc'"> order by `fprice` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'comment desc'"> order by  `comment` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'comment asc'"> order by `comment` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'date desc'"> order by  `date` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'date asc'"> order by `date` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'location desc'"> order by  `location` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'location asc'"> order by `location` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'recoder desc'"> order by  `recoder` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'recoder asc'"> order by `recoder` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'responer desc'"> order by  `responer` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'responer asc'"> order by `responer` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'reviewer desc'"> order by  `reviewer` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'reviewer asc'"> order by `reviewer` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'type desc'"> order by  `type` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'type asc'"> order by `type` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'responer desc'"> order by  `responer` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'responer asc'"> order by `responer` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'bargain desc'"> order by  `bargain` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'bargain asc'"> order by `bargain` asc </when>
             </choose>
         </if>
     </sql>
