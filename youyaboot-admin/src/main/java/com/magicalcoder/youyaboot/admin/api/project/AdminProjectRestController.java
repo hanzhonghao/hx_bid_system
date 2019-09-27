@@ -5,6 +5,7 @@ import com.magicalcoder.youyaboot.core.utils.*;
 import com.magicalcoder.youyaboot.model.CommonSum;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,11 @@ import com.magicalcoder.youyaboot.core.common.exception.BusinessException;
 import com.magicalcoder.youyaboot.core.serialize.ResponseMsg;
 import com.magicalcoder.youyaboot.model.Project;
 import com.magicalcoder.youyaboot.service.project.service.ProjectService;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.magicalcoder.youyaboot.core.utils.ListUtil;
+import com.magicalcoder.youyaboot.core.utils.MapUtil;
+import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
 
 /**
@@ -65,11 +71,15 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
         @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
+        @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFirst ,
+        @RequestParam(required = false,value ="dateSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateSecond ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
         query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
+        query.put("dateFirst",dateFirst);
+        query.put("dateSecond",dateSecond);
         Integer count = projectService.getModelListCount(query);
         if(StringUtil.isBlank(safeOrderBy)){
             query.put("notSafeOrderBy","id asc,price asc");
@@ -138,13 +148,14 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
 
     //打印表格内容
     @RequestMapping(value = {"print/page"}, method = {RequestMethod.GET})
-    public ResponseMsg print(
-        @RequestParam int page, @RequestParam int limit, @RequestParam(required = false) String safeOrderBy
-        , HttpServletResponse response, @RequestParam(required = false) Integer queryType
+    public ModelAndView print(@RequestParam(required = false) String safeOrderBy
+        , HttpServletResponse response, @RequestParam(required = false) Integer queryType, Model model
     ) {
+        int page = 1;
+        int limit = 10;
         Map<String, Object> query = new HashMap();
         String time= DateFormatUtil.getDateTimeStr();
-        Integer count = projectService.getModelRandomList(time).size();
+//        Integer count = projectService.getModelRandomList(time).size();
         if (StringUtil.isBlank(safeOrderBy)) {
             query.put("notSafeOrderBy", "id asc");
         } else {
@@ -155,7 +166,18 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
             query.put("start", (page - 1) * limit);
             query.put("limit", limit);
             List<Project> modelList = projectService.getModelRandomList(time);
-            return new ResponseMsg(count, modelList);
+
+            int size = modelList.size()+1;
+            if(modelList.size()==0){
+                return null;
+            }else {
+                Project firstObj = modelList.get(0);
+                firstObj.setDateForPrint(new SimpleDateFormat("yyyy-MM-dd").format(firstObj.getDate()));
+                model.addAttribute("allprojects", modelList);
+                model.addAttribute("size", size);
+                model.addAttribute("firstObj", firstObj);
+                return new ModelAndView("project/print", "projectModel", model);
+            }
         }
         return null;
     }

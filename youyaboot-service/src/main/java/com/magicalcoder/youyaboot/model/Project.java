@@ -34,6 +34,7 @@ public class Project implements Serializable{
     private String type;//type
     private int numbers;
     private String dates;
+    private String dateForPrint;
 
 
     public Long getId(){

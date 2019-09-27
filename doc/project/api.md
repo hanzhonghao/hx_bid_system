@@ -171,6 +171,8 @@
 | 2    |limit      |int       |每页多少条 [0,100)   |
 | 3    |safeOrderBy      |int       | 排序 例如 数据库字段名称 desc或asc   |
                 |4|projectNameFirst|   String   |参选公司|
+                |5|dateFirst|   Date   |时间|
+                |6|dateSecond|   Date   |时间|
 
 > **输出**
 

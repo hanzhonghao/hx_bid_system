@@ -21,6 +21,13 @@
                                 <div class="layui-inline security_list_query_param_projectName">
                                     <input type="text" class="layui-input" data-name="projectName" name="projectNameFirst" placeholder="参选公司" />
                                 </div>
+                                <div class="layui-inline security_list_query_param_date">
+                                    <input type="text" data-name="date" name="dateFirst" lay-verify="datetime"  placeholder="起始时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                                </div>
+                                <div class="layui-inline security_list_query_param_date">-</div>
+                                <div class="layui-inline security_list_query_param_date">
+                                    <input type="text" data-name="date"  name="dateSecond" lay-verify="datetime"  placeholder="终止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                                </div>
                                 <div class="layui-inline security_list_query_operate_search">
                                     <a class="layui-btn  layui-btn-radius layui-btn-sm search_btn" data-type="reload"><i class="layui-icon layui-icon-search"></i>搜索</a>
                                     <button type="reset" class="layui-btn layui-btn-radius layui-btn-warm layui-btn-sm"><i class="layui-icon layui-icon-refresh"></i>重置</button>

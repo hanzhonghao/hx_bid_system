@@ -37,6 +37,10 @@
         },
         childrenPage:[//子页面的一些基础信息 更多信息
             {
+                tabTitle:"history",
+                url:"admin/page_v2/history/list",
+                mcForeignName:"bidProject"
+            },            {
                 tabTitle:"score",
                 url:"admin/page_v2/score/list",
                 mcForeignName:"projectId"
@@ -231,12 +235,8 @@
                 },
                 //打印
                 print: function (identify) {
-                    layer.config({
-                        extend: 'extend/layer.ext.js'
-                    });
                     //页面一打开就执行，放入ready是为了layer所需配件（css、扩展模块）加载完毕
                     layer.ready(function () {
-                        //官网欢迎页
                         layer.open({
                             type: 2,
                             skin: 'layui-layer-lan',
@@ -245,9 +245,10 @@
                             shadeClose: true,
                             maxmin: true,
                             area: ['1000px', '500px'],
-                            content: "admin/page_v2/"+tableName+"/print",
+                            content: "admin/project_rest/print/page",
+                            success: function(layero, index){
+                            }
                         });
-                        layer.msg('政府采购委员会竞争性谈判工作记录表');
                     });
                 },
                 randomList : function (identify) {//identify 代表主键值

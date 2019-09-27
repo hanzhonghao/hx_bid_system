@@ -1018,14 +1018,14 @@
         <td class="xl68" height="33" width="1004" colspan="7" style='height:24.75pt;width:753.00pt;border-right:none;border-bottom:none;' x:str>政府采购委员会竞争性谈判工作记录</td>
     </tr>
     <tr height="27" class="xl66" style='height:20.25pt;mso-height-source:userset;mso-height-alt:405;'>
-        <td class="xl70" height="27" colspan="7" style='height:20.25pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str><font class="font3">时间：2019年月日（周）<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>地<span style='mso-spacerun:yes;'>&nbsp; </span>点：<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font><font class="font7">记录人： <span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>复核人：<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp; </span>经办人：</font></td>
+        <td class="xl70" height="27" colspan="7" style='height:20.25pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str><font class="font3"><span th:text=" '时间：' + ${projectModel.firstObj.dateForPrint}"/><span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>地<span style='mso-spacerun:yes;'>&nbsp; </span>点：<span th:text="${projectModel.firstObj.location}" /><span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><font class="font7">记录人： <span th:text="${projectModel.firstObj.recoder}" /><span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>复核人：<span th:text="${projectModel.firstObj.reviewer}" /><span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp;&nbsp; </span>经办人：<span th:text="${projectModel.firstObj.responer}" /></font></td>
     </tr>
     <tr height="35" class="xl66" style='height:26.25pt;mso-height-source:userset;mso-height-alt:525;'>
         <td class="xl71" height="35" colspan="2" style='height:26.25pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>内容</td>
-        <td class="xl72" colspan="5" style='border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;'></td>
+        <td class="xl72" colspan="5" style='border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;'><span th:text="${projectModel.firstObj.bargain}"/></td>
     </tr>
     <tr height="33" class="xl66" style='height:24.75pt;mso-height-source:userset;mso-height-alt:495;'>
-        <td class="xl73" height="258" rowspan="6" style='height:193.50pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>竞争性谈判过程<span style='mso-spacerun:yes;'>&nbsp;&nbsp;</span></td>
+        <td class="xl73" height="258" th:rowspan="${projectModel.size}" style='height:193.50pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>竞争性谈判过程<span style='mso-spacerun:yes;'>&nbsp;&nbsp;</span></td>
         <td class="xl74" x:str>参选公司</td>
         <td class="xl74" x:str>产地及品牌</td>
         <td class="xl74" x:str>型<span style='mso-spacerun:yes;'>&nbsp; </span>号</td>
@@ -1033,51 +1033,22 @@
         <td class="xl74" x:str>最终报价</td>
         <td class="xl74" x:str>备注</td>
     </tr>
-    <tr height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
-        <td class="xl75"></td>
-        <td class="xl74"></td>
-        <td class="xl71"></td>
-        <td class="xl74"></td>
-        <td class="xl74"></td>
-        <td class="xl76"></td>
-    </tr>
-    <tr height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
-        <td class="xl75"></td>
-        <td class="xl74"></td>
-        <td class="xl71"></td>
-        <td class="xl74"></td>
-        <td class="xl74"></td>
-        <td class="xl76"></td>
-    </tr>
-    <tr height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
-        <td class="xl75"></td>
-        <td class="xl74"></td>
-        <td class="xl71"></td>
-        <td class="xl74"></td>
-        <td class="xl74"></td>
-        <td class="xl76"></td>
-    </tr>
-    <tr height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
-        <td class="xl75"></td>
-        <td class="xl74"></td>
-        <td class="xl71"></td>
-        <td class="xl74"></td>
-        <td class="xl74"></td>
-        <td class="xl76"></td>
-    </tr>
-    <tr height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
-        <td class="xl75"></td>
-        <td class="xl74"></td>
-        <td class="xl71"></td>
-        <td class="xl74"></td>
-        <td class="xl74"></td>
-        <td class="xl76"></td>
+    <tr th:each="project: ${projectModel.allprojects}" height="45" class="xl67" style='height:33.75pt;mso-height-source:userset;mso-height-alt:675;'>
+        <td class="xl75" th:text="${project.projectName}"></td>
+        <td class="xl74" th:text="${project.origin}"></td>
+        <td class="xl71" th:text="${project.type}"></td>
+        <td class="xl74" th:text="${project.price}"></td>
+        <td class="xl74" th:text="${project.fprice}"></td>
+        <td class="xl76" th:text="${project.comment}"></td>
     </tr>
     <tr height="25" class="xl67" style='height:18.75pt;'>
         <td class="xl77" height="25" colspan="7" style='height:18.75pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>竞争性谈判结果</td>
     </tr>
     <tr height="38" class="xl67" style='height:28.50pt;mso-height-source:userset;mso-height-alt:570;'>
         <td class="xl78" height="38" colspan="7" style='height:28.50pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>竞争性谈判结果：</td>
+    </tr>
+    <tr height="38" class="xl67" style='height:28.50pt;mso-height-source:userset;mso-height-alt:570;'>
+        <td class="xl78" height="38" colspan="7" style='height:28.50pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>备注：</td>
     </tr>
     <tr height="50" class="xl67" style='height:37.50pt;mso-height-source:userset;mso-height-alt:750;'>
         <td class="xl79" height="50" colspan="7" style='height:37.50pt;border-right:.5pt solid windowtext;border-bottom:.5pt solid windowtext;' x:str>评审专家意见：</td>
