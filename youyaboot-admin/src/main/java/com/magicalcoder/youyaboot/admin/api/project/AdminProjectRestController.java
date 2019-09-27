@@ -122,7 +122,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     }
 
     //分页随机查询
-    @RequestMapping(value = {"random/page"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"randoms/page"}, method = {RequestMethod.GET})
     public ResponseMsg random(
         @RequestParam int page, @RequestParam int limit, @RequestParam(required = false) String safeOrderBy
         , HttpServletResponse response, @RequestParam(required = false) Integer queryType

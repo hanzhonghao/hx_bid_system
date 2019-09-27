@@ -139,8 +139,7 @@
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
                 }
                 , sort:true
-            },
-        {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',/*fixed:"right",*/align:"center"}//操作 到list.html页面查找模板对应的html
+            }
     ]];
     var obj = {
         layTable:function () {//表格
@@ -154,7 +153,7 @@
                     var _this = this;
                     table.render({//这里是layui的table分页写法 具体可参考layui官方文档
                         elem: CONFIG.layTable.elem,
-                        url : 'admin/'+tableNameRest+'/page',
+                        url : 'admin/'+tableNameRest+'/randoms'+'/page',
                         cellMinWidth : 95,
                         page : true,//是否分页
                         //height : "full-10",//高度样式
@@ -258,7 +257,7 @@
                         type : 2,//打开iframe页面 很多人不知道原理：从列表页进入详情页是直接打开新iframe,详情页根据iframe的入参主键，获取详情页数据，然后重绘详情页，整个过程都是js处理
                         maxmin: true,
                         area: ['80%', '80%'],
-                        content : "admin/page_v2/"+tableName+"/randoms",
+                        content : "admin/page_v2/"+tableName+"/random",
                         success : function(layero, index){
                             setTimeout(function(){
                                 layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
