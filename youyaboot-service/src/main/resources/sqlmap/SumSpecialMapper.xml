@@ -496,7 +496,7 @@
         tbdf =#{tbdf},
         `date`=#{date},
         zh=#{zh}
-        WHERE projectName =#{projectName} and `date`=${date}
+        WHERE projectName =#{projectName} and date=#{date}
         <!--        <include refid="updatePkWhereSql"/>-->
     </update>
 
