@@ -43,6 +43,8 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     @Resource
     private ProjectService projectService;
 
+    private Project project = new Project();
+
         //外键下拉查询接口
     @RequestMapping(value = "search")
     public ResponseMsg search(
@@ -141,6 +143,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
             query.put("limit", limit);
             List<Project> modelList = projectService.getModelRandomList(time);
             Collections.shuffle(modelList);
+            project.setProjectList(modelList);
             return new ResponseMsg(count, modelList);
         }
         return null;
@@ -177,6 +180,52 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
                 model.addAttribute("size", size);
                 model.addAttribute("firstObj", firstObj);
                 return new ModelAndView("project/print", "projectModel", model);
+            }
+        }
+        return null;
+    }
+
+    //分页查询
+    @RequestMapping(value={"useforrandom/page"}, method={RequestMethod.GET})
+    public ResponseMsg useforrandom(
+        @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
+        @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFirst ,
+        @RequestParam(required = false,value ="dateSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateSecond ,
+        @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy
+        ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
+    ){
+        Map<String,Object> query = new HashMap();
+        query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
+        query.put("dateFirst",dateFirst);
+        query.put("dateSecond",dateSecond);
+        Integer count = projectService.getModelListCount(query);
+        if(StringUtil.isBlank(safeOrderBy)){
+            query.put("notSafeOrderBy","id asc,price asc");
+        }else{
+            query.put("safeOrderBy",safeOrderBy);
+        }
+        if(queryType==null || queryType == QUERY_TYPE_SEARCH){//普通查询
+            limit = Math.min(limit, PageConstant.MAX_LIMIT);
+            query.put("start",(page - 1) * limit);query.put("limit",limit);
+            return new ResponseMsg(count,projectService.getModelList(query));
+        }else if(queryType == QUERY_TYPE_EXPORT_EXCEL){
+            query.put("start",(page - 1) * limit);query.put("limit",limit);
+            String fileName = "竞标信息录入表";
+            // 列名
+            String columnNames[] = {"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"};
+            // map中的key
+            String keys[] = {"numbers", "projectName", "type", "origin", "price", "fprice", "comment", "dates", "location", "recoder", "reviewer", "responer", "bargain"};
+            List<Project> projectList = project.getProjectList();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                for (int i=1;i<=projectList.size();i++){
+                    projectList.get(i-1).setNumbers(i);
+                    String formatDate = sdf.format(projectList.get(i - 1).getDate());
+                    projectList.get(i-1).setDates(formatDate);
+                }
+                ExportPOIUtils.start_download(response, fileName, projectList, columnNames, keys);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return null;

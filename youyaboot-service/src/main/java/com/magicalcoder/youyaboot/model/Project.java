@@ -7,6 +7,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.math.*;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 /**
 * 代码为自动生成 Created by www.magicalcoder.com
@@ -35,6 +37,7 @@ public class Project implements Serializable{
     private int numbers;
     private String dates;
     private String dateForPrint;
+    private List<Project> projectList;
 
 
     public Long getId(){

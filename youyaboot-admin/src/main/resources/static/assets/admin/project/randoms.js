@@ -71,75 +71,74 @@
     var tableName = CONFIG.tableName;
     //表格每一列配置
     var COLS = [[
-        {type: "checkbox", /*fixed:"left",*/ width:50},//全选
-            {title: '编号', type:'numbers',align:"center",minWidth:100 },
+            {title: '序号', type:'numbers',align:"center",minWidth:200 },
 
             {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
+                    return '<input type="text" readonly="readonly" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'
                 }
                 , sort:true
             },
 
-            {field: 'origin', title: '产地及品牌', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.origin) +'" class="magicalcoder-table-text layui-input security_list_table_form_origin" name="origin" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="产地及品牌"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'type', title: '型号', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.type) +'" class="magicalcoder-table-text layui-input security_list_table_form_type" name="type" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="型号"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'price', title: '报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.price) +'" class="magicalcoder-table-text layui-input security_list_table_form_price" name="price" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="报价"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'fprice', title: '最终报价', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.fprice) +'" class="magicalcoder-table-text layui-input security_list_table_form_fprice" name="fprice" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终报价"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'comment', title: '备注', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.comment) +'" class="magicalcoder-table-text layui-input security_list_table_form_comment" name="comment" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="备注"/>'
-                }
-                , sort:true
-            },
+            // {field: 'origin', title: '产地及品牌', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.origin) +'" class="magicalcoder-table-text layui-input security_list_table_form_origin" name="origin" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="产地及品牌"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'type', title: '型号', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.type) +'" class="magicalcoder-table-text layui-input security_list_table_form_type" name="type" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="型号"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'price', title: '报价', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.price) +'" class="magicalcoder-table-text layui-input security_list_table_form_price" name="price" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="报价"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'fprice', title: '最终报价', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.fprice) +'" class="magicalcoder-table-text layui-input security_list_table_form_fprice" name="fprice" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="最终报价"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'comment', title: '备注', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.comment) +'" class="magicalcoder-table-text layui-input security_list_table_form_comment" name="comment" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="备注"/>'
+            //     }
+            //     , sort:true
+            // },
             {field: 'date', title: '时间', align:'center', minWidth:250, templet :"#dateTemplate",sort:true},
 
-            {field: 'location', title: '地点', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.location) +'" class="magicalcoder-table-text layui-input security_list_table_form_location" name="location" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="地点"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'recoder', title: '记录人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.recoder) +'" class="magicalcoder-table-text layui-input security_list_table_form_recoder" name="recoder" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="记录人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'reviewer', title: '复核人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.reviewer) +'" class="magicalcoder-table-text layui-input security_list_table_form_reviewer" name="reviewer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="复核人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'responer', title: '经办人', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.responer) +'" class="magicalcoder-table-text layui-input security_list_table_form_responer" name="responer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="经办人"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'bargain', title: '内容', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
-                }
-                , sort:true
-            }
+            // {field: 'location', title: '地点', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.location) +'" class="magicalcoder-table-text layui-input security_list_table_form_location" name="location" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="地点"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'recoder', title: '记录人', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.recoder) +'" class="magicalcoder-table-text layui-input security_list_table_form_recoder" name="recoder" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="记录人"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'reviewer', title: '复核人', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.reviewer) +'" class="magicalcoder-table-text layui-input security_list_table_form_reviewer" name="reviewer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify" magicalcoder-verify="|minLength=0"  placeholder="复核人"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'responer', title: '经办人', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.responer) +'" class="magicalcoder-table-text layui-input security_list_table_form_responer" name="responer" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="经办人"/>'
+            //     }
+            //     , sort:true
+            // },
+            //
+            // {field: 'bargain', title: '内容', minWidth:200,templet:function (d) {
+            //         return '<input type="text" value="'+ mc_util.escapeHTML(d.bargain) +'" class="magicalcoder-table-text layui-input security_list_table_form_bargain" name="bargain" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="内容"/>'
+            //     }
+            //     , sort:true
+            // }
     ]];
     var obj = {
         layTable:function () {//表格
@@ -433,7 +432,7 @@
                 whereData.queryType = mc_constant.QUERY_TYPE_EXPORT_EXCEL;//代表是导出excel类型 参加controller实现
                 whereData.page = 1;
                 whereData.limit = dataMaxExportCount;
-                var url = 'admin/'+tableNameRest+'/page?'
+                var url = 'admin/'+tableNameRest+'/useforrandom/page?'
                 var arr = []
                 for(var i in whereData){
                     arr.push(i+"="+whereData[i])
