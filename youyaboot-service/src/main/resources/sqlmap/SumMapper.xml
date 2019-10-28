@@ -36,8 +36,8 @@
         select tem.* ,(tem.basePoint/tem.finalPoint*45) as tbdf  , ((tem.basePoint/tem.finalPoint*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
-        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
-        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
         bpc.base_point as basePoint,
         bpc.final_point as finalPoint
@@ -93,7 +93,7 @@
     </select>
 
     <select id="getCommonSumListFromDB"  resultType="CommonSum">
-        select * from common_sum  WHERE date=#{date}
+        select * from common_sum  WHERE date=#{date} ORDER BY zh DESC
     </select>
 
 

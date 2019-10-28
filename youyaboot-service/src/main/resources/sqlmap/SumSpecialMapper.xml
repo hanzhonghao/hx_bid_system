@@ -454,8 +454,8 @@
         select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/2))+(tem.sBasePoint/tem.sFinalPoint*(1/2)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
-        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
-        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require+ s.apply)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
         count(s.project_id) as `count`,
         bps.e_base_point as eBasePoint,
@@ -501,7 +501,7 @@
     </update>
 
     <select id="getSpecialSumListFromDB"  resultType="SpecialSum">
-        select * from special_sum  WHERE date=#{date}
+        select * from special_sum  WHERE date=#{date} ORDER BY zh DESC
     </select>
 
 

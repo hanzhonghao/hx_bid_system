@@ -27,10 +27,10 @@
         var password = $("#password").val();
         var sessionId = $("#sessionId").val();
         var code = $("#code").val();
-        if(code ==''){
-            layer.msg("请输入验证码");
-            return false;
-        }
+        // if(code ==''){
+        //     layer.msg("请输入验证码");
+        //     return false;
+        // }
         _t.text("登录中...").attr("disabled",true).addClass("layui-disabled");
         $.post("login",{"username":$("#username").val(),"password":password+"|||"+sessionId+"|||"+code,"time":new Date().getTime()},function (data) {
             if(data.flag){

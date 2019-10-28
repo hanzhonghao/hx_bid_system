@@ -42,15 +42,15 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         String sessionId = parr[1];//
         String code = parr[2].trim().toLowerCase();//验证码
         String storeCode = null;
-        storeCode = redisUtil.get(PermissionConstant.CODE_PREFIX+sessionId);
-        if(storeCode!=null){
-            storeCode = storeCode.toLowerCase();
-        }else {
-            throw new BadCredentialsException("验证码失效,请点击验证码进行重新获取");
-        }
-        if(!code.equals(storeCode)){
-            throw new BadCredentialsException("验证码错误");
-        }
+//        storeCode = redisUtil.get(PermissionConstant.CODE_PREFIX+sessionId);
+//        if(storeCode!=null){
+//            storeCode = storeCode.toLowerCase();
+//        }else {
+//            throw new BadCredentialsException("验证码失效,请点击验证码进行重新获取");
+//        }
+//        if(!code.equals(storeCode)){
+//            throw new BadCredentialsException("验证码错误");
+//        }
         if(StringUtil.isBlank(password)){
             throw new BadCredentialsException("密码不能为空");
         }
