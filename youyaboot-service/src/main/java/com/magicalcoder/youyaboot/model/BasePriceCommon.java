@@ -19,48 +19,12 @@ public class BasePriceCommon implements Serializable{
 
     private Long id;//id
     private int numbers;
-    private Integer basePoint;//base_point
-    private Integer finalPoint;//final_point
+    private double basePoint;//base_point
+    private double finalPoint;//final_point
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date inputTime;//input_time
     private Long projectId;//project_id
     private String project_str;
     private String dates;
-
-
-    public Long getId(){
-        return id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Integer getBasePoint(){
-        return basePoint;
-    }
-    public void setBasePoint(Integer basePoint){
-        this.basePoint = basePoint;
-    }
-
-    public Integer getFinalPoint(){
-        return finalPoint;
-    }
-    public void setFinalPoint(Integer finalPoint){
-        this.finalPoint = finalPoint;
-    }
-
-    public Date getInputTime(){
-        return inputTime;
-    }
-    public void setInputTime(Date inputTime){
-        this.inputTime = inputTime;
-    }
-
-    public Long getProjectId(){
-        return projectId;
-    }
-    public void setProjectId(Long projectId){
-        this.projectId = projectId;
-    }
 }

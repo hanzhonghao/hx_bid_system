@@ -28,8 +28,8 @@
 | 2 | projectName              | String          | 参选公司 |
 | 3 | type              | String          | 型号 |
 | 4 | origin              | String          | 产地及品牌 |
-| 5 | price              | Integer          | 报价 |
-| 6 | fprice              | Integer          | 最终报价 |
+| 5 | price              | BigDecimal          | 报价 |
+| 6 | fprice              | BigDecimal          | 最终报价 |
 | 7 | comment              | String          | 备注 |
 | 8 | date              | Date          | 时间 |
 | 9 | location              | String          | 地点 |
@@ -54,8 +54,8 @@
 | 2| projectName  | String  | 参选公司 |
 | 3| type  | String  | 型号 |
 | 4| origin  | String  | 产地及品牌 |
-| 5| price  | Integer  | 报价 |
-| 6| fprice  | Integer  | 最终报价 |
+| 5| price  | BigDecimal  | 报价 |
+| 6| fprice  | BigDecimal  | 最终报价 |
 | 7| comment  | String  | 备注 |
 | 8| date  | Date  | 时间 |
 | 9| location  | String  | 地点 |
@@ -88,8 +88,8 @@
 | 2| projectName  | String  | 参选公司 |
 | 3| type  | String  | 型号 |
 | 4| origin  | String  | 产地及品牌 |
-| 5| price  | Integer  | 报价 |
-| 6| fprice  | Integer  | 最终报价 |
+| 5| price  | BigDecimal  | 报价 |
+| 6| fprice  | BigDecimal  | 最终报价 |
 | 7| comment  | String  | 备注 |
 | 8| date  | Date  | 时间 |
 | 9| location  | String  | 地点 |
@@ -188,8 +188,8 @@
 | 2 | projectName              | String          | 参选公司 |
 | 3 | type              | String          | 型号 |
 | 4 | origin              | String          | 产地及品牌 |
-| 5 | price              | Integer          | 报价 |
-| 6 | fprice              | Integer          | 最终报价 |
+| 5 | price              | BigDecimal          | 报价 |
+| 6 | fprice              | BigDecimal          | 最终报价 |
 | 7 | comment              | String          | 备注 |
 | 8 | date              | Date          | 时间 |
 | 9 | location              | String          | 地点 |

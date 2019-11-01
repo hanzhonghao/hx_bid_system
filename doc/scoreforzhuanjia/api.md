@@ -27,11 +27,11 @@
 | 1 | id              | Long          | 编号 |
 | 2 | projectId              | Long          | 参选公司 |
 | 3 | categoryId              | Integer          | 打分表分类 |
-| 4 | techRequire              | Integer          | 商务技术要求响应情况 |
-| 5 | afterSale              | Integer          | 售后服务方案情况 |
-| 6 | apply              | Integer          | 投标文件供应商业绩 |
-| 7 | geneSitu              | Integer          | 制造厂商综合情况 |
-| 8 | standard              | Integer          | 投标文件规范性 |
+| 4 | techRequire              | BigDecimal          | 商务技术要求响应情况 |
+| 5 | afterSale              | BigDecimal          | 售后服务方案情况 |
+| 6 | apply              | BigDecimal          | 投标文件供应商业绩 |
+| 7 | geneSitu              | BigDecimal          | 制造厂商综合情况 |
+| 8 | standard              | BigDecimal          | 投标文件规范性 |
 | 9 | date              | Date          | 打分日期 |
 | 10 | signature              | String          | 打分人 |
 | 11 | comment              | String          | 备注 |
@@ -51,11 +51,11 @@
 | 1| id  | Long  | 编号 |
 | 2| projectId  | Long  | 参选公司 |
 | 3| categoryId  | Integer  | 打分表分类 |
-| 4| techRequire  | Integer  | 商务技术要求响应情况 |
-| 5| afterSale  | Integer  | 售后服务方案情况 |
-| 6| apply  | Integer  | 投标文件供应商业绩 |
-| 7| geneSitu  | Integer  | 制造厂商综合情况 |
-| 8| standard  | Integer  | 投标文件规范性 |
+| 4| techRequire  | BigDecimal  | 商务技术要求响应情况 |
+| 5| afterSale  | BigDecimal  | 售后服务方案情况 |
+| 6| apply  | BigDecimal  | 投标文件供应商业绩 |
+| 7| geneSitu  | BigDecimal  | 制造厂商综合情况 |
+| 8| standard  | BigDecimal  | 投标文件规范性 |
 | 9| date  | Date  | 打分日期 |
 | 10| signature  | String  | 打分人 |
 | 11| comment  | String  | 备注 |
@@ -83,11 +83,11 @@
 | 1| id  | Long  | 编号 |
 | 2| projectId  | Long  | 参选公司 |
 | 3| categoryId  | Integer  | 打分表分类 |
-| 4| techRequire  | Integer  | 商务技术要求响应情况 |
-| 5| afterSale  | Integer  | 售后服务方案情况 |
-| 6| apply  | Integer  | 投标文件供应商业绩 |
-| 7| geneSitu  | Integer  | 制造厂商综合情况 |
-| 8| standard  | Integer  | 投标文件规范性 |
+| 4| techRequire  | BigDecimal  | 商务技术要求响应情况 |
+| 5| afterSale  | BigDecimal  | 售后服务方案情况 |
+| 6| apply  | BigDecimal  | 投标文件供应商业绩 |
+| 7| geneSitu  | BigDecimal  | 制造厂商综合情况 |
+| 8| standard  | BigDecimal  | 投标文件规范性 |
 | 9| date  | Date  | 打分日期 |
 | 10| signature  | String  | 打分人 |
 | 11| comment  | String  | 备注 |
@@ -180,11 +180,11 @@
 | 1 | id              | Long          | 编号 |
 | 2 | projectId              | Long          | 参选公司 |
 | 3 | categoryId              | Integer          | 打分表分类 |
-| 4 | techRequire              | Integer          | 商务技术要求响应情况 |
-| 5 | afterSale              | Integer          | 售后服务方案情况 |
-| 6 | apply              | Integer          | 投标文件供应商业绩 |
-| 7 | geneSitu              | Integer          | 制造厂商综合情况 |
-| 8 | standard              | Integer          | 投标文件规范性 |
+| 4 | techRequire              | BigDecimal          | 商务技术要求响应情况 |
+| 5 | afterSale              | BigDecimal          | 售后服务方案情况 |
+| 6 | apply              | BigDecimal          | 投标文件供应商业绩 |
+| 7 | geneSitu              | BigDecimal          | 制造厂商综合情况 |
+| 8 | standard              | BigDecimal          | 投标文件规范性 |
 | 9 | date              | Date          | 打分日期 |
 | 10 | signature              | String          | 打分人 |
 | 11 | comment              | String          | 备注 |

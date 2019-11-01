@@ -26,10 +26,10 @@ public class SpecialSum implements Serializable{
     private String pj;
     private String signature;
     private String count;
-    private String eBasePoint;
-    private String eFinalPoint;
-    private String sBasePoint;
-    private String sFinalPoint;
+    private double eBasePoint;
+    private double eFinalPoint;
+    private double sBasePoint;
+    private double sFinalPoint;
     private int numbers;
     private String date;
 

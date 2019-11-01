@@ -29,8 +29,8 @@ public class CommonSum implements Serializable{
     private String pj;
     private String signature;
     private String count;
-    private Integer basePoint;
-    private Integer finalPoint;
+    private double basePoint;
+    private double finalPoint;
     private String date;
 
 }

@@ -19,65 +19,15 @@ public class BasePriceSpecial implements Serializable{
 
     private Long id;//id
     private Long projectId;//project_id
-    private Integer ebasePoint;//e_base_point
-    private Integer efinalPoint;//e_final_point
+    private double ebasePoint;//e_base_point
+    private double efinalPoint;//e_final_point
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date inputTime;//input_time
-    private Integer sbasePoint;//s_base_point
-    private Integer sfinalPoint;//s_final_point
+    private double sbasePoint;//s_base_point
+    private double sfinalPoint;//s_final_point
     private Integer numbers;
     private String project_str;
     private String dates;
 
-
-
-    public Long getId(){
-        return id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public Long getProjectId(){
-        return projectId;
-    }
-    public void setProjectId(Long projectId){
-        this.projectId = projectId;
-    }
-
-    public Integer getEbasePoint(){
-        return ebasePoint;
-    }
-    public void setEbasePoint(Integer ebasePoint){
-        this.ebasePoint = ebasePoint;
-    }
-
-    public Integer getEfinalPoint(){
-        return efinalPoint;
-    }
-    public void setEfinalPoint(Integer efinalPoint){
-        this.efinalPoint = efinalPoint;
-    }
-
-    public Date getInputTime(){
-        return inputTime;
-    }
-    public void setInputTime(Date inputTime){
-        this.inputTime = inputTime;
-    }
-
-    public Integer getSbasePoint(){
-        return sbasePoint;
-    }
-    public void setSbasePoint(Integer sbasePoint){
-        this.sbasePoint = sbasePoint;
-    }
-
-    public Integer getSfinalPoint(){
-        return sfinalPoint;
-    }
-    public void setSfinalPoint(Integer sfinalPoint){
-        this.sfinalPoint = sfinalPoint;
-    }
 }

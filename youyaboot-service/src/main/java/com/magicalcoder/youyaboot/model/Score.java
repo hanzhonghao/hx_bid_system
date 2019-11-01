@@ -18,11 +18,11 @@ import lombok.Data;
 public class Score implements Serializable{
 
     private Long id;//id
-    private Integer afterSale;//after_sale
-    private Integer apply;//apply
-    private Integer geneSitu;//gene_situ
-    private Integer standard;//standard
-    private Integer techRequire;//tech_require
+    private double afterSale;//after_sale
+    private double apply;//apply
+    private double geneSitu;//gene_situ
+    private double standard;//standard
+    private double techRequire;//tech_require
     private String signature;//signature
     private Long categoryId;//category_id
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
