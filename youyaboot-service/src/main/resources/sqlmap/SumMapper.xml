@@ -164,7 +164,7 @@
 
     <!-- 批量删除实体 in 根据主键-->
     <delete id="deleteModelByIds" parameterType="java.util.Set">
-        delete from <include refid="tableSql"/> where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+        delete from common_sum where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
     </delete>
     <!-- 更新一个实体 -->
     <update id="updateCommonSum" parameterType="CommonSum">

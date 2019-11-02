@@ -70,6 +70,8 @@
                         // date = new Date();
                     }
                     COLS = [[
+                        {type: "checkbox", /*fixed:"left",*/ width:50},//全选
+
                         {title: '编号', type:'numbers',align:"center", minWidth: 100},
                         {
                             field: 'projectName', title: '参选公司', minWidth: 200,templet: function (d) {
@@ -366,7 +368,7 @@
                             if(!data.flag){
                                 layer.msg("删除失败:"+data.desc);
                             }else {
-                                _t.layTable().refreshTableFromCurrentPage();
+                                // _t.layTable().refreshTableFromCurrentPage();
                                 layer.close(index);
                             }
                         })

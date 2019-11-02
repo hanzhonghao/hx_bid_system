@@ -15,6 +15,7 @@ import java.util.Date;
 */
 @Data
 public class CommonSum implements Serializable{
+    private Long id;//id
     private int numbers;
     private String tbdf;
     private String zh;

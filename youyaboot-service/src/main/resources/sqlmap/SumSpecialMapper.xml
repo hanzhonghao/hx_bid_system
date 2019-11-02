@@ -36,8 +36,8 @@
         select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/9))+(tem.sBasePoint/tem.sFinalPoint*(8/9)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
-        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
-        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
         count(s.project_id) as `count`,
         bps.e_base_point as eBasePoint,
@@ -119,7 +119,7 @@
 
     <!-- 批量删除实体 in 根据主键-->
     <delete id="deleteModelByIds" parameterType="java.util.Set">
-        delete from <include refid="tableSql"/> where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+        delete from special_sum where `id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
     </delete>
     <!-- 更新一个实体 -->
     <update id="updateModel" parameterType="SumSpecial">
@@ -408,8 +408,8 @@
         select tem.* ,((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/4.5))+(tem.sBasePoint/tem.sFinalPoint*(3.5/4.5)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
-        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
-        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
         count(s.project_id) as `count`,
         bps.e_base_point as eBasePoint,
@@ -431,8 +431,8 @@
         select tem.* ,(((tem.eBasePoint/tem.eFinalPoint)*(1/3))+((tem.sBasePoint/tem.sFinalPoint)*(2/3)))*45 as tbdf  , ((((tem.eBasePoint/tem.eFinalPoint*(1/3))+(tem.sBasePoint/tem.sFinalPoint*(2/3)))*45) + tem.pj) as zh from
         (SELECT
         project_name as projectName,
-        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require)) as  scoreSum,
-        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require)))/(count(s.project_id)) as  pj,
+        GROUP_CONCAT((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)) as  scoreSum,
+        (sum((s.after_sale + s.gene_situ+s.standard+s.tech_require+s.apply)))/(count(s.project_id)) as  pj,
         GROUP_CONCAT(signature) as signature,
         count(s.project_id) as `count`,
         bps.e_base_point as eBasePoint,
