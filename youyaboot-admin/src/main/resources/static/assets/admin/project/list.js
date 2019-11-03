@@ -63,7 +63,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',projectName:'project_name',type:'type',origin:'origin',price:'price',fprice:'fprice',comment:'comment',date:'date',location:'location',recoder:'recoder',reviewer:'reviewer',responer:'responer',bargain:'bargain'
+            id:'id',projectName:'project_name',type:'type',origin:'origin',price:'price',fprice:'fprice',comment:'comment',date:'date',location:'location',recoder:'recoder',reviewer:'reviewer',responer:'responer',bargain:'bargain',xiangmu:'xiangmu'
         }
     };
     //后端请求时候的表模块规则url
@@ -73,7 +73,11 @@
     var COLS = [[
             {type: "checkbox", /*fixed:"left",*/ width:50},//全选
 
-            {title: '编号', type:'numbers',align:"center",minWidth:100 },
+            {field: 'xiangmu', title: '项目名称', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ mc_util.escapeHTML(d.xiangmu) +'" class="magicalcoder-table-text layui-input security_list_table_form_xiangmu" name="xiangmu" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="项目名称"/>'
+                }
+                , sort:true
+            },
 
             {field: 'projectName', title: '参选公司', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ mc_util.escapeHTML(d.projectName) +'" class="magicalcoder-table-text layui-input security_list_table_form_projectName" name="projectName" data-identify="'+d.id+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0"  placeholder="参选公司"/>'

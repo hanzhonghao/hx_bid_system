@@ -20,4 +20,6 @@ import java.math.*;
 
 public interface ProjectMapper extends ICommonMapper<Project,Long>{
     List<Project> getModelRandomList(@Param("date")String date);
+    List<Project> getProjectNameList(@Param("date")String date,@Param("xiangmu")String xiangmu);
+    List<Project> getxiangmuList(@Param("date")String date);
 }

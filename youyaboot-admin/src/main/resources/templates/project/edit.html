@@ -24,6 +24,12 @@
                             <input type="text" disabled="true" class="layui-input" name="id"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
                         </div>
                     </div>
+                    <div class="layui-form-item security_edit_form_param_xiangmu">
+                        <label class="layui-form-label">项目名称</label>
+                        <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="xiangmu" placeholder="项目名称" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="|minLength=0" value="" />
+                        </div>
+                    </div>
                     <div class="layui-form-item security_edit_form_param_projectName">
                         <label class="layui-form-label">参选公司</label>
                         <div class="layui-input-block">

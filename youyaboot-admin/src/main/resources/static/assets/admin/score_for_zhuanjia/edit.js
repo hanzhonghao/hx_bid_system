@@ -50,11 +50,52 @@
         render:function () {//入口
             this.ajaxGetEntityDataAndAutoSetFormUiValue();
             this.submit();
+
+        },
+
+        init : function(){
+            $.get('admin/'+tableNameRest+'/getxiangmuList',function(res){
+                if(res.flag){
+                    var data = res.data;
+                    var  html='';
+                    for (var i=0; i<data.length ; i++){
+                        html += '<option value="'+data[i].xiangmu+'"> '+data[i].xiangmu+' </option>';
+                    }
+                    $("#xiangmu").append(html);
+                    //append后必须从新渲染
+                    form.render('select');
+                }else {
+                    top.layer.msg("查询失败:"+res.desc);
+                }
+            })
+
+            form.on('select(xiangmu)', function(data){
+                $("#projectName").html('<option value="">请选择</option>');
+                $.get('admin/'+tableNameRest+'/getProjectNameList',{"xiangmu":data.value},function(res){
+                    if(res.flag){
+                        var data = res.data;
+                        var  html='';
+                        for (var i=0; i<data.length ; i++){
+                            html += '<option value="'+data[i].id+'"> '+data[i].projectName+' </option>';
+                        }
+                        $("#projectName").append(html);
+                        //append后必须从新渲染
+                        form.render('select');
+                    }else {
+                        top.layer.msg("查询失败:"+res.desc);
+                    }
+                })
+
+
+            });
+
+
         },
         //初始化表单
         ajaxGetEntityDataAndAutoSetFormUiValue : function () {
             var _t = this;
             var identify = mc_util.getParameter('identify')//从url中检测主键
+            _t.init();
             if(identify!=null && identify!=''){//断定是编辑操作
                 $.getJSON('admin/'+tableNameRest+"/get/"+identify,{date:new Date().getTime()},function (data) {//获取此实体详情数据
                     if(data.flag){
@@ -79,6 +120,7 @@
             }else {//新增操作
                 //禁用外键编辑区域：只有当从更多信息点击进来 才会禁用 单表操作不会执行
                 mc_children.disabledFormParentArea();
+
                 //权限
                 mc_rmp.paintBody(moduleName,function () {
                     var verifyData =mc_layui_component.bindMagicalCoderLayUiComponentFromDetail(common_config);//返回富文本的校验 为了能同步隐藏域

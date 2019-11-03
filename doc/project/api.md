@@ -37,6 +37,7 @@
 | 11 | reviewer              | String          | 复核人 |
 | 12 | responer              | String          | 经办人 |
 | 13 | bargain              | String          | 内容 |
+| 14 | xiangmu              | String          | 项目名称 |
 
 ## 1.2 保存project详情
 
@@ -63,6 +64,7 @@
 | 11| reviewer  | String  | 复核人 |
 | 12| responer  | String  | 经办人 |
 | 13| bargain  | String  | 内容 |
+| 14| xiangmu  | String  | 项目名称 |
 
 > **输出**
 
@@ -97,6 +99,7 @@
 | 11| reviewer  | String  | 复核人 |
 | 12| responer  | String  | 经办人 |
 | 13| bargain  | String  | 内容 |
+| 14| xiangmu  | String  | 项目名称 |
 
 > **输出**
 
@@ -197,3 +200,4 @@
 | 11 | reviewer              | String          | 复核人 |
 | 12 | responer              | String          | 经办人 |
 | 13 | bargain              | String          | 内容 |
+| 14 | xiangmu              | String          | 项目名称 |

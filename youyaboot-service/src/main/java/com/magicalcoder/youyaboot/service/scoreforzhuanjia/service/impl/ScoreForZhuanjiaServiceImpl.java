@@ -1,5 +1,7 @@
 package com.magicalcoder.youyaboot.service.scoreforzhuanjia.service.impl;
 
+import com.magicalcoder.youyaboot.model.Project;
+import com.magicalcoder.youyaboot.service.project.mapper.ProjectMapper;
 import com.magicalcoder.youyaboot.service.scoreforzhuanjia.mapper.ScoreForZhuanjiaMapper;
 import com.magicalcoder.youyaboot.service.scoreforzhuanjia.service.ScoreForZhuanjiaService;
 import com.magicalcoder.youyaboot.model.ScoreForZhuanjia;
@@ -30,6 +32,9 @@ import java.math.*;
 public class ScoreForZhuanjiaServiceImpl extends CommonServiceImpl<ScoreForZhuanjia,Long> implements ScoreForZhuanjiaService,InitializingBean{
     @Resource
     private ScoreForZhuanjiaMapper scoreForZhuanjiaMapper;
+    @Resource
+    private ProjectMapper projectMapper;
+
 
     @Override
     public void afterPropertiesSet() {
@@ -39,5 +44,15 @@ public class ScoreForZhuanjiaServiceImpl extends CommonServiceImpl<ScoreForZhuan
     @Override
     public List<ScoreForZhuanjia> getSelfModelList(Map<String, Object> query) {
         return scoreForZhuanjiaMapper.getSelfModelList(query);
+    }
+
+    @Override
+    public List<Project> getxiangmuList(String time) {
+        return projectMapper.getxiangmuList(time);
+    }
+
+    @Override
+    public List<Project> getProjectNameList(String time,String xiangmu) {
+        return projectMapper.getProjectNameList(time,xiangmu);
     }
 }

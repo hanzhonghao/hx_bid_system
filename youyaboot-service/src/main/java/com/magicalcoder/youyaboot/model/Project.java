@@ -38,5 +38,6 @@ public class Project implements Serializable{
     private String dates;
     private String dateForPrint;
     private List<Project> projectList;
+   private String xiangmu;//xiangmu
 
 }

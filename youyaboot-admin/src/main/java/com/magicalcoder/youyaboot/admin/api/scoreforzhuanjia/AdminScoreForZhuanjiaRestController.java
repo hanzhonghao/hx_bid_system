@@ -4,10 +4,12 @@ import com.magicalcoder.youyaboot.admin.rmp.dto.SysAdminUserDto;
 import com.magicalcoder.youyaboot.admin.rmp.util.AdminUtil;
 import com.magicalcoder.youyaboot.core.service.CommonRestController;
 import com.magicalcoder.youyaboot.core.utils.DateFormatUtil;
+import com.magicalcoder.youyaboot.model.Project;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.sql.Time;
@@ -78,9 +80,31 @@ public class AdminScoreForZhuanjiaRestController extends CommonRestController<Sc
         return null;
     }
 
+
+    //分页查询
+    @RequestMapping(value={"/getxiangmuList","/getProjectNameList"}, method={RequestMethod.GET})
+    public ResponseMsg getxiangmuList(HttpServletRequest request,String xiangmu){
+        String url =request.getServletPath();
+        String time= DateFormatUtil.getDateTimeStr();
+        List<Project> list=null;
+        if(url.contains("getxiangmuList")){//获取项目
+            list= scoreForZhuanjiaService.getxiangmuList(time);
+        }else{  // 公司名
+            list=scoreForZhuanjiaService.getProjectNameList(time,xiangmu);
+        }
+
+        return new ResponseMsg(list);
+    }
+
+
+
+
     @Override
     public void afterPropertiesSet() throws Exception {
         super.commonService = scoreForZhuanjiaService;
         super.primaryKey = "id";//硬编码此实体的主键名称
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.magicalcoder.youyaboot.service.scoreforzhuanjia.service;
 
 import com.magicalcoder.youyaboot.core.service.ICommonService;
+import com.magicalcoder.youyaboot.model.Project;
 import com.magicalcoder.youyaboot.model.ScoreForZhuanjia;
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,8 @@ public interface ScoreForZhuanjiaService extends ICommonService<ScoreForZhuanjia
 
 
     List<ScoreForZhuanjia> getSelfModelList(Map<String, Object> query);
+
+    List<Project> getxiangmuList(String time);
+
+    List<Project> getProjectNameList(String time,String xiangmu);
 }
