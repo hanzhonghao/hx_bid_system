@@ -25,19 +25,19 @@
 |          |               |          |                         |
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
-| 2 | projectName              | String          | 参选公司 |
-| 3 | type              | String          | 型号 |
-| 4 | origin              | String          | 产地及品牌 |
-| 5 | price              | BigDecimal          | 报价 |
-| 6 | fprice              | BigDecimal          | 最终报价 |
-| 7 | comment              | String          | 备注 |
-| 8 | date              | Date          | 时间 |
-| 9 | location              | String          | 地点 |
-| 10 | recoder              | String          | 记录人 |
-| 11 | reviewer              | String          | 复核人 |
-| 12 | responer              | String          | 经办人 |
-| 13 | bargain              | String          | 内容 |
-| 14 | xiangmu              | String          | 项目名称 |
+| 2 | xiangmu              | String          | 项目名称 |
+| 3 | projectName              | String          | 参选公司 |
+| 4 | type              | String          | 型号 |
+| 5 | origin              | String          | 产地及品牌 |
+| 6 | price              | BigDecimal          | 报价 |
+| 7 | fprice              | BigDecimal          | 最终报价 |
+| 8 | comment              | String          | 备注 |
+| 9 | date              | Date          | 时间 |
+| 10 | location              | String          | 地点 |
+| 11 | recoder              | String          | 记录人 |
+| 12 | reviewer              | String          | 复核人 |
+| 13 | responer              | String          | 经办人 |
+| 14 | bargain              | String          | 内容 |
 
 ## 1.2 保存project详情
 
@@ -52,19 +52,19 @@
 | 序号 | 字段名称 | 字段类型 | 字段描述     |
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
-| 2| projectName  | String  | 参选公司 |
-| 3| type  | String  | 型号 |
-| 4| origin  | String  | 产地及品牌 |
-| 5| price  | BigDecimal  | 报价 |
-| 6| fprice  | BigDecimal  | 最终报价 |
-| 7| comment  | String  | 备注 |
-| 8| date  | Date  | 时间 |
-| 9| location  | String  | 地点 |
-| 10| recoder  | String  | 记录人 |
-| 11| reviewer  | String  | 复核人 |
-| 12| responer  | String  | 经办人 |
-| 13| bargain  | String  | 内容 |
-| 14| xiangmu  | String  | 项目名称 |
+| 2| xiangmu  | String  | 项目名称 |
+| 3| projectName  | String  | 参选公司 |
+| 4| type  | String  | 型号 |
+| 5| origin  | String  | 产地及品牌 |
+| 6| price  | BigDecimal  | 报价 |
+| 7| fprice  | BigDecimal  | 最终报价 |
+| 8| comment  | String  | 备注 |
+| 9| date  | Date  | 时间 |
+| 10| location  | String  | 地点 |
+| 11| recoder  | String  | 记录人 |
+| 12| reviewer  | String  | 复核人 |
+| 13| responer  | String  | 经办人 |
+| 14| bargain  | String  | 内容 |
 
 > **输出**
 
@@ -87,19 +87,19 @@
 | 序号 | 字段名称 | 字段类型 | 字段描述     |
 | ---- | -------- | -------- | ------------ |
 | 1| id  | Long  | 编号 |
-| 2| projectName  | String  | 参选公司 |
-| 3| type  | String  | 型号 |
-| 4| origin  | String  | 产地及品牌 |
-| 5| price  | BigDecimal  | 报价 |
-| 6| fprice  | BigDecimal  | 最终报价 |
-| 7| comment  | String  | 备注 |
-| 8| date  | Date  | 时间 |
-| 9| location  | String  | 地点 |
-| 10| recoder  | String  | 记录人 |
-| 11| reviewer  | String  | 复核人 |
-| 12| responer  | String  | 经办人 |
-| 13| bargain  | String  | 内容 |
-| 14| xiangmu  | String  | 项目名称 |
+| 2| xiangmu  | String  | 项目名称 |
+| 3| projectName  | String  | 参选公司 |
+| 4| type  | String  | 型号 |
+| 5| origin  | String  | 产地及品牌 |
+| 6| price  | BigDecimal  | 报价 |
+| 7| fprice  | BigDecimal  | 最终报价 |
+| 8| comment  | String  | 备注 |
+| 9| date  | Date  | 时间 |
+| 10| location  | String  | 地点 |
+| 11| recoder  | String  | 记录人 |
+| 12| reviewer  | String  | 复核人 |
+| 13| responer  | String  | 经办人 |
+| 14| bargain  | String  | 内容 |
 
 > **输出**
 
@@ -188,16 +188,16 @@
 |          |               |          |                         |
 | 字段解释 |               |          |                         |
 | 1 | id              | Long          | 编号 |
-| 2 | projectName              | String          | 参选公司 |
-| 3 | type              | String          | 型号 |
-| 4 | origin              | String          | 产地及品牌 |
-| 5 | price              | BigDecimal          | 报价 |
-| 6 | fprice              | BigDecimal          | 最终报价 |
-| 7 | comment              | String          | 备注 |
-| 8 | date              | Date          | 时间 |
-| 9 | location              | String          | 地点 |
-| 10 | recoder              | String          | 记录人 |
-| 11 | reviewer              | String          | 复核人 |
-| 12 | responer              | String          | 经办人 |
-| 13 | bargain              | String          | 内容 |
-| 14 | xiangmu              | String          | 项目名称 |
+| 2 | xiangmu              | String          | 项目名称 |
+| 3 | projectName              | String          | 参选公司 |
+| 4 | type              | String          | 型号 |
+| 5 | origin              | String          | 产地及品牌 |
+| 6 | price              | BigDecimal          | 报价 |
+| 7 | fprice              | BigDecimal          | 最终报价 |
+| 8 | comment              | String          | 备注 |
+| 9 | date              | Date          | 时间 |
+| 10 | location              | String          | 地点 |
+| 11 | recoder              | String          | 记录人 |
+| 12 | reviewer              | String          | 复核人 |
+| 13 | responer              | String          | 经办人 |
+| 14 | bargain              | String          | 内容 |

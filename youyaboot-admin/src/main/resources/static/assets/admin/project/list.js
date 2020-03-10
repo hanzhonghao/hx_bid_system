@@ -63,7 +63,7 @@
          },
         //排序跟数据库实际字段名的映射
         sortMap:{
-            id:'id',projectName:'project_name',type:'type',origin:'origin',price:'price',fprice:'fprice',comment:'comment',date:'date',location:'location',recoder:'recoder',reviewer:'reviewer',responer:'responer',bargain:'bargain',xiangmu:'xiangmu'
+            id:'id',xiangmu:'xiangmu',projectName:'project_name',type:'type',origin:'origin',price:'price',fprice:'fprice',comment:'comment',date:'date',location:'location',recoder:'recoder',reviewer:'reviewer',responer:'responer',bargain:'bargain'
         }
     };
     //后端请求时候的表模块规则url

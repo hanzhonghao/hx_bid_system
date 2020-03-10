@@ -11,6 +11,7 @@
     <!-- Project -->
     <resultMap id="resultMap" type="Project">
         <id column="id" property="id"/>
+        <result column="xiangmu" property="xiangmu" />
         <result column="project_name" property="projectName" />
         <result column="type" property="type" />
         <result column="origin" property="origin" />
@@ -23,7 +24,6 @@
         <result column="reviewer" property="reviewer" />
         <result column="responer" property="responer" />
         <result column="bargain" property="bargain" />
-        <result column="xiangmu" property="xiangmu" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -139,6 +139,7 @@
    <sql id="selectSqlIgnoreModel">
         <trim suffixOverrides=",">
             <if test="idIgnore_ == null or !idIgnore_">`id`,</if>
+            <if test="xiangmuIgnore_ == null or !xiangmuIgnore_">`xiangmu`,</if>
             <if test="projectNameIgnore_ == null or !projectNameIgnore_">`project_name`,</if>
             <if test="typeIgnore_ == null or !typeIgnore_">`type`,</if>
             <if test="originIgnore_ == null or !originIgnore_">`origin`,</if>
@@ -150,13 +151,13 @@
             <if test="recoderIgnore_ == null or !recoderIgnore_">`recoder`,</if>
             <if test="reviewerIgnore_ == null or !reviewerIgnore_">`reviewer`,</if>
             <if test="responerIgnore_ == null or !responerIgnore_">`responer`,</if>
-            <if test="bargainIgnore_ == null or !bargainIgnore_">`bargain`,</if>
-            <if test="xiangmuIgnore_ == null or !xiangmuIgnore_">`xiangmu`</if>
+            <if test="bargainIgnore_ == null or !bargainIgnore_">`bargain`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
         <trim suffixOverrides=",">
          <if test="idNotIgnore_ != null and idNotIgnore_">`id`,</if>
+         <if test="xiangmuNotIgnore_ != null and xiangmuNotIgnore_">`xiangmu`,</if>
          <if test="projectNameNotIgnore_ != null and projectNameNotIgnore_">`project_name`,</if>
          <if test="typeNotIgnore_ != null and typeNotIgnore_">`type`,</if>
          <if test="originNotIgnore_ != null and originNotIgnore_">`origin`,</if>
@@ -168,18 +169,18 @@
          <if test="recoderNotIgnore_ != null and recoderNotIgnore_">`recoder`,</if>
          <if test="reviewerNotIgnore_ != null and reviewerNotIgnore_">`reviewer`,</if>
          <if test="responerNotIgnore_ != null and responerNotIgnore_">`responer`,</if>
-         <if test="bargainNotIgnore_ != null and bargainNotIgnore_">`bargain`,</if>
-         <if test="xiangmuNotIgnore_ != null and xiangmuNotIgnore_">`xiangmu`</if>
+         <if test="bargainNotIgnore_ != null and bargainNotIgnore_">`bargain`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="id!=null">`id`,</if> `project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,`xiangmu`,
+            <if test="id!=null">`id`,</if> `xiangmu`,`project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,
         </trim>
     </sql>
     <sql id="douValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="xiangmu!=null">#{xiangmu},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="projectName!=null">#{projectName},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="type!=null">#{type},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="origin!=null">#{origin},</when><otherwise>NULL,</otherwise></choose>
@@ -198,6 +199,7 @@
     <sql id="douFieldWithoutNullSql">
         <trim suffixOverrides=",">
                 <if test="id!=null">`id`,</if>
+                <if test="xiangmu!=null">`xiangmu`,</if>
                 <if test="projectName!=null">`project_name`,</if>
                 <if test="type!=null">`type`,</if>
                 <if test="origin!=null">`origin`,</if>
@@ -210,13 +212,13 @@
                 <if test="reviewer!=null">`reviewer`,</if>
                 <if test="responer!=null">`responer`,</if>
                 <if test="bargain!=null">`bargain`,</if>
-                <if test="xiangmu!=null">`xiangmu`,</if>
 
         </trim>
     </sql>
     <sql id="douValueWithoutNullSql">
         <trim suffixOverrides=",">
                 <choose><when test="id!=null">#{id},</when></choose>
+                <choose><when test="xiangmu!=null">#{xiangmu},</when></choose>
                 <choose><when test="projectName!=null">#{projectName},</when></choose>
                 <choose><when test="type!=null">#{type},</when></choose>
                 <choose><when test="origin!=null">#{origin},</when></choose>
@@ -229,17 +231,17 @@
                 <choose><when test="reviewer!=null">#{reviewer},</when></choose>
                 <choose><when test="responer!=null">#{responer},</when></choose>
                 <choose><when test="bargain!=null">#{bargain},</when></choose>
-                <choose><when test="xiangmu!=null">#{xiangmu},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.id!=null">`id`,</if> `project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,`xiangmu`,
+                <if test="item.id!=null">`id`,</if> `xiangmu`,`project_name`,`type`,`origin`,`price`,`fprice`,`comment`,`date`,`location`,`recoder`,`reviewer`,`responer`,`bargain`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.xiangmu!=null">#{item.xiangmu},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.projectName!=null">#{item.projectName},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.type!=null">#{item.type},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.origin!=null">#{item.origin},</when><otherwise>NULL,</otherwise></choose>
@@ -252,12 +254,12 @@
                 <choose><when test="item.reviewer!=null">#{item.reviewer},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.responer!=null">#{item.responer},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.bargain!=null">#{item.bargain},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.xiangmu!=null">#{item.xiangmu},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
         <trim suffixOverrides=",">
                 <if test="item.id!=null">`id`,</if>
+                <if test="item.xiangmu!=null">`xiangmu`,</if>
                 <if test="item.projectName!=null">`project_name`,</if>
                 <if test="item.type!=null">`type`,</if>
                 <if test="item.origin!=null">`origin`,</if>
@@ -270,13 +272,13 @@
                 <if test="item.reviewer!=null">`reviewer`,</if>
                 <if test="item.responer!=null">`responer`,</if>
                 <if test="item.bargain!=null">`bargain`,</if>
-                <if test="item.xiangmu!=null">`xiangmu`,</if>
 
         </trim>
     </sql>
     <sql id="batchDouValueWithoutNullSql">
         <trim suffixOverrides=",">
                 <choose><when test="item.id!=null">#{item.id},</when></choose>
+                <choose><when test="item.xiangmu!=null">#{item.xiangmu},</when></choose>
                 <choose><when test="item.projectName!=null">#{item.projectName},</when></choose>
                 <choose><when test="item.type!=null">#{item.type},</when></choose>
                 <choose><when test="item.origin!=null">#{item.origin},</when></choose>
@@ -289,11 +291,11 @@
                 <choose><when test="item.reviewer!=null">#{item.reviewer},</when></choose>
                 <choose><when test="item.responer!=null">#{item.responer},</when></choose>
                 <choose><when test="item.bargain!=null">#{item.bargain},</when></choose>
-                <choose><when test="item.xiangmu!=null">#{item.xiangmu},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
         <set>
+                    <choose> <when test="xiangmu!=null">`xiangmu`=#{xiangmu}</when> <otherwise> `xiangmu`=NULL</otherwise> </choose>,
                     <choose> <when test="projectName!=null">`project_name`=#{projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
                     <choose> <when test="type!=null">`type`=#{type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
                     <choose> <when test="origin!=null">`origin`=#{origin}</when> <otherwise> `origin`=NULL</otherwise> </choose>,
@@ -306,11 +308,11 @@
                     <choose> <when test="reviewer!=null">`reviewer`=#{reviewer}</when> <otherwise> `reviewer`=NULL</otherwise> </choose>,
                     <choose> <when test="responer!=null">`responer`=#{responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
                     <choose> <when test="bargain!=null">`bargain`=#{bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
-                    <choose> <when test="xiangmu!=null">`xiangmu`=#{xiangmu}</when> <otherwise> `xiangmu`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
         <set>
+                    <choose><when test="xiangmu!=null">`xiangmu`=#{xiangmu},</when></choose>
                     <choose><when test="projectName!=null">`project_name`=#{projectName},</when></choose>
                     <choose><when test="type!=null">`type`=#{type},</when></choose>
                     <choose><when test="origin!=null">`origin`=#{origin},</when></choose>
@@ -323,7 +325,6 @@
                     <choose><when test="reviewer!=null">`reviewer`=#{reviewer},</when></choose>
                     <choose><when test="responer!=null">`responer`=#{responer},</when></choose>
                     <choose><when test="bargain!=null">`bargain`=#{bargain},</when></choose>
-                    <choose><when test="xiangmu!=null">`xiangmu`=#{xiangmu},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -336,6 +337,7 @@
     </sql>
     <sql id="batchUpdateSetSql">
         <set>
+                    <choose> <when test="item.xiangmu!=null">`xiangmu`=#{item.xiangmu}</when> <otherwise> `xiangmu`=NULL</otherwise> </choose>,
                     <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName}</when> <otherwise> `project_name`=NULL</otherwise> </choose>,
                     <choose> <when test="item.type!=null">`type`=#{item.type}</when> <otherwise> `type`=NULL</otherwise> </choose>,
                     <choose> <when test="item.origin!=null">`origin`=#{item.origin}</when> <otherwise> `origin`=NULL</otherwise> </choose>,
@@ -348,11 +350,11 @@
                     <choose> <when test="item.reviewer!=null">`reviewer`=#{item.reviewer}</when> <otherwise> `reviewer`=NULL</otherwise> </choose>,
                     <choose> <when test="item.responer!=null">`responer`=#{item.responer}</when> <otherwise> `responer`=NULL</otherwise> </choose>,
                     <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain}</when> <otherwise> `bargain`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.xiangmu!=null">`xiangmu`=#{item.xiangmu}</when> <otherwise> `xiangmu`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
         <set>
+                    <choose> <when test="item.xiangmu!=null">`xiangmu`=#{item.xiangmu},</when></choose>
                     <choose> <when test="item.projectName!=null">`project_name`=#{item.projectName},</when></choose>
                     <choose> <when test="item.type!=null">`type`=#{item.type},</when></choose>
                     <choose> <when test="item.origin!=null">`origin`=#{item.origin},</when></choose>
@@ -365,7 +367,6 @@
                     <choose> <when test="item.reviewer!=null">`reviewer`=#{item.reviewer},</when></choose>
                     <choose> <when test="item.responer!=null">`responer`=#{item.responer},</when></choose>
                     <choose> <when test="item.bargain!=null">`bargain`=#{item.bargain},</when></choose>
-                    <choose> <when test="item.xiangmu!=null">`xiangmu`=#{item.xiangmu},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -379,6 +380,7 @@
 
    <sql id="whereSqlModel">
         <if test="id!=null "> and `id` = #{id}</if>
+        <if test="xiangmu!=null "> and `xiangmu` = #{xiangmu}</if>
         <if test="projectName!=null "> and `project_name` = #{projectName}</if>
         <if test="type!=null "> and `type` = #{type}</if>
         <if test="origin!=null "> and `origin` = #{origin}</if>
@@ -391,7 +393,6 @@
         <if test="reviewer!=null "> and `reviewer` = #{reviewer}</if>
         <if test="responer!=null "> and `responer` = #{responer}</if>
         <if test="bargain!=null "> and `bargain` = #{bargain}</if>
-        <if test="xiangmu!=null "> and `xiangmu` = #{xiangmu}</if>
                 <if test="projectNameFirst!=null "> and `project_name` <![CDATA[like]]>
                             concat('%',#{projectNameFirst},'%')
                 </if>
@@ -409,6 +410,7 @@
             group by
             <choose>
                 <when test="safeGroupBy != null and safeGroupBy == 'id'">  `id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'xiangmu'">  `xiangmu` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'project_name'">  `project_name` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'type'">  `type` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'origin'">  `origin` </when>
@@ -421,7 +423,6 @@
                 <when test="safeGroupBy != null and safeGroupBy == 'reviewer'">  `reviewer` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'responer'">  `responer` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'bargain'">  `bargain` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'xiangmu'">  `xiangmu` </when>
             </choose>
         </if>
     </sql>
@@ -430,6 +431,8 @@
             <choose>
                 <when test="safeOrderBy != null and safeOrderBy == 'id desc'"> order by  `id` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'id asc'"> order by `id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'xiangmu desc'"> order by  `xiangmu` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'xiangmu asc'"> order by `xiangmu` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'project_name desc'"> order by  `project_name` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'project_name asc'"> order by `project_name` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'type desc'"> order by  `type` desc </when>
@@ -454,8 +457,6 @@
                 <when test="safeOrderBy != null and safeOrderBy == 'responer asc'"> order by `responer` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'bargain desc'"> order by  `bargain` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'bargain asc'"> order by `bargain` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'xiangmu desc'"> order by  `xiangmu` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'xiangmu asc'"> order by `xiangmu` asc </when>
             </choose>
         </if>
     </sql>

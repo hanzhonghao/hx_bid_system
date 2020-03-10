@@ -27,14 +27,6 @@ import com.magicalcoder.youyaboot.core.utils.ListUtil;
 import com.magicalcoder.youyaboot.core.utils.MapUtil;
 import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
-
-/**
-* 代码为自动生成 Created by www.magicalcoder.com
-* 软件作者：何栋宇 qq:709876443
-* 如果你改变了此类 read 请将此行删除
-* 欢迎加入官方QQ群:648595928
-*/
-
 @RequestMapping("/admin/project_rest/")
 @RestController
 public class AdminProjectRestController extends CommonRestController<Project,Long> implements InitializingBean
@@ -96,9 +88,9 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
             query.put("start",(page - 1) * limit);query.put("limit",limit);
             String fileName = "竞标信息录入表";
             // 列名
-            String columnNames[] = {"编号","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"};
+            String columnNames[] = {"编号","项目名称","参选公司","型号","产地及品牌","报价","最终报价","备注","时间","地点","记录人","复核人","经办人","内容"};
             // map中的key
-            String keys[] = { "numbers","projectName", "type", "origin", "price", "fprice", "comment","dates","location","recoder","reviewer","responer","bargain"};
+            String keys[] = { "numbers","xiangmu","projectName", "type", "origin", "price", "fprice", "comment","dates","location","recoder","reviewer","responer","bargain"};
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 List<Project> projectList = projectService.getModelList(query);

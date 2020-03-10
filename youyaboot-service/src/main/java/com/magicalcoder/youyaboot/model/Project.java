@@ -20,6 +20,7 @@ import lombok.Data;
 public class Project implements Serializable{
 
     private Long id;//id
+    private String xiangmu;//xiangmu
     private String bargain;//bargain
     private String comment;//comment
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
@@ -38,6 +39,5 @@ public class Project implements Serializable{
     private String dates;
     private String dateForPrint;
     private List<Project> projectList;
-   private String xiangmu;//xiangmu
 
 }
