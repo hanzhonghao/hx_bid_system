@@ -64,6 +64,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
+        @RequestParam(required = false,value ="xiangmuFirst")                            String xiangmuFirst ,
         @RequestParam(required = false,value ="projectNameFirst")                            String projectNameFirst ,
         @RequestParam(required = false,value ="dateFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFirst ,
         @RequestParam(required = false,value ="dateSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateSecond ,
@@ -71,6 +72,7 @@ public class AdminProjectRestController extends CommonRestController<Project,Lon
         ,HttpServletResponse response,@RequestParam(required = false) Integer queryType
     ){
         Map<String,Object> query = new HashMap();
+        query.put("xiangmuFirst",coverBlankToNull(xiangmuFirst));
         query.put("projectNameFirst",coverBlankToNull(projectNameFirst));
         query.put("dateFirst",dateFirst);
         query.put("dateSecond",dateSecond);

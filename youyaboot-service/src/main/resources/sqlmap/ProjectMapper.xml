@@ -393,6 +393,9 @@
         <if test="reviewer!=null "> and `reviewer` = #{reviewer}</if>
         <if test="responer!=null "> and `responer` = #{responer}</if>
         <if test="bargain!=null "> and `bargain` = #{bargain}</if>
+                <if test="xiangmuFirst!=null "> and `xiangmu` <![CDATA[=]]>
+                            #{xiangmuFirst}
+                </if>
                 <if test="projectNameFirst!=null "> and `project_name` <![CDATA[like]]>
                             concat('%',#{projectNameFirst},'%')
                 </if>

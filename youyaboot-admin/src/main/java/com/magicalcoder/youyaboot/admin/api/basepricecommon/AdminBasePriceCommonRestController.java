@@ -27,14 +27,6 @@ import com.magicalcoder.youyaboot.core.utils.ListUtil;
 import com.magicalcoder.youyaboot.core.utils.MapUtil;
 import com.magicalcoder.youyaboot.core.utils.StringUtil;
 
-
-/**
-* 代码为自动生成 Created by www.magicalcoder.com
-* 软件作者：何栋宇 qq:709876443
-* 如果你改变了此类 read 请将此行删除
-* 欢迎加入官方QQ群:648595928
-*/
-
 @RequestMapping("/admin/base_price_common_rest/")
 @RestController
 public class AdminBasePriceCommonRestController extends CommonRestController<BasePriceCommon,Long> implements InitializingBean
