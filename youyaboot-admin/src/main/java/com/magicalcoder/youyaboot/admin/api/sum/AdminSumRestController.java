@@ -79,7 +79,7 @@ import com.magicalcoder.youyaboot.service.sum.service.SumService;
             // map中的key
             String keys[] = { "numbers", "projectName","basePoint", "finalPoint", "pj", "zh", "tbdf","signature","scoreSum","numbers"};
             try {
-                List<CommonSum> commonSumList1 = sumService.getCommonSumList(query);
+                List<CommonSum> commonSumList1 = sumService.getCommonSumListFromDB(query);
                 for (int i=1;i<=commonSumList1.size();i++){
                     commonSumList1.get(i-1).setNumbers(i);
                 }
