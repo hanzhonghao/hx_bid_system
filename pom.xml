@@ -76,7 +76,7 @@
 	  <sqlserver>4.2</sqlserver>
       <oracle>12.1.0.2</oracle>
 	  <druid>1.1.9</druid>
-	  <springboot>2.1.3.RELEASE</springboot>
+	  <springboot>2.5.12</springboot>
     </properties>
     <build>
 		<!--<finalName>youyaboot</finalName>-->
